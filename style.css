@@ -1,80 +1,112 @@
-.banner-smx {
-  position: relative;
-  padding: 4rem 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0f;
   color: white;
-  overflow: hidden;
-  background: linear-gradient(135deg, #400954, #020509);
 }
 
-.banner-content {
-  max-width: 900px;
-  margin: auto;
+.hero {
+  position: relative;
+  padding: 5rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
-.banner-smx h1 {
-  font-size: 2.5rem;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, #ff004c55, transparent),
+              radial-gradient(circle at 80% 70%, #4b00ff55, transparent),
+              linear-gradient(135deg, #020509, #400954);
+  filter: blur(40px);
+  z-index: -1;
+}
+
+.hero-content {
+  max-width: 900px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  animation: fadeIn 1s ease;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: .5rem;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  opacity: .9;
+  font-size: 1.3rem;
+  opacity: .8;
 }
 
 .cta {
-  margin-top: 1rem;
-  padding: .8rem 1.5rem;
-  background: #fe0000;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
   border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff004c, #ff7b00);
   color: white;
-  font-size: 1.1rem;
-  border-radius: 6px;
   cursor: pointer;
   transition: .3s;
 }
 
 .cta:hover {
-  background: #ff4444;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff004c88;
 }
 
-.tabs {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: .5rem;
-  flex-wrap: wrap;
+.accordion {
+  margin-top: 3rem;
+  text-align: left;
 }
 
-.tabs button {
-  padding: .5rem 1rem;
+.accordion-header {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255,255,255,0.08);
   border: none;
-  background: #ffffff22;
   color: white;
-  border-radius: 4px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  margin-bottom: .5rem;
   cursor: pointer;
   transition: .3s;
 }
 
-.tabs button:hover {
-  background: #ffffff44;
+.accordion-header:hover {
+  background: rgba(255,255,255,0.15);
 }
 
-.tab-content {
-  display: none;
-  margin-top: 1.5rem;
-  text-align: left;
-  background: #ffffff11;
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 0 1rem;
+  transition: max-height .5s ease, padding .3s ease;
+}
+
+.accordion-body.open {
   padding: 1rem;
-  border-radius: 8px;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn .4s ease;
+  max-height: 500px;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+ul {
+  padding-left: 1.2rem;
 }
