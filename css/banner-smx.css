@@ -42,3 +42,34 @@ body {
   z-index: -1;
 }
 
+.highlights {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+/* AHORA SON BOTONES DE BANNER */
+.highlights span {
+  background: linear-gradient(
+    135deg,
+    rgba(79,172,254,.25),
+    rgba(0,242,254,.25)
+  );
+  border: 1px solid rgba(255,255,255,.35);
+  padding: .9rem 1.8rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: .3px;
+  backdrop-filter: blur(14px);
+  transition: transform .25s, box-shadow .25s, background .25s;
+}
+
+.highlights span:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+}
+
