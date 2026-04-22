@@ -6,11 +6,23 @@ body {
 }
 
 .smx-banner {
-  max-width: 1100px;
+  position: relative;
+  max-width: 1200px;
   margin: auto;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
+  overflow: hidden;
 }
 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(15,32,39,.9), rgba(44,83,100,.85)),
+    url("../assets/img/banner-smx.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
 .banner-content {
   text-align: center;
   margin-bottom: 2rem;
