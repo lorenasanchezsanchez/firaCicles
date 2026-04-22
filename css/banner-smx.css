@@ -16,7 +16,7 @@ body {
   position: relative;
   max-width: 1200px;
   margin: auto;
-  padding: 5rem 2rem 4rem;
+  padding: 5rem 2rem 3rem;
 }
 
 .banner-content {
@@ -25,22 +25,29 @@ body {
 }
 
 .banner-content h1 {
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   margin-bottom: 1rem;
-  letter-spacing: -.5px;
+  background: linear-gradient(90deg, #ffffff, #cdefff);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 6px 25px rgba(0,0,0,.35);
 }
 
-/* FONDO HERO */
+/* HERO SUPERIOR */
 .hero-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 320px;
   background:
-    linear-gradient(135deg, rgba(15,32,39,.92), rgba(44,83,100,.85)),
+    linear-gradient(135deg, rgba(15,32,39,.95), rgba(44,83,100,.9)),
     url("../assets/img/banner-smx.jpg");
   background-size: cover;
   background-position: center;
   z-index: -1;
 }
+``
 
 .highlights {
   display: flex;
@@ -50,34 +57,54 @@ body {
   margin-top: 3rem;
 }
 
-/* AHORA SON BOTONES DE BANNER */
 .highlights span {
-  background: linear-gradient(
-    135deg,
-    rgba(79,172,254,.25),
-    rgba(0,242,254,.25)
-  );
+  background: rgba(0,0,0,.25);
   border: 1px solid rgba(255,255,255,.35);
-  padding: .9rem 1.8rem;
+  padding: .8rem 1.6rem;
   font-size: 1.05rem;
   font-weight: 600;
   border-radius: 999px;
-  cursor: pointer;
-  letter-spacing: .3px;
-  backdrop-filter: blur(14px);
-  transition: transform .25s, box-shadow .25s, background .25s;
+  backdrop-filter: blur(12px);
+  transition: transform .25s, box-shadow .25s;
 }
 
 .highlights span:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(0,0,0,.4);
 }
+``
 .dynamic-content {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
   background: rgba(255,255,255,.12);
-  border-radius: 26px;
-  padding: 3rem;
-  min-height: 260px;
-  backdrop-filter: blur(18px);
-  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+  border-radius: 28px;
+  padding: 3rem 3.5rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 35px 80px rgba(0,0,0,.45);
+  min-height: 280px;
 }
+.plan-formacio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.plan-formacio .curs {
+  background: rgba(255,255,255,.08);
+  border-radius: 18px;
+  padding: 1.8rem;
+}
+
+.plan-formacio h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #8fd3ff;
+}
+
+@media (max-width: 900px) {
+  .plan-formacio {
+    grid-template-columns: 1fr;
+  }
+}
+``
