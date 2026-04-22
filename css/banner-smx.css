@@ -72,4 +72,12 @@ body {
   transform: translateY(-4px) scale(1.05);
   box-shadow: 0 14px 40px rgba(0,0,0,.35);
 }
-
+.dynamic-content {
+  margin-top: 4rem;
+  background: rgba(255,255,255,.12);
+  border-radius: 26px;
+  padding: 3rem;
+  min-height: 260px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+}
