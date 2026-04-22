@@ -213,3 +213,12 @@ body {
     font-size: 2.6rem;
   }
 }
+.title-animated {
+  animation: floatTitle 5s ease-in-out infinite;
+}
+
+@keyframes floatTitle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
