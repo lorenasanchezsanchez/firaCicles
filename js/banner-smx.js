@@ -32,3 +32,80 @@ document.addEventListener("DOMContentLoaded", () => {
             <h4>2n curs</h4>
             <ul>
               <li>Sistemes operatius en xarxa</li>
+              <li>Seguretat informàtica</li>
+              <li>Serveis en xarxa</li>
+              <li>Aplicacions web</li>
+              <li>Mòdul optatiu</li>
+              <li>Itinerari personal per a l’ocupabilitat II</li>
+              <li>Sostenibilitat aplicada al sistema productiu</li>
+              <li>Digitalització aplicada al sistema productiu</li>
+              <li>Projecte intermodular</li>
+              <li>FCT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    `,
+
+    centre: `
+      <div class="panel-section">
+        <h3>🏫 Centre i contacte</h3>
+        <p><strong>IES Benigasló</strong></p>
+        <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>
+        <p>📞 964 738 955</p>
+        <p>📧 12005751@edu.gva.es</p>
+        <p>🌐 portal.edu.gva.es/iesbenigaslo</p>
+      </div>
+    `,
+
+    continu: `
+      <div class="panel-section">
+        <h3>🚀 Continuïtat formativa</h3>
+        <ul>
+          <li>Curs d’especialització en Implementació de xarxes 5G</li>
+          <li>Curs d’especialització en sistemes IoT</li>
+          <li>Accés directe a cicles superiors d’Informàtica</li>
+        </ul>
+      </div>
+    `,
+
+    eixides: `
+      <div class="panel-section">
+        <h3>💼 Eixides professionals</h3>
+        <ul>
+          <li>Tècnic instal·lador-reparador d’equips informàtics</li>
+          <li>Tècnic de suport informàtic</li>
+          <li>Tècnic de xarxes de dades</li>
+          <li>Reparador de perifèrics</li>
+          <li>Operador de sistemes i teleassistència</li>
+        </ul>
+      </div>
+    `,
+
+    oferim: `
+      <div class="panel-section">
+        <h3>🧰 Què oferim</h3>
+        <ul>
+          <li>Aules digitalitzades amb ordinador per alumne</li>
+          <li>Dispositius IoT i impressió 3D</li>
+          <li>Xarxa Wi‑Fi per a l’alumnat</li>
+          <li>Llicències professionals (AWS, Azure, GitHub…)</li>
+          <li>Preparació per a certificacions oficials</li>
+        </ul>
+      </div>
+    `
+  };
+
+  // Eventos
+  pills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      const key = pill.dataset.content;
+      container.innerHTML = templates[key];
+    });
+  });
+
+  // Carga inicial (clave para impacto)
+  pills[0].click();
+
+});
+``
