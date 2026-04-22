@@ -1,12 +1,8 @@
-const tabs = document.querySelectorAll(".tabs button");
-const contents = document.querySelectorAll(".tab-content");
+const headers = document.querySelectorAll('.accordion-header');
 
-tabs.forEach(btn => {
-  btn.addEventListener("click", () => {
-    contents.forEach(c => c.classList.remove("active"));
-    document.getElementById(btn.dataset.tab).classList.add("active");
+headers.forEach(header => {
+  header.addEventListener('click', () => {
+    const body = header.nextElementSibling;
+    body.style.display = body.style.display === 'block' ? 'none' : 'block';
   });
 });
-
-// Mostrar la primera pestaña por defecto
-contents[0].classList.add("active");
