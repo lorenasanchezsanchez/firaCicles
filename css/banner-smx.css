@@ -105,4 +105,29 @@ body {
   font-size: 1.1rem;
   background: none;
   border: none;
+/* Pla de formació en dues columnes */
+.plan-formacio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
 
+.plan-formacio .curs {
+  background: rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+}
+
+.plan-formacio h4 {
+  margin-top: 0;
+  margin-bottom: .6rem;
+  font-size: 1.15rem;
+  color: #4facfe;
+}
+
+/* Responsive: mòbils */
+@media (max-width: 768px) {
+  .plan-formacio {
+    grid-template-columns: 1fr;
+  }
+}
