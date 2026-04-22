@@ -58,10 +58,25 @@
     grid-template-columns: 1fr;
   }
 }
-<div class="highlights clickable">
-  <span data-content="pla">⏱ 2000 hores</span>
-  <span data-content="centre">🏫 IES Benigasló</span>
-  <span data-content="continu">🚀 Continuïtat formativa</span>
-  <span data-content="eixides">💼 Eixides professionals</span>
-  <span data-content="oferim">🧰 Oferim</span>
-</div>
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+  margin: 1.8rem 0 2.5rem;
+}
+
+.highlights span {
+  background: rgba(255,255,255,.12);
+  padding: .55rem 1.1rem;
+  border-radius: 999px;
+  font-size: .95rem;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.highlights span:hover {
+  background: rgba(255,255,255,.22);
+  transform: translateY(-2px);
+}
