@@ -109,3 +109,4 @@ pills.forEach(pill => {
     container.innerHTML = templates[key];
   });
 });
+document.querySelector('[data-content="pla"]').click();
