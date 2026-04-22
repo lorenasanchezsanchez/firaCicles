@@ -65,3 +65,4 @@ const templates = {
     <div class="panel-section">
       <h3>💼 Eixides professionals</h3>
       <ul>
+document.querySelector('[data-content="pla"]').click();
