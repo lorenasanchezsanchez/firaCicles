@@ -155,3 +155,18 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
+.panel-section {
+  background: rgba(255,255,255,.07);
+  border-radius: 22px;
+  padding: 2.5rem 3rem;
+}
+
+/* Títulos dentro del panel */
+.panel-section h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #b5ecff;
+}
+
