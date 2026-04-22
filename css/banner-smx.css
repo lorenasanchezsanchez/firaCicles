@@ -1,82 +1,34 @@
-/* Botones clicables */
-.highlights.clickable {
-  gap: .7rem;
+/* Reset básico */
+* {
+  box-sizing: border-box;
 }
 
-.highlights button {
-  background: rgba(255,255,255,.15);
-  border: none;
-  border-radius: 999px;
-  padding: .6rem 1.2rem;
+/* BODY */
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
   color: white;
-  cursor: pointer;
-  font-size: .95rem;
-  backdrop-filter: blur(10px);
-  transition: background .2s, transform .2s;
 }
 
-.highlights button:hover {
-  background: rgba(255,255,255,.25);
-  transform: translateY(-2px);
+/* CONTENEDOR GENERAL */
+.smx-banner {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  padding: 4rem 1.5rem 5rem;
+  overflow: hidden;
 }
 
-/* Contenedor central dinámico */
-.dynamic-content {
-  margin-top: 2.5rem;
-  background: rgba(255,255,255,.1);
-  border-radius: 18px;
-  padding: 2rem;
-  backdrop-filter: blur(14px);
-  min-height: 200px;
+/* FONDO HERO */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(15,32,39,.92), rgba(44,83,100,.85)),
+    url("../assets/img/banner-smx.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
 
-.placeholder {
-  text-align: center;
-  opacity: .8;
-}
-
-/* Pla de formació en columnes */
-.plan-formacio {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.plan-formacio .curs {
-  background: rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 1.2rem;
-}
-
-.plan-formacio h4 {
-  margin-top: 0;
-  color: #4facfe;
-}
-
-@media (max-width: 768px) {
-  .plan-formacio {
-    grid-template-columns: 1fr;
-  }
-}
-.highlights {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: .8rem;
-  margin: 1.8rem 0 2.5rem;
-}
-
-.highlights span {
-  background: rgba(255,255,255,.12);
-  padding: .55rem 1.1rem;
-  border-radius: 999px;
-  font-size: .95rem;
-  backdrop-filter: blur(12px);
-  cursor: pointer;
-  transition: transform .2s, background .2s;
-}
-
-.highlights span:hover {
-  background: rgba(255,255,255,.22);
-  transform: translateY(-2px);
-}
