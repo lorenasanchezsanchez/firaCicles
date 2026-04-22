@@ -1,1 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+/* Banner */
+.smx-banner {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  padding: 4rem 1.5rem;
+  overflow: hidden;
+}
+
+/* Fondo hero */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(15,32,39,.92), rgba(44,83,100,.85)),
+    url("../assets/img/banner-smx.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+/* Contenido */
+.banner-content {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.banner-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: .5rem;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: .95;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Píldoras */
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+  margin: 1.8rem 0 2.5rem;
+}
+
+.highlights span {
+  background: rgba(255,255,255,.12);
+  padding: .55rem 1.1rem;
+  border-radius: 999px;
+  font-size: .95rem;
+  backdrop-filter: blur(12px);
+}
+
+/* Botón */
+.cta {
+  padding: .9rem 2.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #003344;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,242,254,.3);
+}
+
+/* Acordeón */
+.accordion-item {
+  background: rgba(255,255,255,.1);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(14px);
+  transition: transform .2s;
+}
+
+.accordion-item:hover {
+  transform: scale(1.01);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 1.1rem 1.3rem;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
 
