@@ -213,4 +213,20 @@ body {
     background-position: 0% 50%;
   }
 }
+.highlights span.active {
+  background: linear-gradient(
+    135deg,
+    #4facfe,
+    #00f2fe
+  );
+  color: #021b2c;
+  box-shadow: 0 10px 30px rgba(0,242,254,.45);
+}
+.dynamic-content {
+  transition: opacity .35s ease, transform .35s ease;
+}
 
+.dynamic-content.hide {
+  opacity: 0;
+  transform: translateY(10px);
+}
