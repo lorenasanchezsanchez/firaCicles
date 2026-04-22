@@ -154,7 +154,14 @@ body {
   .plan-formacio {
     grid-template-columns: 1fr;
   }
+  .title-animated {
+    font-size: 2.6rem;
+  }
 }
+
+
+
+
 /* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
 .panel-section {
   background: rgba(255,255,255,.07);
@@ -207,9 +214,3 @@ body {
   }
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .title-animated {
-    font-size: 2.6rem;
-  }
-}
