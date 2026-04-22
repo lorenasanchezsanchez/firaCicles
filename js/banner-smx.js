@@ -1,6 +1,10 @@
+// Contenedor central donde se carga el contenido
 const container = document.getElementById("dynamic-content");
-const buttons = document.querySelectorAll("[data-content]");
 
+// Píldoras clicables
+const pills = document.querySelectorAll("[data-content]");
+
+// Plantillas de contenido
 const templates = {
 
   pla: `
@@ -28,13 +32,20 @@ const templates = {
           <li>Aplicacions web</li>
           <li>Mòdul optatiu</li>
           <li>Itinerari personal per a l’ocupabilitat II</li>
-          <li>Sostenibilitat</li>
-          <li>Digitalització</li>
+          <li>Sostenibilitat aplicada al sistema productiu</li>
+          <li>Digitalització aplicada al sistema productiu</li>
           <li>Projecte intermodular</li>
-          <li>FCT</li>
+          <li>Formació en Centres de Treball (FCT)</li>
         </ul>
       </div>
     </div>
+
+    <p style="opacity:.85; margin-top:1.2rem;">
+      <em>
+        Pla de formació segons el currículum oficial del CFGM de
+        Sistemes Microinformàtics i Xarxes de la Generalitat Valenciana.
+      </em>
+    </p>
   `,
 
   centre: `
@@ -45,7 +56,7 @@ const templates = {
     <p>📧 12005751@edu.gva.es</p>
     <p>
       🌐
-      <a href="https://portal.edu.gva.es/iesbenigaslo" target="_blank">
+      https://portal.edu.gva.es/iesbenigaslo
         portal.edu.gva.es/iesbenigaslo
       </a>
     </p>
@@ -55,38 +66,46 @@ const templates = {
     <h3>🚀 Continuïtat formativa</h3>
     <ul>
       <li>Curs d’especialització en Implementació de xarxes 5G</li>
-      <li>Curs d’especialització en sistemes IoT</li>
-      <li>Accés directe a cicles superiors d’Informàtica</li>
+      <li>Curs d’especialització en sistemes connectats a Internet (IoT)</li>
+      <li>
+        Accés directe a cicles superiors de la família
+        d’Informàtica i Comunicacions
+      </li>
     </ul>
   `,
 
   eixides: `
     <h3>💼 Eixides professionals</h3>
     <ul>
-      <li>Tècnic instal·lador-reparador</li>
+      <li>Tècnic instal·lador-reparador d’equips informàtics</li>
       <li>Tècnic de suport informàtic</li>
       <li>Tècnic de xarxes de dades</li>
-      <li>Operador de sistemes</li>
       <li>Reparador de perifèrics</li>
+      <li>Operador de sistemes i teleassistència</li>
     </ul>
   `,
 
   oferim: `
     <h3>🧰 Què oferim</h3>
     <ul>
-      <li>Aules digitalitzades</li>
-      <li>Ordinador per alumne</li>
-      <li>IoT i impressió 3D</li>
-      <li>Llicències professionals (AWS, Azure, GitHub…)</li>
+      <li>Aules digitalitzades amb ordinador per alumne</li>
+      <li>Dispositius IoT i impressió 3D</li>
+      <li>Xarxa Wi‑Fi per a l’alumnat</li>
+      <li>
+        Llicències professionals gratuïtes:
+        Windows, GitHub, AWS, Azure, Office 365, Cisco…
+      </li>
       <li>Preparació per a certificacions oficials</li>
     </ul>
   `
 };
 
-// Evento común
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const key = btn.dataset.content;
+// Eventos: clicar en una píldora carga el contenido correspondiente
+pills.forEach(pill => {
+  pill.addEventListener("click", () => {
+    const key = pill.dataset.content;
+
+    // Sustituye completamente el contenido central
     container.innerHTML = templates[key];
   });
 });
