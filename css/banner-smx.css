@@ -79,13 +79,18 @@ body {
   cursor: pointer;
   backdrop-filter: blur(14px);
   transition: transform .25s, box-shadow .25s, background .25s;
-  padding: .75rem 1.6rem;   /* menos alto, se adapta mejor */
-  line-height: 1.05;        /* compacta el texto */
-  min-height: 0;            /* evita alturas forzadas */
-  text-align: center;
+
+  padding: .75rem 1.6rem;
+  line-height: 1.05;
+  min-height: 0;
+
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;      /* centra vertical */
+  justify-content: center;  /* centra horizontal */
+  text-align: center;
+  white-space: normal;      /* permite 2 líneas */
+}
+
 }
 
 .highlights span br{
