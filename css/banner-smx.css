@@ -21,24 +21,16 @@ body {
 
 /* HERO SUPERIOR (SOLO ARRIBA) */
 .hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 360px;
-  background:
-    linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9)),
-    url("../assets/img/banner-smx.jpg");
+height: 260px;                 /* franja superior */
   background-size: cover;
   background-position: center;
-  z-index: -1;
 }
 
 /* HERO CONTENT */
-.banner-content {
-  padding: 6rem 2rem 0;
-  text-align: center;
+.banner-content{
+  padding: calc(260px + 2rem) 2rem 0;  /* antes tenías 6rem 2rem 0 */
 }
+
 
 .banner-content h1 {
   font-size: 3.6rem;
