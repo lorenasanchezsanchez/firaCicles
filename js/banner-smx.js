@@ -122,6 +122,14 @@ document.addEventListener("DOMContentLoaded", function () {
       pill.classList.add("active");
 
       const key = pill.dataset.content;
+      if (key === "matricula") {
+  window.open(
+    "https://ceice.gva.es/es/web/formacion-profesional/admissio",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
 
       container.classList.add("hide");
 
