@@ -7,6 +7,34 @@
   <link rel="stylesheet" href="css/banner-smx.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* Caja del contador (pill) */
+    .visits {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      z-index: 10;
+
+      display: inline-flex;
+      align-items: center;
+
+      padding: 6px 10px;
+      border-radius: 12px;
+
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .visits img {
+      display: block;
+      height: 18px; /* ajusta tamaño del badge */
+    }
+  </style>
 </head>
 <body>
 
@@ -14,33 +42,19 @@
 
   <div class="hero-bg"></div>
 
-<!-- CONTADOR DE VISITAS -->
-<div class="visits" style="position:absolute; right:16px; top:16px; font-size:14px; opacity:.9; z-index:10; color:#fff;">
-  Visites: <span id="visit-count">...</span>
-</div>
+  <!-- CONTADOR DE VISITAS (badge) -->
+  <div class="visits">
+    <img
+      alt="Visitors"
+      src="https://api.visitorbadge.io/api/visitors?path=lorenasanchezsanchez%2FfiraCicles&countColor=%23263759"
+    />
+  </div>
 
-<script>
-  (async () => {
-    try {
-      const url = "https://api.visitorbadge.io/api/visitors?path=lorenasanchezsanchez%2FfiraCicles";
-      const res = await fetch(url, { cache: "no-store" });
-      const data = await res.json();
-      // La API suele devolver "visitors" o "total"
-      const n = data?.visitors ?? data?.total ?? data?.count;
-      document.getElementById("visit-count").textContent = (n ?? "0");
-    } catch (e) {
-      document.getElementById("visit-count").textContent = "";
-    }
-  })();
-</script>
-
-  
   <div class="banner-content">
     <!-- HERO -->
     <h1 class="title-animated">
       <span>Sistemes Microinformàtics i Xarxes</span>
     </h1>
-
 
     <!-- NAVEGACIÓN DEL BANNER -->
     <div class="highlights">
@@ -55,10 +69,7 @@
   <!-- PANEL CENTRAL REAL -->
   <div id="dynamic-content" class="dynamic-content"></div>
 
- 
 </section>
 
 <script src="js/banner-smx.js"></script>
-</body>
-</html>
-``
+</*
