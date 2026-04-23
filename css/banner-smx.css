@@ -17,20 +17,29 @@ body {
   max-width: 1300px;
   margin: auto;
   padding-bottom: 5rem;
+
+  /* Reserva espacio para la franja del hero (evita solape) */
+  padding-top: 260px;
 }
 
 /* HERO SUPERIOR (SOLO ARRIBA) */
 .hero-bg {
-height: 260px;                 /* franja superior */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 260px; /* franja superior */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* HERO CONTENT */
-.banner-content{
-  padding: calc(260px + 2rem) 2rem 0;  /* antes tenías 6rem 2rem 0 */
+.banner-content {
+  /* Ya no usamos calc(260px + ...) porque la reserva está en .smx-banner */
+  padding: 2rem 2rem 0;
 }
-
 
 .banner-content h1 {
   font-size: 3.6rem;
@@ -38,156 +47,16 @@ height: 260px;                 /* franja superior */
   background: linear-gradient(90deg, #ffffff, #9fe7ff);
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 0 8px 35px rgba(0,0,0,.6);
+  text-shadow: 0 8px 35px rgba(0, 0, 0, 0.6);
 }
 
 .subtitle {
   font-size: 1.25rem;
   max-width: 900px;
   margin: auto;
-  opacity: .95;
+  opacity: 0.95;
 }
 
-/* NAVEGACIÓN PRINCIPAL (BOTONES IMPACTANTES) */
-.highlights {
-  margin-top: 3rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  overflow: visible; 
-}
-
-.highlights span {
-  background: linear-gradient(
-    135deg,
-    rgba(79,172,254,.35),
-    rgba(0,242,254,.25)
-  );
-  border: 1px solid rgba(255,255,255,.45);
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 999px;
-  cursor: pointer;
-  backdrop-filter: blur(14px);
-  transition: transform .25s, box-shadow .25s, background .25s;
-
-  padding: .75rem 1.6rem;
-  line-height: 1.05;
-  min-height: 0;
-
-  display: inline-flex;
-  align-items: center;      /* centra vertical */
-  justify-content: center;  /* centra horizontal */
-  text-align: center;
-  white-space: normal;      /* permite 2 líneas */
-}
-
-}
-
-.highlights span br{
-  content: "";
-}
-
-
-.highlights span:hover {
-  transform: translateY(-6px) scale(1.08);
-  box-shadow: 0 22px 60px rgba(0,0,0,.55);
-}
-
-/* PANEL CENTRAL (CARD GRANDE) */
-.dynamic-content {
-  margin: 4.5rem auto 0;
-  max-width: 1100px;
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.12),
-    rgba(255,255,255,.08)
-  );
-  border-radius: 32px;
-  padding: 3.5rem 4rem;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 40px 90px rgba(0,0,0,.6);
-  min-height: 280px;
-}
-
-/* TITULOS DENTRO DEL PANEL */
-.dynamic-content h3 {
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: #b5ecff;
-}
-
-/* PLAN DE FORMACIÓ EN DOS COLUMNAS */
-.plan-formacio {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-}
-
-.plan-formacio .curs {
-  background: rgba(255,255,255,.08);
-  border-radius: 22px;
-  padding: 2rem;
-}
-
-.plan-formacio h4 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  color: #7fdcff;
-}
-
-/* LISTAS */
-.dynamic-content ul {
-  padding-left: 1.2rem;
-}
-
-.dynamic-content li {
-  margin: .45rem 0;
-  font-size: 1.05rem;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-
-  .banner-content h1 {
-    font-size: 2.6rem;
-  }
-
-  .dynamic-content {
-    padding: 2.5rem 2rem;
-  }
-
-  .plan-formacio {
-    grid-template-columns: 1fr;
-  }
-  .title-animated {
-    font-size: 2.6rem;
-  }
-   /* FORZAR en móvil: ver la imagen completa */
-@media (max-width: 900px) {
-  .hero-bg{
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center top !important;
-  }
-
-/* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
-.panel-section {
-  background: rgba(255,255,255,.07);
-  border-radius: 22px;
-  padding: 2.5rem 3rem;
-}
-
-/* Títulos dentro del panel */
-.panel-section h3 {
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: #b5ecff;
-}
 /* TÍTULO IMPACTANTE ANIMADO */
 .title-animated {
   position: relative;
@@ -200,12 +69,7 @@ height: 260px;                 /* franja superior */
 .title-animated span {
   position: relative;
   display: inline-block;
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #7fdcff,
-    #ffffff
-  );
+  background: linear-gradient(90deg, #ffffff, #7fdcff, #ffffff);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   color: transparent;
@@ -225,17 +89,71 @@ height: 260px;                 /* franja superior */
     background-position: 0% 50%;
   }
 }
-.highlights span.active {
+
+/* NAVEGACIÓN PRINCIPAL (BOTONES) */
+.highlights {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+.highlights span {
   background: linear-gradient(
     135deg,
-    #4facfe,
-    #00f2fe
+    rgba(79, 172, 254, 0.35),
+    rgba(0, 242, 254, 0.25)
   );
-  color: #021b2c;
-  box-shadow: 0 10px 30px rgba(0,242,254,.45);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+
+  padding: 0.75rem 1.6rem;
+  line-height: 1.05;
+  min-height: 0;
+
+  display: inline-flex;
+  align-items: center; /* centra vertical */
+  justify-content: center; /* centra horizontal */
+  text-align: center;
+  white-space: normal; /* permite 2 líneas */
 }
+
+.highlights span:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+}
+
+.highlights span.active {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #021b2c;
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.45);
+}
+
+/* PANEL CENTRAL (CARD GRANDE) */
 .dynamic-content {
-  transition: opacity .35s ease, transform .35s ease;
+  margin: 4.5rem auto 0;
+  max-width: 1100px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.08)
+  );
+  border-radius: 32px;
+  padding: 3.5rem 4rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+  min-height: 280px;
+
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .dynamic-content.hide {
@@ -243,4 +161,95 @@ height: 260px;                 /* franja superior */
   transform: translateY(10px);
 }
 
-.smx-banner { position: relative; }
+/* TITULOS DENTRO DEL PANEL */
+.dynamic-content h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #b5ecff;
+}
+
+/* PLAN DE FORMACIÓ EN DOS COLUMNAS */
+.plan-formacio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.plan-formacio .curs {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 2rem;
+}
+
+.plan-formacio h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #7fdcff;
+}
+
+/* LISTAS */
+.dynamic-content ul {
+  padding-left: 1.2rem;
+}
+
+.dynamic-content li {
+  margin: 0.45rem 0;
+  font-size: 1.05rem;
+}
+
+/* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
+.panel-section {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 22px;
+  padding: 2.5rem 3rem;
+}
+
+/* Títulos dentro del panel */
+.panel-section h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #b5ecff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .smx-banner {
+    padding-top: 200px;
+  }
+
+  .hero-bg {
+    height: 200px;
+  }
+
+  .banner-content {
+    padding: 1.5rem 1rem 0;
+  }
+
+  .banner-content h1 {
+    font-size: 2.6rem;
+  }
+
+  .title-animated {
+    font-size: 2.6rem;
+  }
+
+  .dynamic-content {
+    padding: 2.5rem 2rem;
+  }
+
+  .plan-formacio {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .panel-section h3,
+  .dynamic-content h3 {
+    font-size: 1.6rem;
+  }
+}
