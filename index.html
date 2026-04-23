@@ -13,13 +13,28 @@
 <section class="smx-banner">
 
   <div class="hero-bg"></div>
-  <!-- CONTADOR DE VISITAS (badge) -->
-<div class="visits" style="position:absolute; right:16px; top:16px; font-size:14px; opacity:.9; z-index:10;">
-  <img
-  alt="Visites"
-  src="https://api.visitorbadge.io/api/visitors?path=lorenasanchezsanchez%2FfiraCicles&label=Visites&countColor=%23263759"
-/>
+
+<!-- CONTADOR DE VISITAS -->
+<div class="visits" style="position:absolute; right:16px; top:16px; font-size:14px; opacity:.9; z-index:10; color:#fff;">
+  Visites: <span id="visit-count">...</span>
 </div>
+
+<script>
+  (async () => {
+    try {
+      const url = "https://api.visitorbadge.io/api/visitors?path=lorenasanchezsanchez%2FfiraCicles";
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      // La API suele devolver "visitors" o "total"
+      const n = data?.visitors ?? data?.total ?? data?.count;
+      document.getElementById("visit-count").textContent = (n ?? "0");
+    } catch (e) {
+      document.getElementById("visit-count").textContent = "";
+    }
+  })();
+</script>
+
+  
   <div class="banner-content">
     <!-- HERO -->
     <h1 class="title-animated">
