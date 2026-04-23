@@ -174,15 +174,13 @@ body {
   .title-animated {
     font-size: 2.6rem;
   }
-   .hero-bg{
-    background-size: contain;   /* muestra la imagen completa */
-    background-repeat: no-repeat;
-    background-position: center top;
+   /* FORZAR en móvil: ver la imagen completa */
+@media (max-width: 900px) {
+  .hero-bg{
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center top !important;
   }
-}
-
-
-
 
 /* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
 .panel-section {
