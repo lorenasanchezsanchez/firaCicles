@@ -94,24 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
       '<li>Preparació per a certificacions oficials</li>',
       '</ul>',
       '</div>'
-    ].join(""),
-
-    matricula: [
-      '<div class="panel-section">',
-      '<h3>📝 Matrícula</h3>',
-      '<p style="margin-top: 6px;">',
-      'Si no es mostra dins de la finestra, és perquè la web externa no permet incrustar-se. ',
-      'Pots obrir-la en una pestanya nova: ',
-      '<a href="https://ceice.gva.es/es/web/formacion-profesional/admissio" target="_blank" rel="noopener noreferrer">',
-      'Admissió FP (GVA)',
-      '</a>.',
-      '</p>',
-      '<iframe ',
-      'src="https://ceice.gva.es/es/web/formacion-profesional/admissio" ',
-      'style="width:100%; height:60vh; border:0; border-radius:12px; background:#fff;" ',
-      'loading="lazy"',
-      '></iframe>',
-      '</div>'
     ].join("")
   };
 
@@ -122,18 +104,27 @@ document.addEventListener("DOMContentLoaded", function () {
       pill.classList.add("active");
 
       const key = pill.dataset.content;
+
+      // "Matrícula": abrir enlace en otra pestaña (no cargar panel)
       if (key === "matricula") {
-  window.open(
-    "https://ceice.gva.es/es/web/formacion-profesional/admissio",
-    "_blank",
-    "noopener,noreferrer"
-  );
-  return;
-}
+        window.open(
+          "https://ceice.gva.es/es/web/formacion-profesional/admissio",
+          "_blank",
+          "noopener,noreferrer"
+        );
+        return;
+      }
 
       container.classList.add("hide");
 
       setTimeout(function () {
         container.innerHTML = templates[key] || '<div class="panel-section"><p>Contingut no disponible.</p></div>';
         container.classList.remove("hide");
-     
+      }, 200);
+    });
+  });
+
+  // Carga inicial
+  pills[0].click();
+
+});
