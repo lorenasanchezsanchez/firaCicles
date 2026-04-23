@@ -28,7 +28,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-
+  background-image: url("../assets/img/banner-smx.jpg");
   height: 260px; /* franja superior */
   background-size: cover;
   background-position: center;
