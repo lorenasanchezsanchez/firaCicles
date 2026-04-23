@@ -80,7 +80,14 @@ body {
   cursor: pointer;
   backdrop-filter: blur(14px);
   transition: transform .25s, box-shadow .25s, background .25s;
+  line-height: 1.05;
+  text-align: center;
 }
+
+.highlights span br{
+  content: "";
+}
+
 
 .highlights span:hover {
   transform: translateY(-6px) scale(1.08);
