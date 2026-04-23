@@ -253,3 +253,32 @@ body {
     font-size: 1.6rem;
   }
 }
+
+
+/* DEBUG + FIX: forzar que el hero se vea */
+.hero-bg{
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+
+  height: 260px !important;
+  z-index: 0 !important;
+
+  background-image: url("../assers/img/banner-smx.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+
+  outline: 4px solid lime !important; /* quítalo cuando ya funcione */
+}
+
+.banner-content{
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.smx-banner{
+  position: relative !important;
+  padding-top: 260px !important; /* reserva espacio para no solapar */
+}
