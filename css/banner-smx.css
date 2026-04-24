@@ -271,3 +271,25 @@ body {
   background: rgba(0, 0, 0, 0.35);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
 }
+
+/* CENTRE I CONTACTE: TEXTO + IMAGEN */
+.centre-grid{
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.centre-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.45);
+}
+
+@media (max-width: 900px){
+  .centre-grid{
+    grid-template-columns: 1fr;
+  }
+}
