@@ -48,16 +48,21 @@ document.addEventListener("DOMContentLoaded", function () {
       '</div>'
     ].join(""),
 
-    centre: [
-      '<div class="panel-section">',
-      '<h3>🏫 Centre i contacte</h3>',
-      '<p><strong>IES Benigasló</strong></p>',
-      '<p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>',
-      '<p>📞 964 738 955</p>',
-      '<p>📧 12005751@edu.gva.es</p>',
-      '<p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
-      '</div>'
-    ].join(""),
+centre: [
+  '<div class="panel-section centre-grid">',
+  '  <div class="centre-text">',
+  '    <h3>🏫 Centre i contacte</h3>',
+  '    <p><strong>IES Benigasló</strong></p>',
+  '    <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>',
+  '    <p>📞 964 738 955</p>',
+  '    <p>📧 12005751@edu.gva.es</p>',
+  '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
+  '  </div>',
+  '  <div class="centre-media">',
+  '    <img class="centre-img" src="assets/img/ies.jpg" alt="IES Benigasló" loading="lazy" />',
+  '  </div>',
+  '</div>'
+].join(""),
 
     continu: [
       '<div class="panel-section">',
