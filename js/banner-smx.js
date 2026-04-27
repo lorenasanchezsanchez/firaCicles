@@ -50,10 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
 coneixerns: [
   '<div class="panel-section">',
   "<h3>🎥 Vine a conéixer-nos</h3>",
-  '<video controls style="width:100%; max-width:900px; height:auto;">',
-  '  <source src="assets/Video.mp4" type="video/mp4" />',
-  "  El teu navegador no suporta vídeo HTML5.",
-  "</video>",
+  '<div class="video-panel-wrap">',
+  '  <video class="video-panel" autoplay muted loop playsinline preload="metadata">',
+  '    <source src="assets/Video.mp4" type="video/mp4" />',
+  "    El teu navegador no suporta vídeo HTML5.",
+  "  </video>",
+  "</div>",
   "</div>"
 ].join(""),
 centre: [
