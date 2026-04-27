@@ -269,6 +269,22 @@ body {
 
   .centre-grid { grid-template-columns: 1fr; }
 }
+.pdf-wrap {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.pdf-frame {
+  display: block;
+  width: 100%;
+  height: 75vh;     /* alto grande dentro del panel */
+  border: 0;
+}
 
 /* padding más pequeño en móvil para que no “empuje” el video fuera */
 @media (max-width: 600px) {
