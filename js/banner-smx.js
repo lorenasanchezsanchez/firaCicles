@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // "Matrícula": abrir enlace en otra pestaña (no cargar panel)
       if (key === "matricula") {
         window.open(
-          "https://ceice.gva.es/es/web/formacion-profesional/admissio",
+          "https://ceice.gva.es/es/web/formacion-profesional/admision-alumnado-en-ciclos-formativos",
           "_blank",
           "noopener,noreferrer"
         );
