@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     pla: [
       '<div class="panel-section">',
-      '<h3>📚 Pla de formació (currículum oficial GVA)</h3>',
+      '<h3>📚 Pla de formació de 2000 hores</h3>',
 
       '<div class="plan-formacio">',
 
