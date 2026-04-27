@@ -137,7 +137,8 @@ centre: [
     });
   });
 
-  // Carga inicial
-  pills[0].click();
+ // Carga inicial: "Vine a conéixer-nos" si existe; si no, el primero
+const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
+defaultPill.click();
 
 });
