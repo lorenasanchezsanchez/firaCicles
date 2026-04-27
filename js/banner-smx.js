@@ -47,7 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
       '</div>',
       '</div>'
     ].join(""),
-
+coneixerns: [
+  '<div class="panel-section">',
+  "<h3>🎥 Vine a conéixer-nos</h3>",
+  '<video controls style="width:100%; max-width:900px; height:auto;">',
+  '  <source src="assets/Video.mp4" type="video/mp4" />',
+  "  El teu navegador no suporta vídeo HTML5.",
+  "</video>",
+  "</div>"
+].join(""),
 centre: [
   '<div class="panel-section centre-grid">',
   '  <div class="centre-text">',
