@@ -255,22 +255,6 @@ body {
 
 .smx-banner { position: relative; }
 
-/* VIDEO FOOTER */
-.video-footer {
-  max-width: 1300px;
-  margin: 4rem auto 2rem;
-  padding: 0 2rem;
-}
-
-.video-footer__video {
-  width: 100%;
-  max-height: 420px;
-  border-radius: 24px;
-  display: block;
-  object-fit: cover;
-  background: rgba(0, 0, 0, 0.35);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
-}
 
 /* CENTRE I CONTACTE: TEXTO + IMAGEN */
 .centre-grid{
