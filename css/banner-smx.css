@@ -63,7 +63,7 @@ body {
   justify-content: center;
   gap: 1.2rem;
   flex-wrap: wrap;
-  overflow: visible; 
+  overflow: visible;
 }
 
 .highlights span {
@@ -91,12 +91,9 @@ body {
   white-space: normal;      /* permite 2 líneas */
 }
 
-}
-
-.highlights span br{
+.highlights span br {
   content: "";
 }
-
 
 .highlights span:hover {
   transform: translateY(-6px) scale(1.08);
@@ -117,14 +114,23 @@ body {
   backdrop-filter: blur(24px);
   box-shadow: 0 40px 90px rgba(0,0,0,.6);
   min-height: 280px;
+
+  /* evita que contenidos (como el video) provoquen overflow horizontal */
+  overflow: hidden;
+
+  transition: opacity .35s ease, transform .35s ease;
 }
 
-/* TITULOS DENTRO DEL PANEL */
 .dynamic-content h3 {
   margin-top: 0;
   margin-bottom: 2rem;
   font-size: 2rem;
   color: #b5ecff;
+}
+
+.dynamic-content.hide {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 /* PLAN DE FORMACIÓ EN DOS COLUMNAS */
@@ -157,33 +163,6 @@ body {
   font-size: 1.05rem;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-
-  .banner-content h1 {
-    font-size: 2.6rem;
-  }
-
-  .dynamic-content {
-    padding: 2.5rem 2rem;
-  }
-
-  .plan-formacio {
-    grid-template-columns: 1fr;
-  }
-  .title-animated {
-    font-size: 2.6rem;
-  }
-   .hero-bg{
-    background-size: contain;   /* muestra la imagen completa */
-    background-repeat: no-repeat;
-    background-position: center top;
-  }
-}
-
-
-
-
 /* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
 .panel-section {
   background: rgba(255,255,255,.07);
@@ -191,13 +170,32 @@ body {
   padding: 2.5rem 3rem;
 }
 
-/* Títulos dentro del panel */
 .panel-section h3 {
   margin-top: 0;
   margin-bottom: 2rem;
   font-size: 2rem;
   color: #b5ecff;
 }
+
+/* VIDEO EN PANEL (redondeado y sin salirse) */
+.video-panel-wrap {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  border-radius: 18px;
+  overflow: hidden; /* clave para que el vídeo respete las esquinas */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  background: #000; /* evita “bordes” raros mientras carga */
+}
+
+.video-panel {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 /* TÍTULO IMPACTANTE ANIMADO */
 .title-animated {
   position: relative;
@@ -223,71 +221,58 @@ body {
   text-shadow: 0 10px 35px rgba(0, 0, 0, 0.65);
 }
 
-/* Brillo en movimiento */
 @keyframes titleGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-.highlights span.active {
-  background: linear-gradient(
-    135deg,
-    #4facfe,
-    #00f2fe
-  );
-  color: #021b2c;
-  box-shadow: 0 10px 30px rgba(0,242,254,.45);
-}
-.dynamic-content {
-  transition: opacity .35s ease, transform .35s ease;
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.dynamic-content.hide {
-  opacity: 0;
-  transform: translateY(10px);
+.highlights span.active {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #021b2c;
+  box-shadow: 0 10px 30px rgba(0,242,254,.45);
 }
 
 .smx-banner { position: relative; }
 
-
 /* CENTRE I CONTACTE: TEXTO + IMAGEN */
-.centre-grid{
+.centre-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2rem;
   align-items: center;
 }
 
-.centre-img{
+.centre-img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 18px;
   box-shadow: 0 18px 45px rgba(0,0,0,.45);
 }
-.video-panel-wrap {
-  border-radius: 18px;
-  overflow: hidden;              /* clave para que el vídeo respete las esquinas */
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  background: #000;              /* evita “bordes” raros mientras carga */
-  max-width: 900px;
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .banner-content h1 { font-size: 2.6rem; }
+
+  .dynamic-content { padding: 2.5rem 2rem; }
+
+  .plan-formacio { grid-template-columns: 1fr; }
+
+  .title-animated { font-size: 2.6rem; }
+
+  .hero-bg {
+    background-size: contain;   /* muestra la imagen completa */
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
+
+  .centre-grid { grid-template-columns: 1fr; }
 }
 
-.video-panel {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.video-panel-wrap { margin: 0 auto; }
-
-@media (max-width: 900px){
-  .centre-grid{
-    grid-template-columns: 1fr;
+/* padding más pequeño en móvil para que no “empuje” el video fuera */
+@media (max-width: 600px) {
+  .panel-section {
+    padding: 1.5rem 1.25rem;
   }
 }
