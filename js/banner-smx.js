@@ -10,6 +10,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const templates = {
 
+    coneixerns: [
+      '<div class="panel-section">',
+      "<h3>🎥 Vine a conéixer-nos</h3>",
+      '<div class="video-panel-wrap">',
+      '  <video class="video-panel" autoplay muted loop playsinline preload="metadata">',
+      '    <source src="assets/Video.mp4" type="video/mp4" />',
+      "    El teu navegador no suporta vídeo HTML5.",
+      "  </video>",
+      "</div>",
+      "</div>"
+    ].join(""),
+
     pla: [
       '<div class="panel-section">',
       '<h3>📚 Pla de formació (currículum oficial GVA)</h3>',
@@ -47,32 +59,22 @@ document.addEventListener("DOMContentLoaded", function () {
       '</div>',
       '</div>'
     ].join(""),
-coneixerns: [
-  '<div class="panel-section">',
-  "<h3>🎥 Vine a conéixer-nos</h3>",
-  '<div class="video-panel-wrap">',
-  '  <video class="video-panel" autoplay muted loop playsinline preload="metadata">',
-  '    <source src="assets/Video.mp4" type="video/mp4" />',
-  "    El teu navegador no suporta vídeo HTML5.",
-  "  </video>",
-  "</div>",
-  "</div>"
-].join(""),
-centre: [
-  '<div class="panel-section centre-grid">',
-  '  <div class="centre-text">',
-  '    <h3>🏫 Centre i contacte</h3>',
-  '    <p><strong>IES Benigasló</strong></p>',
-  '    <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>',
-  '    <p>📞 964 738 955</p>',
-  '    <p>📧 12005751@edu.gva.es</p>',
-  '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
-  '  </div>',
-  '  <div class="centre-media">',
-  '    <img class="centre-img" src="assets/img/ies.jpg" alt="IES Benigasló" loading="lazy" />',
-  '  </div>',
-  '</div>'
-].join(""),
+
+    centre: [
+      '<div class="panel-section centre-grid">',
+      '  <div class="centre-text">',
+      '    <h3>🏫 Centre i contacte</h3>',
+      '    <p><strong>IES Benigasló</strong></p>',
+      '    <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>',
+      '    <p>📞 964 738 955</p>',
+      '    <p>📧 12005751@edu.gva.es</p>',
+      '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
+      '  </div>',
+      '  <div class="centre-media">',
+      '    <img class="centre-img" src="assets/img/ies.jpg" alt="IES Benigasló" loading="lazy" />',
+      '  </div>',
+      '</div>'
+    ].join(""),
 
     continu: [
       '<div class="panel-section">',
@@ -112,6 +114,33 @@ centre: [
     ].join("")
   };
 
+  function enableVideoFullscreen() {
+    const video = container.querySelector("video.video-panel");
+    if (!video) return;
+
+    // Evita duplicar listener si vuelves a entrar al panel
+    if (video.dataset.fsBound === "1") return;
+    video.dataset.fsBound = "1";
+
+    video.style.cursor = "pointer";
+    video.title = "Clica per veure en pantalla completa";
+
+    video.addEventListener("click", async () => {
+      try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+          return;
+        }
+
+        if (video.requestFullscreen) await video.requestFullscreen();
+        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen(); // Safari
+        else if (video.msRequestFullscreen) video.msRequestFullscreen(); // antiguos
+      } catch (e) {
+        console.warn("No s'ha pogut activar pantalla completa:", e);
+      }
+    });
+  }
+
   pills.forEach(function (pill) {
     pill.addEventListener("click", function () {
 
@@ -135,12 +164,13 @@ centre: [
       setTimeout(function () {
         container.innerHTML = templates[key] || '<div class="panel-section"><p>Contingut no disponible.</p></div>';
         container.classList.remove("hide");
+        enableVideoFullscreen();
       }, 200);
     });
   });
 
- // Carga inicial: "Vine a conéixer-nos" si existe; si no, el primero
-const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
-defaultPill.click();
+  // Carga inicial: "Vine a conéixer-nos" si existe; si no, el primero
+  const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
+  defaultPill.click();
 
 });
