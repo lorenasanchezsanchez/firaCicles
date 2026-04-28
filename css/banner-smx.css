@@ -93,6 +93,47 @@ body{
   z-index: 0; /* FIX: antes -1 */
 }
 
+/* =========================================================
+   LOGO SVG (WATERMARK) - DIFUMINADO + TRANSPARENTE
+   ========================================================= */
+.hero-logo{
+  position: absolute;
+  inset: 0;
+  z-index: 0;              /* detrás del contenido (content tiene z-index:1) */
+  pointer-events: none;
+
+  display: grid;
+  place-items: center;
+
+  /* Ajustes principales: baja presencia */
+  opacity: .16;
+  filter: blur(3px) saturate(1.05) contrast(1.02);
+
+  /* Fade fuerte para que NO se note el rectángulo */
+  -webkit-mask-image: radial-gradient(ellipse at center,
+    rgba(0,0,0,1) 28%,
+    rgba(0,0,0,.55) 52%,
+    rgba(0,0,0,.18) 72%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: radial-gradient(ellipse at center,
+    rgba(0,0,0,1) 28%,
+    rgba(0,0,0,.55) 52%,
+    rgba(0,0,0,.18) 72%,
+    rgba(0,0,0,0) 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.hero-logo svg{
+  width: min(1150px, 96vw);
+  height: auto;
+  transform: translateY(-42px);
+}
+
 /* Contenido por encima del hero */
 .banner-content,
 .dynamic-content{
@@ -123,6 +164,13 @@ body{
   margin-bottom: 1.2rem;
   text-align: center;
   overflow: hidden;
+
+  /* refuerza legibilidad sobre el logo */
+  display: inline-block;
+  padding: .2rem .75rem;
+  border-radius: 18px;
+  background: rgba(0,0,0,.22);
+  backdrop-filter: blur(6px);
 }
 
 .title-animated span{
@@ -338,6 +386,11 @@ body{
   .banner-content{ padding-top: 4.2rem; }
 
   .centre-grid{ grid-template-columns: 1fr; }
+
+  .hero-logo svg{
+    width: min(900px, 96vw);
+    transform: translateY(-26px);
+  }
 }
 
 /* MÓVIL: botones redondos y compactos */
@@ -402,6 +455,16 @@ body{
   }
 
   .alert-bubble::after{ display: none; }
+
+  .hero-logo{
+    opacity: .12;
+    filter: blur(3px) saturate(1.03) contrast(1.02);
+  }
+
+  .hero-logo svg{
+    width: min(740px, 96vw);
+    transform: translateY(-18px);
+  }
 }
 
 /* Enlace del portal (Centre i contacte) */
