@@ -291,20 +291,11 @@ body {
     padding: 1.5rem 1.25rem;
   }
 }
+/* DESKTOP/TABLET: arriba a la derecha sin romper el diseño */
 .aviso-rojo-top{
-  position: relative;
-  z-index: 2;
-
-  /* derecha */
-  margin: 1rem 1rem 0 auto;
-
-  /* para que sea “caja” y haga salto de línea */
-  display: block;
-  width: min(520px, calc(100% - 2rem));  /* ajusta 520px si lo quieres más/menos ancho */
-  max-width: calc(100% - 2rem);
-
+  width: min(520px, calc(100% - 2rem));
+  margin: 1rem 1rem 0 auto;   /* a la derecha */
   padding: .85rem 1rem;
-  border-radius: 14px;
 
   background: #b00020;
   color: #fff;
@@ -312,10 +303,33 @@ body {
   line-height: 1.25;
   text-align: right;
 
+  border-radius: 14px;
   border: 1px solid rgba(255,255,255,.35);
   box-shadow: 0 10px 25px rgba(176,0,32,.35);
 
-  /* asegura saltos de línea “normales” */
   white-space: normal;
   overflow-wrap: anywhere;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* MÓVIL: no empuja el título y no tapa el hero */
+@media (max-width: 600px){
+  .aviso-rojo-top{
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    left: auto;
+
+    width: min(92vw, 420px);
+    margin: 0;
+
+    padding: .65rem .8rem;
+    font-size: .95rem;
+    line-height: 1.2;
+
+    opacity: 0.92;
+    z-index: 9999;
+  }
 }
