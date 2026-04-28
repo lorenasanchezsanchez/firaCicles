@@ -206,7 +206,6 @@ body{
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-
   overflow: visible;
 }
 
@@ -257,7 +256,11 @@ body{
   backdrop-filter: blur(24px);
   box-shadow: 0 40px 90px rgba(0,0,0,.6);
   min-height: 280px;
-  overflow: hidden;
+
+  /* no recortar contenido vertical (pdf/tarjetas) */
+  overflow-x: hidden;
+  overflow-y: visible;
+
   transition: opacity .35s ease, transform .35s ease;
 }
 
@@ -285,7 +288,26 @@ body{
   font-size: 2rem;
   color: #b5ecff;
 }
-/* Listas en tarjetas: grid adaptable (evita columnas ultra estrechas) */
+
+/* =========================================================
+   06) LISTAS Y CONTENIDO DINÁMICO (FIX “LETRA A LETRA”)
+   ========================================================= */
+.dynamic-content ul,
+.dynamic-content ol{
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.dynamic-content li{
+  margin: .45rem 0;
+  line-height: 1.35;
+  font-size: 1.05rem;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Listas en tarjetas: grid adaptable (no columnas ultrafinas) */
 .dynamic-content .panel-section > ul{
   list-style: none;
   padding-left: 0;
@@ -303,18 +325,45 @@ body{
   background: rgba(0,0,0,.18);
   border: 1px solid rgba(255,255,255,.10);
   font-weight: 600;
-
-  /* evita “letra a letra” incluso si el item se estrecha */
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: normal;
 }
+
+/* Continuïtat: 1 columna (si el template añade .panel-continu) */
 .panel-continu > ul{
   grid-template-columns: 1fr !important;
 }
 
 /* =========================================================
-   06) COMPONENTES (VIDEO / CENTRO)
+   PLA FORMATIU
+   ========================================================= */
+.plan-formacio{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.plan-formacio .curs{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 22px;
+  padding: 2rem;
+}
+
+.plan-formacio .curs h4{
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  color: #7fdcff;
+}
+
+/* listas del curso verticales */
+.plan-formacio .curs ul{
+  display: block !important;
+  columns: initial !important;
+  padding-left: 1.15rem;
+}
+
+/* =========================================================
+   07) COMPONENTES (VIDEO / CENTRO)
    ========================================================= */
 .video-panel-wrap{
   width: 100%;
@@ -348,7 +397,6 @@ body{
   box-shadow: 0 18px 45px rgba(0,0,0,.45);
 }
 
-/* Centre: tipografía como el resto */
 .centre-text p{
   margin: .55rem 0;
   font-size: 1.05rem;
@@ -365,12 +413,32 @@ body{
   text-decoration: none;
   border-bottom: none;
 }
+
 .centre-text .portal-link:hover{
   border-color: rgba(255,255,255,.25);
 }
 
 /* =========================================================
-   07) ALERTA (MATRÍCULA ONLINE)
+   PDF
+   ========================================================= */
+.pdf-wrap{
+  width: 100%;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.pdf-frame{
+  display: block;
+  width: 100%;
+  height: 80vh;
+  border: 0;
+}
+
+/* =========================================================
+   08) ALERTA (MATRÍCULA ONLINE)
    ========================================================= */
 .alert-bubble{
   position: absolute;
@@ -423,7 +491,7 @@ body{
 }
 
 /* =========================================================
-   08) RESPONSIVE
+   09) RESPONSIVE
    ========================================================= */
 @media (max-width: 900px){
   .banner-content h1 { font-size: 2.6rem; }
@@ -437,6 +505,9 @@ body{
     width: min(900px, 96vw);
     transform: translateY(-26px);
   }
+
+  .plan-formacio{ grid-template-columns: 1fr; }
+  .pdf-frame{ height: 75vh; }
 }
 
 @media (max-width: 600px){
@@ -506,94 +577,4 @@ body{
     width: 100%;
   }
   .highlights span{ width: 100%; }
-}
-
-/* =========================================================
-   09) ESTILOS DEL CONTENIDO DINÁMICO (plantillas JS)
-   ========================================================= */
-
-/* Reset de listas SOLO dentro del panel */
-.dynamic-content ul,
-.dynamic-content ol{
-  margin: 0;
-  padding-left: 1.15rem;
-}
-.dynamic-content li{
-  margin: .45rem 0;
-  line-height: 1.35;
-  font-size: 1.05rem;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-
-/* PLA FORMATIU: 2 columnas */
-.plan-formacio{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-  align-items: start;
-}
-.plan-formacio .curs{
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 22px;
-  padding: 2rem;
-}
-.plan-formacio .curs h4{
-  margin: 0 0 1rem;
-  font-size: 1.3rem;
-  color: #7fdcff;
-}
-/* listas del curso verticales */
-.plan-formacio .curs ul{
-  display: block !important;
-  columns: initial !important;
-  padding-left: 1.15rem;
-}
-
-/* EIXIDES (y por defecto listas directas): 3 columnas limpias */
-.dynamic-content .panel-section > ul{
-  list-style: none;
-  padding-left: 0;
-  margin-top: .25rem;
-
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem 1.2rem;
-}
-.dynamic-content .panel-section > ul > li{
-  margin: 0;
-  padding: .85rem 1rem;
-  border-radius: 16px;
-  background: rgba(0,0,0,.18);
-  border: 1px solid rgba(255,255,255,.10);
-  font-weight: 600;
-}
-
-/* CONTINUÏTAT: 1 columna (requiere class panel-continu en el template) */
-.panel-continu > ul{
-  grid-template-columns: 1fr !important;
-}
-
-/* PDF */
-.pdf-wrap{
-  width: 100%;
-  margin: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  background: rgba(0,0,0,0.35);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-}
-.pdf-frame{
-  display: block;
-  width: 100%;
-  height: 80vh;
-  border: 0;
-}
-
-/* Responsive */
-@media (max-width: 900px){
-  .plan-formacio{ grid-template-columns: 1fr; }
-  .dynamic-content .panel-section > ul{ grid-template-columns: 1fr; }
-  .pdf-frame{ height: 75vh; }
 }
