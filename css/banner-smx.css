@@ -292,20 +292,30 @@ body {
   }
 }
 .aviso-rojo-top{
-  width: fit-content;
+  position: relative;
+  z-index: 2;
+
+  /* derecha */
+  margin: 1rem 1rem 0 auto;
+
+  /* para que sea “caja” y haga salto de línea */
+  display: block;
+  width: min(520px, calc(100% - 2rem));  /* ajusta 520px si lo quieres más/menos ancho */
   max-width: calc(100% - 2rem);
-  margin: 1rem 1rem 0 auto;   /* arriba y a la derecha */
-  padding: .75rem 1rem;
+
+  padding: .85rem 1rem;
+  border-radius: 14px;
 
   background: #b00020;
   color: #fff;
   font-weight: 800;
   line-height: 1.25;
+  text-align: right;
 
-  border-radius: 14px;
   border: 1px solid rgba(255,255,255,.35);
   box-shadow: 0 10px 25px rgba(176,0,32,.35);
 
-  position: relative;
-  z-index: 2;                /* por encima del fondo */
+  /* asegura saltos de línea “normales” */
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
