@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // "Matrícula": abrir enlace en otra pestaña (no cargar panel)
       if (key === "matricula") {
         window.open(
-          "https://portal.edu.gva.es/adminova/es/fp/",
+          "https://portal.edu.gva.es/adminova/es/fp-interior/",
           "_blank",
           "noopener,noreferrer"
         );
