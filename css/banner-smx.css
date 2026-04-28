@@ -307,26 +307,32 @@ body{
   overflow-wrap: break-word;
 }
 
-/* Listas en tarjetas: grid adaptable (no columnas ultrafinas) */
+/* =========================================================
+   LISTAS (Continuïtat, Eixides, Oferim...) con VIÑETAS
+   ========================================================= */
 .dynamic-content .panel-section > ul{
-  list-style: disc;
-  padding-left: 1.15rem;
-  margin-top: .25rem;
   display: block;
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-top: .25rem;
 }
 
 .dynamic-content .panel-section > ul > li{
+  display: list-item;
   margin: .45rem 0;
   padding: 0;
   background: transparent;
   border: 0;
+  border-radius: 0;
   font-weight: 600;
+
+  /* evita “letra a letra” */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
-/* Continuïtat: 1 columna (si el template añade .panel-continu) */
-.panel-continu > ul{
-  grid-template-columns: 1fr !important;
-}
+
 
 /* =========================================================
    PLA FORMATIU
