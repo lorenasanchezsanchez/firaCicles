@@ -215,9 +215,9 @@ body {
   box-shadow: 0 12px 30px rgba(176,0,32,.35);
 
   display: flex;
-  flex-direction: column;  /* <-- clave: uno encima del otro */
+  flex-direction: column;
   gap: .35rem;
-  align-items: flex-end;   /* a la derecha */
+  align-items: flex-end;
 
   font-weight: 700;
 }
@@ -274,40 +274,42 @@ body {
 @media (max-width: 600px) {
   .panel-section { padding: 1.5rem 1.25rem; }
 
-  /* Globo en móvil: en flujo (no tapa logo) y sin flecha */
-  
-  @media (max-width: 600px) {
+  /* ALERTA en móvil: compacta, a la derecha y FUERA del flujo (no baja el título) */
   .alert-bubble{
-    /* posición en flujo para no tapar logo */
-    position: static;
-    margin: 12px 12px 0 auto;
-    max-width: calc(100% - 24px);
+    position: absolute;   /* <-- clave: no desplaza el título */
+    top: 8px;
+    right: 8px;
+    left: auto;
+    z-index: 50;
 
-    /* fuerza estilo rojo (por si algo lo pisa) */
-    background: #b00020 !important;
-    color: #fff !important;
-    border: 1px solid rgba(255,255,255,.35) !important;
-    box-shadow: 0 12px 30px rgba(176,0,32,.35) !important;
+    width: max-content;
+    max-width: min(210px, 70vw);
 
-    padding: .75rem .9rem;
-    border-radius: 18px;
-    font-size: .95rem;
-    font-weight: 700;
-    line-height: 1.2;
+    padding: .35rem .5rem;
+    border-radius: 12px;
 
-    display: flex;
-    flex-direction: column;
-    gap: .35rem;
+    gap: .2rem;
     align-items: flex-end;
+
+    font-size: .72rem;    /* letra más pequeña */
+    font-weight: 700;
+    line-height: 1.1;
+
+    box-shadow: 0 10px 22px rgba(176,0,32,.28);
   }
 
   .alert-bubble__label{
-    background: rgba(255,255,255,.18) !important;
-    color: #fff !important;
+    padding: .18rem .45rem;
+    font-size: .65rem;
+    letter-spacing: .02em;
+  }
+
+  .alert-bubble__text{
+    font-size: .68rem;
+    line-height: 1.1;
   }
 
   .alert-bubble::after{
-    display: none !important;
+    display: none; /* en móvil sin flecha para ocupar menos */
   }
-}
 }
