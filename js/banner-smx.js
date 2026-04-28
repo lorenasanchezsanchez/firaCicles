@@ -68,7 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
       '    <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>',
       '    <p>📞 964 738 955</p>',
       '    <p>📧 12005751@edu.gva.es</p>',
-      '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
+      '    <a class="portal-link"
+   href="https://portal.edu.gva.es/iesbenigaslo"
+   target="_blank"
+   rel="noopener noreferrer">
+  portal.edu.gva.es/iesbenigaslo
+</a>,
       '  </div>',
       '  <div class="centre-media">',
       '    <img class="centre-img" src="assets/img/ies.jpg" alt="IES Benigasló" loading="lazy" />',
