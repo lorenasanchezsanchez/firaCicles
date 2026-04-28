@@ -14,6 +14,9 @@
 
   <div class="hero-bg"></div>
 
+  <!-- LOGO (SVG) DIFUMINADO - marca de agua -->
+  <div class="hero-logo" aria-hidden="true"></div>
+
   <!-- CONTADOR DE VISITAS (badge) -->
   <div class="visits">
     <img
@@ -54,5 +57,20 @@
 </section>
 
 <script src="js/banner-smx.js"></script>
+
+<!-- Inyecta el SVG como fondo (mantiene index.html limpio) -->
+<script>
+  (function () {
+    const el = document.querySelector(".hero-logo");
+    if (!el) return;
+
+    // Carga el SVG externo y lo inserta inline (así podemos hacer blur/mask bien)
+    fetch("assets/img/logo.sv")
+      .then(r => r.text())
+      .then(svg => { el.innerHTML = svg; })
+      .catch(() => {});
+  })();
+</script>
+
 </body>
 </html>
