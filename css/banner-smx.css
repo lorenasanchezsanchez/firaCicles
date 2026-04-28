@@ -275,13 +275,39 @@ body {
   .panel-section { padding: 1.5rem 1.25rem; }
 
   /* Globo en móvil: en flujo (no tapa logo) y sin flecha */
+  
+  @media (max-width: 600px) {
   .alert-bubble{
+    /* posición en flujo para no tapar logo */
     position: static;
     margin: 12px 12px 0 auto;
     max-width: calc(100% - 24px);
+
+    /* fuerza estilo rojo (por si algo lo pisa) */
+    background: #b00020 !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,.35) !important;
+    box-shadow: 0 12px 30px rgba(176,0,32,.35) !important;
+
+    padding: .75rem .9rem;
+    border-radius: 18px;
     font-size: .95rem;
+    font-weight: 700;
+    line-height: 1.2;
+
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    align-items: flex-end;
   }
+
+  .alert-bubble__label{
+    background: rgba(255,255,255,.18) !important;
+    color: #fff !important;
+  }
+
   .alert-bubble::after{
-    display: none;
+    display: none !important;
   }
+}
 }
