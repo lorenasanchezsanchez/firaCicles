@@ -65,7 +65,7 @@
     if (!el) return;
 
     // Carga el SVG externo y lo inserta inline (así podemos hacer blur/mask bien)
-    fetch("assets/img/logo.sv")
+    fetch("../assets/img/logo.svg")
       .then(r => r.text())
       .then(svg => { el.innerHTML = svg; })
       .catch(() => {});
