@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ].join(""),
 
     continu: [
-      '<div class="panel-section">',
+      '<div class="panel-section panel-continu">',
       "<h3>🚀 Continuïtat formativa</h3>",
       "<ul>",
       "<li>Curs d’especialització en Implementació de xarxes 5G</li>",
