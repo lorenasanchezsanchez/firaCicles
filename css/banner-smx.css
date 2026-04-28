@@ -18,16 +18,10 @@ body{
   max-width: 1300px;
   margin: auto;
   padding-bottom: 5rem;
-
-  /* FIX stacking */
   z-index: 0;
 }
 
-/* HERO: imagen + fade real (independiente del fondo)
-   - Imagen en ::after (nítida)
-   - Fade con mask-image (transparencia real)
-   - FIX: NO usar z-index negativo para no ocultar el contenido central
-*/
+/* HERO: imagen + fade real */
 .hero-bg{
   position: absolute;
   top: 0;
@@ -37,7 +31,6 @@ body{
 
   background: none;
   pointer-events: none;
-
   z-index: 0;
 
   -webkit-mask-image:
@@ -69,12 +62,9 @@ body{
   mask-size: 100% 100%;
 }
 
-/* Desactivamos el fade antiguo por color */
-.hero-bg::before{
-  content: none !important;
-}
+.hero-bg::before{ content: none !important; }
 
-/* Imagen + overlay claro */
+/* Imagen + overlay */
 .hero-bg::after{
   content: "";
   position: absolute;
@@ -89,8 +79,61 @@ body{
   background-repeat: no-repeat;
 
   filter: contrast(1.08) brightness(1.12) saturate(1.08);
+  z-index: 0;
+}
 
-  z-index: 0; /* FIX: antes -1 */
+/* =========================================================
+   LOGO SVG (WATERMARK) - DIFUMINADO + TRANSPARENTE
+   ========================================================= */
+.hero-logo{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  display: grid;
+  place-items: center;
+
+  opacity: .11;
+  filter: blur(4px) saturate(1.05) contrast(1.02);
+
+  -webkit-mask-image: radial-gradient(ellipse at center,
+    rgba(0,0,0,1) 18%,
+    rgba(0,0,0,.60) 40%,
+    rgba(0,0,0,.22) 62%,
+    rgba(0,0,0,.06) 78%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: radial-gradient(ellipse at center,
+    rgba(0,0,0,1) 18%,
+    rgba(0,0,0,.60) 40%,
+    rgba(0,0,0,.22) 62%,
+    rgba(0,0,0,.06) 78%,
+    rgba(0,0,0,0) 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 140% 140%;
+  mask-size: 140% 140%;
+  -webkit-mask-position: 50% 45%;
+  mask-position: 50% 45%;
+}
+
+.hero-logo svg{
+  width: min(1200px, 98vw);
+  height: auto;
+  transform: translateY(-55px);
+}
+
+.hero-logo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(ellipse at center,
+    rgba(8,20,27,0) 45%,
+    rgba(8,20,27,.25) 70%,
+    rgba(8,20,27,.55) 100%
+  );
 }
 
 /* Contenido por encima del hero */
@@ -123,6 +166,12 @@ body{
   margin-bottom: 1.2rem;
   text-align: center;
   overflow: hidden;
+
+  display: inline-block;
+  padding: .2rem .75rem;
+  border-radius: 18px;
+  background: rgba(0,0,0,.22);
+  backdrop-filter: blur(6px);
 }
 
 .title-animated span{
@@ -143,14 +192,13 @@ body{
 }
 
 /* =========================================================
-   04) MENÚ PRINCIPAL (BOTONES) - CENTRADOS + COMPRIMIDOS
+   04) MENÚ PRINCIPAL (BOTONES)
    ========================================================= */
 .highlights{
   margin-top: 2.2rem;
   display: grid;
   gap: .65rem;
 
-  /* columnas fijas => última fila centrada */
   grid-template-columns: repeat(auto-fit, 150px);
   justify-content: center;
   align-items: center;
@@ -158,7 +206,6 @@ body{
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-
   overflow: visible;
 }
 
@@ -209,7 +256,11 @@ body{
   backdrop-filter: blur(24px);
   box-shadow: 0 40px 90px rgba(0,0,0,.6);
   min-height: 280px;
-  overflow: hidden;
+
+  /* no recortar contenido vertical (pdf/tarjetas) */
+  overflow-x: hidden;
+  overflow-y: visible;
+
   transition: opacity .35s ease, transform .35s ease;
 }
 
@@ -239,7 +290,76 @@ body{
 }
 
 /* =========================================================
-   06) COMPONENTES (VIDEO / CENTRO)
+   06) LISTAS Y CONTENIDO DINÁMICO (FIX “LETRA A LETRA”)
+   ========================================================= */
+.dynamic-content ul,
+.dynamic-content ol{
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.dynamic-content li{
+  margin: .45rem 0;
+  line-height: 1.35;
+  font-size: 1.05rem;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Listas en tarjetas: grid adaptable (no columnas ultrafinas) */
+.dynamic-content .panel-section > ul{
+  list-style: disc;
+  padding-left: 1.15rem;
+  margin-top: .25rem;
+  display: block;
+}
+
+.dynamic-content .panel-section > ul > li{
+  margin: .45rem 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-weight: 600;
+}
+
+/* Continuïtat: 1 columna (si el template añade .panel-continu) */
+.panel-continu > ul{
+  grid-template-columns: 1fr !important;
+}
+
+/* =========================================================
+   PLA FORMATIU
+   ========================================================= */
+.plan-formacio{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.plan-formacio .curs{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 22px;
+  padding: 2rem;
+}
+
+.plan-formacio .curs h4{
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  color: #7fdcff;
+}
+
+/* listas del curso verticales */
+.plan-formacio .curs ul{
+  display: block !important;
+  columns: initial !important;
+  padding-left: 1.15rem;
+}
+
+/* =========================================================
+   07) COMPONENTES (VIDEO / CENTRO)
    ========================================================= */
 .video-panel-wrap{
   width: 100%;
@@ -273,8 +393,48 @@ body{
   box-shadow: 0 18px 45px rgba(0,0,0,.45);
 }
 
+.centre-text p{
+  margin: .55rem 0;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.centre-text .portal-link{
+  display: inline-block;
+  margin-top: .65rem;
+  padding: .65rem .85rem;
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.10);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.centre-text .portal-link:hover{
+  border-color: rgba(255,255,255,.25);
+}
+
 /* =========================================================
-   07) ALERTA (MATRÍCULA ONLINE)
+   PDF
+   ========================================================= */
+.pdf-wrap{
+  width: 100%;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.pdf-frame{
+  display: block;
+  width: 100%;
+  height: 80vh;
+  border: 0;
+}
+
+/* =========================================================
+   08) ALERTA (MATRÍCULA ONLINE)
    ========================================================= */
 .alert-bubble{
   position: absolute;
@@ -327,20 +487,25 @@ body{
 }
 
 /* =========================================================
-   08) RESPONSIVE
+   09) RESPONSIVE
    ========================================================= */
 @media (max-width: 900px){
   .banner-content h1 { font-size: 2.6rem; }
   .dynamic-content { padding: 2.5rem 2rem; }
 
   .hero-bg{ height: 280px; }
-
   .banner-content{ padding-top: 4.2rem; }
-
   .centre-grid{ grid-template-columns: 1fr; }
+
+  .hero-logo svg{
+    width: min(900px, 96vw);
+    transform: translateY(-26px);
+  }
+
+  .plan-formacio{ grid-template-columns: 1fr; }
+  .pdf-frame{ height: 75vh; }
 }
 
-/* MÓVIL: botones redondos y compactos */
 @media (max-width: 600px){
   .panel-section { padding: 1.5rem 1.25rem; }
 
@@ -348,11 +513,8 @@ body{
     width: min(100%, 520px);
     margin-left: auto;
     margin-right: auto;
-    display: grid;
     gap: .55rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: center;
-    align-items: center;
   }
 
   .highlights span{
@@ -362,30 +524,21 @@ body{
     padding: .34rem .55rem !important;
     font-size: .92rem;
     line-height: 1.05;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    background: linear-gradient(135deg, rgba(79,172,254,.35), rgba(0,242,254,.25));
-    border: 1px solid rgba(255,255,255,.45);
-    backdrop-filter: blur(14px);
   }
 
   .alert-bubble{
-    position: absolute;
     top: 8px;
     right: 8px;
-    left: auto;
     z-index: 50;
     width: max-content;
     max-width: min(210px, 70vw);
     padding: .35rem .5rem;
     border-radius: 12px;
     gap: .2rem;
-    align-items: flex-end;
     font-size: .72rem;
-    font-weight: 700;
     line-height: 1.1;
     box-shadow: 0 10px 22px rgba(176,0,32,.28);
   }
@@ -402,17 +555,16 @@ body{
   }
 
   .alert-bubble::after{ display: none; }
-}
 
-/* Enlace del portal (Centre i contacte) */
-.portal-link{
-  color: inherit;
-  text-decoration: none;
-  font-weight: 400;
-  border-bottom: 1px solid rgba(255,255,255,.28);
-}
-.portal-link:hover{
-  border-bottom-color: rgba(255,255,255,.75);
+  .hero-logo{
+    opacity: .12;
+    filter: blur(3px) saturate(1.03) contrast(1.02);
+  }
+
+  .hero-logo svg{
+    width: min(740px, 96vw);
+    transform: translateY(-18px);
+  }
 }
 
 @media (max-width: 380px){
@@ -420,7 +572,5 @@ body{
     grid-template-columns: 1fr;
     width: 100%;
   }
-  .highlights span{
-    width: 100%;
-  }
+  .highlights span{ width: 100%; }
 }
