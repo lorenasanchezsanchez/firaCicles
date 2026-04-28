@@ -300,13 +300,38 @@ body {
   .banner-content h1 { font-size: 2.6rem; }
   .dynamic-content { padding: 2.5rem 2rem; }
 
-  .hero-bg{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 280px;
-  }
+ .hero-bg{
+  -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,1) 55%,
+      rgba(0,0,0,.9) 75%,
+      rgba(0,0,0,0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 75%,
+      rgba(0,0,0,0) 100%
+    );
+  mask-image: radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,1) 55%,
+      rgba(0,0,0,.9) 75%,
+      rgba(0,0,0,0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 75%,
+      rgba(0,0,0,0) 100%
+    );
 
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
   .banner-content{
     padding-top: 4.2rem;
   }
