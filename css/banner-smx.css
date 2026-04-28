@@ -37,6 +37,7 @@ body {
 /* HERO BACKGROUND
    - Fondo superior con overlay (degradado) y una imagen.
    - absolute para anclarlo arriba del banner, z-index:-1 para que quede detrás.
+   - overflow:hidden permite recortar el fade (pseudo-elemento) dentro del hero.
 */
 .hero-bg {
   position: absolute;
@@ -50,6 +51,26 @@ body {
   background-size: cover;
   background-position: center;
   z-index: -1;
+  overflow: hidden;
+}
+
+/* FADE para integrar la imagen con el fondo (bordes + parte inferior)
+   - Esto sí se nota siempre (más fiable que mask).
+*/
+.hero-bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    /* izquierda */
+    linear-gradient(to right, #08141b 0%, rgba(8,20,27,0) 22%),
+    /* derecha */
+    linear-gradient(to left,  #08141b 0%, rgba(8,20,27,0) 22%),
+    /* arriba (suave) */
+    linear-gradient(to bottom, #08141b 0%, rgba(8,20,27,0) 24%),
+    /* abajo (para que no se note el corte inferior) */
+    linear-gradient(to top,   #08141b 0%, rgba(8,20,27,0) 55%);
 }
 
 /* CONTENEDOR DEL HERO (título + menú)
@@ -105,43 +126,35 @@ body {
 }
 
 /* =========================================================
-   04) MENÚ PRINCIPAL (BOTONES) - GRID CENTRADO (X e Y)
+   04) MENÚ PRINCIPAL (BOTONES) - CENTRADO Y COMO ANTES
    ========================================================= */
 
 /* CONTENEDOR DEL MENÚ
-   OBJETIVO:
-   - Reparto equitativo según ancho
-   - Si no caben, varias filas
-   - ÚLTIMA FILA CENTRADA (no pegada a la izquierda)
-   CLAVE:
-   - minmax(170px, max-content) permite que la fila se ajuste
-     al contenido y podamos centrarla con justify-content:center
+   - Volvemos a GRID con auto-fit/minmax(...) (reparte bien).
+   - width: fit-content hace que el “bloque” del grid se ajuste
+     al contenido y así la última fila puede quedar centrada.
+   - justify-content:center centra el grid completo.
 */
-/* ===== MENÚ: filas centradas (incluida la última) ===== */
-/* ===== MENÚ: centrado y con estilo original ===== */
 .highlights{
   margin-top: 3rem;
 
   display: grid;
   gap: 1.2rem;
 
-  /* filas centradas (incluida la última) */
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   justify-content: center;
+  align-items: center;
 
-  /* el truco para centrar la última fila sin “estirar” raro:
-     limitamos el ancho del grid al contenido real */
   width: fit-content;
   max-width: min(1100px, 100%);
   margin-left: auto;
   margin-right: auto;
 
-  align-items: center;
   overflow: visible;
 }
 
+/* BOTONES (igual que los tenías “antes”: pastilla con blur) */
 .highlights span{
-  /* estilo original (pastilla) */
   background: linear-gradient(
     135deg,
     rgba(79,172,254,.35),
@@ -155,17 +168,18 @@ body {
   backdrop-filter: blur(14px);
   transition: transform .25s, box-shadow .25s, background .25s;
 
-  padding: .75rem 1.6rem;   /* <- como lo tenías antes */
+  padding: .75rem 1.6rem;
   line-height: 1.05;
 
   display: inline-flex;
-  align-items: center;      /* centrado vertical del contenido */
-  justify-content: center;  /* centrado horizontal del contenido */
+  align-items: center;      /* centrado vertical */
+  justify-content: center;  /* centrado horizontal */
   text-align: center;
   white-space: normal;
 
-  min-height: 64px;         /* para que todos queden alineados */
+  min-height: 64px;
 }
+
 .highlights span:hover {
   transform: translateY(-6px) scale(1.08);
   box-shadow: 0 22px 60px rgba(0,0,0,.55);
@@ -322,38 +336,13 @@ body {
   .banner-content h1 { font-size: 2.6rem; }
   .dynamic-content { padding: 2.5rem 2rem; }
 
- .hero-bg{
-  -webkit-mask-image: radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,1) 55%,
-      rgba(0,0,0,.9) 75%,
-      rgba(0,0,0,0) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,1) 0%,
-      rgba(0,0,0,1) 75%,
-      rgba(0,0,0,0) 100%
-    );
-  mask-image: radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,1) 55%,
-      rgba(0,0,0,.9) 75%,
-      rgba(0,0,0,0) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,1) 0%,
-      rgba(0,0,0,1) 75%,
-      rgba(0,0,0,0) 100%
-    );
+  .hero-bg{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 280px;
+  }
 
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-}
   .banner-content{
     padding-top: 4.2rem;
   }
@@ -367,64 +356,14 @@ body {
 @media (max-width: 600px) {
   .panel-section { padding: 1.5rem 1.25rem; }
 
-  /* Menú en móvil: 2 columnas centradas (incluida la última fila) */
-.highlights{
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-  }
-
-  .highlights span{
-    width: 100%;
-    min-height: 58px;
-  }
-
-  /* Alerta en móvil: compacta y sin flecha, fuera del flujo */
-  .alert-bubble{
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    left: auto;
-    z-index: 50;
-
-    width: max-content;
-    max-width: min(210px, 70vw);
-
-    padding: .35rem .5rem;
-    border-radius: 12px;
-
-    gap: .2rem;
-    align-items: flex-end;
-
-    font-size: .72rem;
-    font-weight: 700;
-    line-height: 1.1;
-
-    box-shadow: 0 10px 22px rgba(176,0,32,.28);
-  }
-
-  .alert-bubble__label{
-    padding: .18rem .45rem;
-    font-size: .65rem;
-    letter-spacing: .02em;
-  }
-
-  .alert-bubble__text{
-    font-size: .68rem;
-    line-height: 1.1;
-  }
-
-  .alert-bubble::after{
-    display: none;
-  }
-}
-
-/* <= 380px */
-@media (max-width: 380px){
+  /* Menú en móvil: 2 columnas y centrado */
   .highlights{
-    grid-template-columns: 1fr;
+    width: min(100%, 520px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+    gap: .8rem;
   }
 
   .highlights span{
-    width: 100%;
-  }
-}
+    width*
+
