@@ -117,54 +117,31 @@ body {
    - minmax(170px, max-content) permite que la fila se ajuste
      al contenido y podamos centrarla con justify-content:center
 */
-.highlights {
+/* ===== MENÚ: filas centradas (incluida la última) ===== */
+.highlights{
   margin-top: 3rem;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, max-content));
   gap: 1.2rem;
 
-  justify-content: center; /* centra horizontalmente todas las filas */
-  align-items: center;     /* centra verticalmente los items en su fila */
+  /* Ancho fijo por botón → permite centrar el conjunto */
+  grid-template-columns: repeat(auto-fit, 170px);
+  justify-content: center;   /* <-- centra las filas */
+  align-items: center;
 
   width: min(1100px, 100%);
   margin-left: auto;
   margin-right: auto;
-
-  overflow: visible;
 }
 
-/* BOTÓN
-   - min-width asegura uniformidad
-   - flex centra contenido en vertical y horizontal
-   - min-height iguala alturas para que se vean alineados
-*/
-.highlights span {
-  min-width: 170px;
-
-  background: linear-gradient(
-    135deg,
-    rgba(79,172,254,.35),
-    rgba(0,242,254,.25)
-  );
-  border: 1px solid rgba(255,255,255,.45);
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 999px;
-  cursor: pointer;
-  backdrop-filter: blur(14px);
-  transition: transform .25s, box-shadow .25s, background .25s;
-
-  padding: .75rem 1rem;
-  line-height: 1.05;
-
+.highlights span{
+  width: 170px;              /* mismo ancho que la columna */
+  min-height: 64px;          /* alto uniforme */
   display: flex;
   align-items: center;       /* centrado vertical del texto */
   justify-content: center;   /* centrado horizontal del texto */
-  text-align: center;
-  white-space: normal;
 
-  min-height: 64px;
+  /* el resto de tus estilos del botón se quedan igual */
 }
 
 .highlights span:hover {
@@ -344,18 +321,13 @@ body {
   .panel-section { padding: 1.5rem 1.25rem; }
 
   /* Menú en móvil: 2 columnas centradas (incluida la última fila) */
-  .highlights{
-    grid-template-columns: repeat(2, minmax(0, max-content));
+.highlights{
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
-    gap: .8rem;
-    align-items: center;
   }
 
   .highlights span{
-    min-width: 0;
-    width: min(220px, 100%);
-    font-size: 1rem;
-    padding: .7rem .9rem;
+    width: 100%;
     min-height: 58px;
   }
 
