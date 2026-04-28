@@ -1,9 +1,17 @@
-/* RESET */
+/* =========================================================
+   01) RESET / BASE
+   ========================================================= */
+
+/* RESET
+   - box-sizing: border-box facilita calcular tamaños (padding/borde incluidos).
+*/
 * {
   box-sizing: border-box;
 }
 
-/* BODY */
+/* BODY
+   - Estilos globales: tipografía, fondo y color base.
+*/
 body {
   margin: 0;
   font-family: "Segoe UI", system-ui, sans-serif;
@@ -11,7 +19,14 @@ body {
   color: white;
 }
 
-/* CONTENEDOR GENERAL */
+/* =========================================================
+   02) LAYOUT PRINCIPAL (BANNER + HERO)
+   ========================================================= */
+
+/* CONTENEDOR GENERAL
+   - position: relative sirve como referencia para elementos absolute (hero-bg, alert).
+   - max-width + margin:auto centra el banner.
+*/
 .smx-banner {
   position: relative;
   max-width: 1300px;
@@ -19,7 +34,10 @@ body {
   padding-bottom: 5rem;
 }
 
-/* HERO SUPERIOR (SOLO ARRIBA) */
+/* HERO BACKGROUND
+   - Fondo superior con overlay (degradado) y una imagen.
+   - absolute para anclarlo arriba del banner, z-index:-1 para que quede detrás.
+*/
 .hero-bg {
   position: absolute;
   top: 0;
@@ -34,12 +52,17 @@ body {
   z-index: -1;
 }
 
-/* HERO CONTENT */
+/* CONTENEDOR DEL HERO (título + menú)
+   - padding-top alto para que el título “respire”.
+*/
 .banner-content {
   padding: 6rem 2rem 0;
   text-align: center;
 }
 
+/* Título (h1) dentro del contenedor del hero
+   - Texto con degradado y sombra.
+*/
 .banner-content h1 {
   font-size: 3.6rem;
   margin-bottom: 1rem;
@@ -49,7 +72,51 @@ body {
   text-shadow: 0 8px 35px rgba(0,0,0,.6);
 }
 
-/* ===== MENÚ (GRID): reparto equitativo y sin “uno colgando” ===== */
+/* =========================================================
+   03) TÍTULO ANIMADO (clase usada en el H1)
+   ========================================================= */
+
+/* Contenedor del título animado
+   - overflow:hidden ayuda a que efectos/animaciones no “se salgan”.
+*/
+.title-animated {
+  position: relative;
+  font-size: 3.8rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Texto interno del título animado
+   - Degradado animado (se desplaza), recortado al texto.
+*/
+.title-animated span {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, #ffffff, #7fdcff, #ffffff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: titleGlow 6s ease-in-out infinite;
+  text-shadow: 0 10px 35px rgba(0, 0, 0, 0.65);
+}
+
+/* Animación del degradado del título */
+@keyframes titleGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================================================
+   04) MENÚ PRINCIPAL (BOTONES) - GRID RESPONSIVO
+   ========================================================= */
+
+/* CONTENEDOR DEL MENÚ
+   - CSS Grid para repartir botones equitativamente.
+   - auto-fit/minmax crea tantas columnas como quepan y reparte el espacio.
+   - align-items:center centra verticalmente los ítems dentro de cada fila del grid.
+*/
 .highlights {
   margin-top: 3rem;
 
@@ -58,7 +125,7 @@ body {
   gap: 1.2rem;
 
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
 
   width: min(1100px, 100%);
   margin-left: auto;
@@ -67,6 +134,11 @@ body {
   overflow: visible;
 }
 
+/* BOTÓN
+   - width:100% para ocupar la celda del grid.
+   - inline-flex para centrar contenido vertical y horizontal.
+   - min-height fija altura común para que todos se vean alineados.
+*/
 .highlights span {
   width: 100%;
   background: linear-gradient(
@@ -86,24 +158,34 @@ body {
   line-height: 1.05;
 
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;      /* centra verticalmente texto/emoji dentro del botón */
+  justify-content: center;  /* centra horizontalmente */
   text-align: center;
   white-space: normal;
+
+  min-height: 64px;
 }
 
+/* Hover del botón */
 .highlights span:hover {
   transform: translateY(-6px) scale(1.08);
   box-shadow: 0 22px 60px rgba(0,0,0,.55);
 }
 
+/* Botón activo */
 .highlights span.active {
   background: linear-gradient(135deg, #4facfe, #00f2fe);
   color: #021b2c;
   box-shadow: 0 10px 30px rgba(0,242,254,.45);
 }
 
-/* PANEL CENTRAL (CARD GRANDE) */
+/* =========================================================
+   05) PANEL CENTRAL (CONTENIDO DINÁMICO)
+   ========================================================= */
+
+/* Tarjeta principal del contenido
+   - efecto cristal (blur) + sombras.
+*/
 .dynamic-content {
   margin: 4.5rem auto 0;
   max-width: 1100px;
@@ -121,11 +203,15 @@ body {
   transition: opacity .35s ease, transform .35s ease;
 }
 
+/* Estado “hide” del panel
+   - se usa para animar cambios (fade + desplazamiento).
+*/
 .dynamic-content.hide {
   opacity: 0;
   transform: translateY(10px);
 }
 
+/* Títulos dentro del panel */
 .dynamic-content h3 {
   margin-top: 0;
   margin-bottom: 2rem;
@@ -133,13 +219,14 @@ body {
   color: #b5ecff;
 }
 
-/* BLOQUE INTERNO PARA TODAS LAS SECCIONES */
+/* Bloque interno común para secciones */
 .panel-section {
   background: rgba(255,255,255,.07);
   border-radius: 22px;
   padding: 2.5rem 3rem;
 }
 
+/* Títulos dentro de .panel-section */
 .panel-section h3 {
   margin-top: 0;
   margin-bottom: 2rem;
@@ -147,7 +234,11 @@ body {
   color: #b5ecff;
 }
 
-/* VIDEO EN PANEL */
+/* =========================================================
+   06) COMPONENTES (VIDEO / CENTRO)
+   ========================================================= */
+
+/* Contenedor del vídeo */
 .video-panel-wrap {
   width: 100%;
   max-width: 900px;
@@ -158,6 +249,7 @@ body {
   background: #000;
 }
 
+/* Vídeo/imagen responsive */
 .video-panel {
   display: block;
   width: 100%;
@@ -165,7 +257,7 @@ body {
   height: auto;
 }
 
-/* CENTRE I CONTACTE */
+/* Grid para “centre i contacte” (2 columnas) */
 .centre-grid{
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -173,6 +265,7 @@ body {
   align-items: center;
 }
 
+/* Imagen del centro */
 .centre-img{
   width: 100%;
   height: auto;
@@ -181,33 +274,14 @@ body {
   box-shadow: 0 18px 45px rgba(0,0,0,.45);
 }
 
-/* TÍTULO IMPACTANTE ANIMADO */
-.title-animated {
-  position: relative;
-  font-size: 3.8rem;
-  margin-bottom: 1.2rem;
-  text-align: center;
-  overflow: hidden;
-}
+/* =========================================================
+   07) ALERTA (MATRÍCULA ONLINE)
+   ========================================================= */
 
-.title-animated span {
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(90deg, #ffffff, #7fdcff, #ffffff);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: titleGlow 6s ease-in-out infinite;
-  text-shadow: 0 10px 35px rgba(0, 0, 0, 0.65);
-}
-
-@keyframes titleGlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ===== GLOBO DE ALERTA (LABEL ARRIBA, TEXTO ABAJO) ===== */
+/* Globo de alerta
+   - absolute arriba-derecha (no empuja el título).
+   - flex en columna para label + texto.
+*/
 .alert-bubble{
   position: absolute;
   top: 16px;
@@ -231,6 +305,7 @@ body {
   font-weight: 700;
 }
 
+/* Etiqueta superior */
 .alert-bubble__label{
   background: rgba(255,255,255,.18);
   padding: .25rem .6rem;
@@ -240,13 +315,14 @@ body {
   white-space: nowrap;
 }
 
+/* Texto */
 .alert-bubble__text{
   text-align: right;
   line-height: 1.15;
   overflow-wrap: anywhere;
 }
 
-/* Flechita del globo */
+/* Flecha inferior del globo */
 .alert-bubble::after{
   content: "";
   position: absolute;
@@ -259,7 +335,13 @@ body {
   filter: drop-shadow(0 8px 10px rgba(176,0,32,.25));
 }
 
-/* RESPONSIVE */
+/* =========================================================
+   08) RESPONSIVE
+   ========================================================= */
+
+/* <= 900px
+   - Ajusta tamaños y layouts para tablet.
+*/
 @media (max-width: 900px) {
   .banner-content h1 { font-size: 2.6rem; }
   .dynamic-content { padding: 2.5rem 2rem; }
@@ -280,21 +362,26 @@ body {
   }
 }
 
+/* <= 600px
+   - Menú: 2 columnas para que se reparta mejor en móvil.
+   - Botones: un poco más pequeños.
+   - Alerta: compacta y sin flecha para ocupar menos; sigue en absolute.
+*/
 @media (max-width: 600px) {
   .panel-section { padding: 1.5rem 1.25rem; }
 
-  /* Menú en móvil: 2 por fila para que se reparta bien */
   .highlights{
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: .8rem;
+    align-items: center;
   }
 
   .highlights span{
     font-size: 1rem;
     padding: .7rem .9rem;
+    min-height: 58px;
   }
 
-  /* ALERTA en móvil: compacta, a la derecha y FUERA del flujo (no baja el título) */
   .alert-bubble{
     position: absolute;
     top: 8px;
@@ -334,6 +421,9 @@ body {
   }
 }
 
+/* <= 380px
+   - Menú: pasa a 1 columna en pantallas muy pequeñas.
+*/
 @media (max-width: 380px){
   .highlights{
     grid-template-columns: 1fr;
