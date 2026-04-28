@@ -115,12 +115,13 @@ body {
   box-shadow: 0 40px 90px rgba(0,0,0,.6);
   min-height: 280px;
 
-  /* evita que contenidos (como el video) provoquen overflow horizontal */
+  /* evita overflow horizontal por iframes/video */
   overflow: hidden;
 
   transition: opacity .35s ease, transform .35s ease;
 }
 
+/* TITULOS DENTRO DEL PANEL */
 .dynamic-content h3 {
   margin-top: 0;
   margin-bottom: 2rem;
@@ -170,6 +171,7 @@ body {
   padding: 2.5rem 3rem;
 }
 
+/* Títulos dentro del panel */
 .panel-section h3 {
   margin-top: 0;
   margin-bottom: 2rem;
@@ -184,9 +186,9 @@ body {
   margin: 0 auto;
 
   border-radius: 18px;
-  overflow: hidden; /* clave para que el vídeo respete las esquinas */
+  overflow: hidden;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  background: #000; /* evita “bordes” raros mientras carga */
+  background: #000;
 }
 
 .video-panel {
@@ -221,6 +223,7 @@ body {
   text-shadow: 0 10px 35px rgba(0, 0, 0, 0.65);
 }
 
+/* Brillo en movimiento */
 @keyframes titleGlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -233,17 +236,15 @@ body {
   box-shadow: 0 10px 30px rgba(0,242,254,.45);
 }
 
-.smx-banner { position: relative; }
-
 /* CENTRE I CONTACTE: TEXTO + IMAGEN */
-.centre-grid {
+.centre-grid{
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2rem;
   align-items: center;
 }
 
-.centre-img {
+.centre-img{
   width: 100%;
   height: auto;
   display: block;
@@ -251,85 +252,109 @@ body {
   box-shadow: 0 18px 45px rgba(0,0,0,.45);
 }
 
+/* ===== GLOBO DE ALERTA (DESKTOP) ===== */
+.alert-bubble{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+
+  max-width: min(520px, calc(100% - 32px));
+  padding: .75rem .95rem;
+
+  background: #b00020;
+  color: #fff;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 12px 30px rgba(176,0,32,.35);
+
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  justify-content: flex-end;
+
+  font-weight: 700;
+}
+
+.alert-bubble__label{
+  background: rgba(255,255,255,.18);
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.alert-bubble__text{
+  text-align: right;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+/* Flechita del globo */
+.alert-bubble::after{
+  content: "";
+  position: absolute;
+  right: 22px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #b00020;
+  filter: drop-shadow(0 8px 10px rgba(176,0,32,.25));
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .banner-content h1 { font-size: 2.6rem; }
 
-  .dynamic-content { padding: 2.5rem 2rem; }
-
-  .plan-formacio { grid-template-columns: 1fr; }
-
-  .title-animated { font-size: 2.6rem; }
-
-  .hero-bg {
-    background-size: contain;   /* muestra la imagen completa */
-    background-repeat: no-repeat;
-    background-position: center top;
+  .banner-content h1 {
+    font-size: 2.6rem;
   }
 
-  .centre-grid { grid-template-columns: 1fr; }
-}
-.pdf-wrap {
-  width: 100%;
-  margin: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  background: rgba(0,0,0,0.35);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  .dynamic-content {
+    padding: 2.5rem 2rem;
+  }
+
+  .plan-formacio {
+    grid-template-columns: 1fr;
+  }
+
+  .title-animated {
+    font-size: 2.6rem;
+  }
+
+  /* En móvil/tablet mejor cover para que no “baje” tanto el título */
+  .hero-bg{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 280px;
+  }
+
+  .banner-content{
+    padding-top: 4.2rem;
+  }
+
+  .centre-grid{
+    grid-template-columns: 1fr;
+  }
 }
 
-.pdf-frame {
-  display: block;
-  width: 100%;
-  height: 80vh;   /* ocupa casi toda la altura de la pantalla */
-  border: 0;
-}
-
-/* padding más pequeño en móvil para que no “empuje” el video fuera */
+/* padding más pequeño en móvil para que no “empuje” contenidos */
 @media (max-width: 600px) {
   .panel-section {
     padding: 1.5rem 1.25rem;
   }
-}
-/* DESKTOP/TABLET: arriba a la derecha sin romper el diseño */
-.aviso-rojo-top{
-  width: min(520px, calc(100% - 2rem));
-  margin: 1rem 1rem 0 auto;   /* a la derecha */
-  padding: .85rem 1rem;
 
-  background: #b00020;
-  color: #fff;
-  font-weight: 800;
-  line-height: 1.25;
-  text-align: right;
-
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.35);
-  box-shadow: 0 10px 25px rgba(176,0,32,.35);
-
-  white-space: normal;
-  overflow-wrap: anywhere;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* MÓVIL: no empuja el título y no tapa el hero */
-@media (max-width: 600px){
-  .aviso-rojo-top{
-    position: fixed;
-    right: 12px;
-    bottom: 12px;
-    left: auto;
-
-    width: min(92vw, 420px);
-    margin: 0;
-
-    padding: .65rem .8rem;
+  /* Globo en móvil: en flujo (no tapa logo) y sin flecha */
+  .alert-bubble{
+    position: static;
+    margin: 12px 12px 0 auto;
+    border-radius: 18px;
+    max-width: calc(100% - 24px);
     font-size: .95rem;
-    line-height: 1.2;
-
-    opacity: 0.92;
-    z-index: 9999;
+  }
+  .alert-bubble::after{
+    display: none;
   }
 }
