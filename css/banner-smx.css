@@ -285,6 +285,33 @@ body{
   font-size: 2rem;
   color: #b5ecff;
 }
+/* Listas en tarjetas: grid adaptable (evita columnas ultra estrechas) */
+.dynamic-content .panel-section > ul{
+  list-style: none;
+  padding-left: 0;
+  margin-top: .25rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem 1.2rem;
+}
+
+.dynamic-content .panel-section > ul > li{
+  margin: 0;
+  padding: .85rem 1rem;
+  border-radius: 16px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.10);
+  font-weight: 600;
+
+  /* evita “letra a letra” incluso si el item se estrecha */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.panel-continu > ul{
+  grid-template-columns: 1fr !important;
+}
 
 /* =========================================================
    06) COMPONENTES (VIDEO / CENTRO)
