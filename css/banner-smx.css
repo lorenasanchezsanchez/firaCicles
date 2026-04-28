@@ -55,7 +55,7 @@ body {
 }
 
 /* FADE para integrar la imagen con el fondo (bordes + parte inferior)
-   - Esto sí se nota siempre (más fiable que mask).
+   - Esto elimina la “línea de corte” y funde la imagen con el fondo.
 */
 .hero-bg::before{
   content: "";
@@ -63,13 +63,9 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    /* izquierda */
     linear-gradient(to right, #08141b 0%, rgba(8,20,27,0) 22%),
-    /* derecha */
     linear-gradient(to left,  #08141b 0%, rgba(8,20,27,0) 22%),
-    /* arriba (suave) */
-    linear-gradient(to bottom, #08141b 0%, rgba(8,20,27,0) 24%),
-    /* abajo (para que no se note el corte inferior) */
+    linear-gradient(to bottom,#08141b 0%, rgba(8,20,27,0) 24%),
     linear-gradient(to top,   #08141b 0%, rgba(8,20,27,0) 55%);
 }
 
@@ -97,7 +93,6 @@ body {
    03) TÍTULO ANIMADO (clase usada en el H1)
    ========================================================= */
 
-/* Contenedor del título animado */
 .title-animated {
   position: relative;
   font-size: 3.8rem;
@@ -106,7 +101,6 @@ body {
   overflow: hidden;
 }
 
-/* Texto interno del título animado */
 .title-animated span {
   position: relative;
   display: inline-block;
@@ -118,7 +112,6 @@ body {
   text-shadow: 0 10px 35px rgba(0, 0, 0, 0.65);
 }
 
-/* Animación del degradado del título */
 @keyframes titleGlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -126,74 +119,73 @@ body {
 }
 
 /* =========================================================
-   04) MENÚ PRINCIPAL (BOTONES) - CENTRADO Y COMO ANTES
+   04) MENÚ PRINCIPAL (BOTONES) - CENTRADOS + COMPRIMIDOS
    ========================================================= */
 
 /* CONTENEDOR DEL MENÚ
-   - Volvemos a GRID con auto-fit/minmax(...) (reparte bien).
-   - width: fit-content hace que el “bloque” del grid se ajuste
-     al contenido y así la última fila puede quedar centrada.
-   - justify-content:center centra el grid completo.
+   - Columnas de ancho fijo => la última fila se centra de verdad.
+   - Gap pequeño para ocupar menos.
 */
 .highlights{
-  margin-top: 3rem;
+  margin-top: 2.2rem;
 
   display: grid;
-  gap: 1.2rem;
+  gap: .65rem;
 
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, 150px);
   justify-content: center;
   align-items: center;
 
-  width: fit-content;
-  max-width: min(1100px, 100%);
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 
   overflow: visible;
 }
 
-/* BOTONES (igual que los tenías “antes”: pastilla con blur) */
+/* BOTONES
+   - Mantienen el estilo “pastilla” original.
+   - Menos padding y menos altura para que ocupen menos.
+*/
 .highlights span{
-  background: linear-gradient(
-    135deg,
-    rgba(79,172,254,.35),
-    rgba(0,242,254,.25)
-  );
-  border: 1px solid rgba(255,255,255,.45);
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 999px;
-  cursor: pointer;
-  backdrop-filter: blur(14px);
-  transition: transform .25s, box-shadow .25s, background .25s;
-
-  padding: .75rem 1.6rem;
+  width: 150px;
+  min-height: 44px;
+  padding: .38rem .65rem;
   line-height: 1.05;
 
-  display: inline-flex;
-  align-items: center;      /* centrado vertical */
-  justify-content: center;  /* centrado horizontal */
+  font-size: .98rem;
+  font-weight: 650;
+
+  border-radius: 999px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   white-space: normal;
 
-  min-height: 64px;
+  background: linear-gradient(135deg, rgba(79,172,254,.35), rgba(0,242,254,.25));
+  border: 1px solid rgba(255,255,255,.45);
+  backdrop-filter: blur(14px);
+  transition: transform .25s, box-shadow .25s, background .25s;
 }
 
-.highlights span:hover {
-  transform: translateY(-6px) scale(1.08);
-  box-shadow: 0 22px 60px rgba(0,0,0,.55);
+.highlights span:hover{
+  transform: translateY(-5px) scale(1.06);
+  box-shadow: 0 18px 50px rgba(0,0,0,.5);
 }
 
-.highlights span.active {
+.highlights span.active{
   background: linear-gradient(135deg, #4facfe, #00f2fe);
   color: #021b2c;
-  box-shadow: 0 10px 30px rgba(0,242,254,.45);
+  box-shadow: 0 10px 28px rgba(0,242,254,.45);
 }
 
 /* =========================================================
    05) PANEL CENTRAL (CONTENIDO DINÁMICO)
    ========================================================= */
+
 .dynamic-content {
   margin: 4.5rem auto 0;
   max-width: 1100px;
@@ -223,7 +215,6 @@ body {
   color: #b5ecff;
 }
 
-/* Bloque interno común para secciones */
 .panel-section {
   background: rgba(255,255,255,.07);
   border-radius: 22px;
@@ -240,6 +231,7 @@ body {
 /* =========================================================
    06) COMPONENTES (VIDEO / CENTRO)
    ========================================================= */
+
 .video-panel-wrap {
   width: 100%;
   max-width: 900px;
@@ -257,7 +249,6 @@ body {
   height: auto;
 }
 
-/* Grid para “centre i contacte” (2 columnas) */
 .centre-grid{
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -265,7 +256,6 @@ body {
   align-items: center;
 }
 
-/* Imagen del centro */
 .centre-img{
   width: 100%;
   height: auto;
@@ -277,6 +267,7 @@ body {
 /* =========================================================
    07) ALERTA (MATRÍCULA ONLINE)
    ========================================================= */
+
 .alert-bubble{
   position: absolute;
   top: 16px;
@@ -331,15 +322,11 @@ body {
    08) RESPONSIVE
    ========================================================= */
 
-/* <= 900px */
 @media (max-width: 900px) {
   .banner-content h1 { font-size: 2.6rem; }
   .dynamic-content { padding: 2.5rem 2rem; }
 
   .hero-bg{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     height: 280px;
   }
 
@@ -352,18 +339,70 @@ body {
   }
 }
 
-/* <= 600px */
 @media (max-width: 600px) {
   .panel-section { padding: 1.5rem 1.25rem; }
 
-  /* Menú en móvil: 2 columnas y centrado */
+  /* Menú en móvil: 2 columnas y aún más compacto */
   .highlights{
-    width: min(100%, 520px);
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: center;
-    gap: .8rem;
+    gap: .55rem;
+    width: min(100%, 520px);
   }
 
   .highlights span{
-    width*
-
+    width: 100%;
+    min-height: 42px;
+    padding: .35rem .55rem;
+    font-size: .92rem;
+  }
+
+  /* Alerta en móvil: compacta y sin flecha, fuera del flujo */
+  .alert-bubble{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    left: auto;
+    z-index: 50;
+
+    width: max-content;
+    max-width: min(210px, 70vw);
+
+    padding: .35rem .5rem;
+    border-radius: 12px;
+
+    gap: .2rem;
+    align-items: flex-end;
+
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1.1;
+
+    box-shadow: 0 10px 22px rgba(176,0,32,.28);
+  }
+
+  .alert-bubble__label{
+    padding: .18rem .45rem;
+    font-size: .65rem;
+    letter-spacing: .02em;
+  }
+
+  .alert-bubble__text{
+    font-size: .68rem;
+    line-height: 1.1;
+  }
+
+  .alert-bubble::after{
+    display: none;
+  }
+}
+
+@media (max-width: 380px){
+  .highlights{
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .highlights span{
+    width: 100%;
+  }
+}
