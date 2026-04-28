@@ -118,32 +118,54 @@ body {
      al contenido y podamos centrarla con justify-content:center
 */
 /* ===== MENÚ: filas centradas (incluida la última) ===== */
+/* ===== MENÚ: centrado y con estilo original ===== */
 .highlights{
   margin-top: 3rem;
 
   display: grid;
   gap: 1.2rem;
 
-  /* Ancho fijo por botón → permite centrar el conjunto */
-  grid-template-columns: repeat(auto-fit, 170px);
-  justify-content: center;   /* <-- centra las filas */
-  align-items: center;
+  /* filas centradas (incluida la última) */
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  justify-content: center;
 
-  width: min(1100px, 100%);
+  /* el truco para centrar la última fila sin “estirar” raro:
+     limitamos el ancho del grid al contenido real */
+  width: fit-content;
+  max-width: min(1100px, 100%);
   margin-left: auto;
   margin-right: auto;
+
+  align-items: center;
+  overflow: visible;
 }
 
 .highlights span{
-  width: 170px;              /* mismo ancho que la columna */
-  min-height: 64px;          /* alto uniforme */
-  display: flex;
-  align-items: center;       /* centrado vertical del texto */
-  justify-content: center;   /* centrado horizontal del texto */
+  /* estilo original (pastilla) */
+  background: linear-gradient(
+    135deg,
+    rgba(79,172,254,.35),
+    rgba(0,242,254,.25)
+  );
+  border: 1px solid rgba(255,255,255,.45);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: transform .25s, box-shadow .25s, background .25s;
 
-  /* el resto de tus estilos del botón se quedan igual */
+  padding: .75rem 1.6rem;   /* <- como lo tenías antes */
+  line-height: 1.05;
+
+  display: inline-flex;
+  align-items: center;      /* centrado vertical del contenido */
+  justify-content: center;  /* centrado horizontal del contenido */
+  text-align: center;
+  white-space: normal;
+
+  min-height: 64px;         /* para que todos queden alineados */
 }
-
 .highlights span:hover {
   transform: translateY(-6px) scale(1.08);
   box-shadow: 0 22px 60px rgba(0,0,0,.55);
