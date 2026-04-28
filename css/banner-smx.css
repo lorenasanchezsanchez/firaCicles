@@ -106,8 +106,8 @@ body{
   place-items: center;
 
   /* Ajustes principales: baja presencia */
-  opacity: .16;
-  filter: blur(3px) saturate(1.05) contrast(1.02);
+  opacity: .12;
+  filter: blur(4px) saturate(1.05) contrast(1.02);
 
   /* Fade fuerte para que NO se note el rectángulo */
   -webkit-mask-image: radial-gradient(ellipse at center,
