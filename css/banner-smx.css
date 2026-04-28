@@ -309,21 +309,17 @@ body{
 
 /* Listas en tarjetas: grid adaptable (no columnas ultrafinas) */
 .dynamic-content .panel-section > ul{
-  list-style: none;
-  padding-left: 0;
+  list-style: disc;
+  padding-left: 1.15rem;
   margin-top: .25rem;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem 1.2rem;
+  display: block;
 }
 
 .dynamic-content .panel-section > ul > li{
-  margin: 0;
-  padding: .85rem 1rem;
-  border-radius: 16px;
-  background: rgba(0,0,0,.18);
-  border: 1px solid rgba(255,255,255,.10);
+  margin: .45rem 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
   font-weight: 600;
 }
 
