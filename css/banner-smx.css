@@ -503,3 +503,108 @@ body{
     width: 100%;
   }
 }
+/* =========================================================
+   09) ESTILOS DEL CONTENIDO DINÁMICO (plantillas JS)
+   ========================================================= */
+
+/* Listas: que vuelvan a verse “en columna” y limpias */
+.panel-section ul{
+  margin: 0;
+  padding-left: 1.15rem;
+}
+.panel-section li{
+  margin: .45rem 0;
+  line-height: 1.35;
+}
+
+/* PLA FORMATIU: 2 columnas (solo las dos cajas de curso) */
+.plan-formacio{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Cada curso como “tarjeta” */
+.plan-formacio .curs{/* =========================================================
+   09) ESTILOS DEL CONTENIDO DINÁMICO (plantillas JS)
+   ========================================================= */
+
+/* Listas: que vuelvan a verse “en columna” y limpias */
+.panel-section ul{
+  margin: 0;
+  padding-left: 1.15rem;
+}
+.panel-section li{
+  margin: .45rem 0;
+  line-height: 1.35;
+}
+
+/* PLA FORMATIU: 2 columnas (solo las dos cajas de curso) */
+.plan-formacio{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Cada curso como “tarjeta” */
+.plan-formacio .curs{
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  padding: 1.25rem 1.35rem;
+}
+.plan-formacio .curs h4{
+  margin: 0 0 .75rem;
+  font-size: 1.25rem;
+  color: #d6f6ff;
+}
+
+/* CALENDARI (PDF): ocupar todo el ancho y verse completo */
+.pdf-wrap{
+  width: 100%;
+}
+.pdf-frame{
+  width: 100%;
+  height: min(72vh, 820px);
+  border: 0;
+  border-radius: 18px;
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+
+/* Responsive: en móvil el Pla Formatiu pasa a 1 columna */
+@media (max-width: 900px){
+  .plan-formacio{ grid-template-columns: 1fr; }
+  .pdf-frame{ height
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  padding: 1.25rem 1.35rem;
+}
+.plan-formacio .curs h4{
+  margin: 0 0 .75rem;
+  font-size: 1.25rem;
+  color: #d6f6ff;
+}
+
+/* CALENDARI (PDF): ocupar todo el ancho y verse completo */
+.pdf-wrap{
+  width: 100%;
+}
+.pdf-frame{
+  width: 100%;
+  height: min(72vh, 820px);
+  border: 0;
+  border-radius: 18px;
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+
+/* Responsive: en móvil el Pla Formatiu pasa a 1 columna */
+@media (max-width: 900px){
+  .plan-formacio{ grid-template-columns: 1fr; }
+  .pdf-frame{ height: min(70vh, 680px); }
+}
+
