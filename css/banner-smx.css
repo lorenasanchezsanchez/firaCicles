@@ -321,22 +321,22 @@ body {
 @media (max-width: 600px) {
 
   /* --- TÍTULO: reducir tamaño para que NO rompa palabras --- */
-  .title-animated{
-    /* baja más el tamaño máximo para que "Microinformàtics" no se parta */
-    font-size: clamp(1.55rem, 6.6vw, 2.25rem);
-    line-height: 1.08;
-
+  .title-animated {
+    /* Bajamos el mínimo de 1.55 a 1.1rem para que quepa en móviles pequeños */
+    /* El 5.2vw es el ratio ideal para que "Microinformàtics" no desborde */
+    font-size: clamp(1.1rem, 5.2vw, 2rem); 
+    line-height: 1.2;
     max-width: 100%;
-    padding: 0 .35rem;
+    padding: 0 15px;
     overflow: visible;
   }
 
-  .title-animated span{
-    /* NO partir palabras */
-    white-space: normal;
-    overflow-wrap: normal;
-    word-break: keep-all;
-    hyphens: manual;  /* no guionizado automático */
+  .title-animated span {
+    display: inline-block;
+    white-space: nowrap; /* Evita que la palabra se parta en dos */
+    word-break: normal;
+    hyphens: none;
+    text-wrap: none; /* Forzamos a que se mantenga en una línea */
   }
 
   /* Si el navegador soporta balanceo, queda más bonito */
