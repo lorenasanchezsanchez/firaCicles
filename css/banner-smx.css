@@ -344,16 +344,16 @@ html, body {
 
   /* 3. EL TÍTULO ANIMADO */
   .title-animated {
-    display: block;
+    /* El 4.5vw es el número mágico para "Microinformàtics" */
+    font-size: clamp(1rem, 4.5vw, 1.8rem) !important;
     width: 100%;
-    padding: 0;
+    padding: 0 10px;
+    text-align: center;
   }
 
   .title-animated span {
-    display: block; /* Cambiamos a block para que respete el ancho del padre */
-    white-space: nowrap; /* Evita que se parta */
-    width: 100%;
-    text-align: center;
+    white-space: nowrap; /* Evita que la palabra se rompa */
+    display: inline-block;
   }
 
   /* 4. LA ALERTA (Compacta a la derecha) */
