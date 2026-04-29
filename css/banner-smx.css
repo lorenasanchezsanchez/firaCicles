@@ -370,31 +370,36 @@ svg {
     font-size: 0.6rem;
   }
 
-  /* --- LOGO: que se vea completo (no se salga) --- */
-  /* Aseguramos que el contenedor del logo no empuje hacia afuera */
- /* Contenedor del logo */
-  .* 1. Forzamos al contenedor a no ser nunca más ancho que el móvil */
-  .hero-logo {
+ .hero-logo, 
+  .banner-content div:has(> svg) { 
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
     width: 100% !important;
-    max-width: 100vw !important;
-    padding: 0 20px !important; /* Margen de seguridad para que no roce los bordes */
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    overflow: hidden; /* Cortafuegos para que nada se salga */
+    max-width: 100vw !important; /* Nunca más ancho que la pantalla */
+    
+    /* Pequeño margen de seguridad para que no roce los bordes */
+    padding: 0 20px !important; 
+    box-sizing: border-box !important;
+    overflow: hidden !important; /* Cortafuegos final */
+    
+    margin-bottom: 1rem !important;
   }
 
-  /* 2. Reset total del SVG */
-  .hero-logo svg {
-    /* El 100% aquí significa "el 100% de lo que permita el padre" */
+  /* 2. Resetear el SVG en sí mismo */
+  .hero-logo svg,
+  .banner-content svg {
+    /* Forzamos a que se encoja si el padre es más pequeño */
     width: 100% !important; 
-    height: auto !important; /* Mantiene la proporción siempre */
     
-    /* Limitamos el tamaño máximo para que no se vea gigante, 
-       pero que nunca pase del ancho de la pantalla */
+    /* Mantenemos la proporción siempre */
+    height: auto !important; 
+    
+    /* Definimos el tamaño máximo VISUAL que queremos en móvil */
     max-width: 320px !important; 
     
-    /* MUY IMPORTANTE: Eliminamos cualquier desplazamiento previo */
+    /* ELIMINAR desplazamientos previos o posicionamientos absolutos */
     transform: none !important;
     position: static !important; 
     margin: 0 auto !important;
