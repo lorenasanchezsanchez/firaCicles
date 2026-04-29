@@ -319,29 +319,49 @@ body {
 
 /* MÓVIL */
 @media (max-width: 600px) {
+  /* 1. EL CONTENEDOR PADRE */
+  .banner-content {
+    padding: 5rem 1rem 0; /* Menos padding para dar más espacio horizontal */
+    width: 100%;
+    overflow: hidden; /* Cortafuegos para que nada empuje hacia afuera */
+  }
 
-  /* --- TÍTULO: reducir tamaño para que NO rompa palabras --- */
+  /* 2. EL H1 (Ajuste agresivo) */
+  .banner-content h1 {
+    /* Bajamos el tamaño base y el ratio de crecimiento */
+    font-size: clamp(1.1rem, 4.8vw, 1.8rem) !important; 
+    width: 100%;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: normal;
+  }
+
+  /* 3. EL TÍTULO ANIMADO */
   .title-animated {
-    /* Bajamos el mínimo de 1.55 a 1.1rem para que quepa en móviles pequeños */
-    /* El 5.2vw es el ratio ideal para que "Microinformàtics" no desborde */
-    font-size: clamp(1.1rem, 5.2vw, 2rem); 
-    line-height: 1.2;
-    max-width: 100%;
-    padding: 0 15px;
-    overflow: visible;
+    display: block;
+    width: 100%;
+    padding: 0;
   }
 
   .title-animated span {
-    display: inline-block;
-    white-space: nowrap; /* Evita que la palabra se parta en dos */
-    word-break: normal;
-    hyphens: none;
-    text-wrap: none; /* Forzamos a que se mantenga en una línea */
+    display: block; /* Cambiamos a block para que respete el ancho del padre */
+    white-space: nowrap; /* Evita que se parta */
+    width: 100%;
+    text-align: center;
   }
 
-  /* Si el navegador soporta balanceo, queda más bonito */
-  .title-animated span{
-    text-wrap: balance;
+  /* 4. LA ALERTA (Compacta a la derecha) */
+  .alert-bubble {
+    max-width: 140px; /* Muy estrecha */
+    padding: 0.4rem;
+    top: 10px;
+    right: 10px;
+    font-size: 0.65rem;
+  }
+  
+  .alert-bubble__label {
+    font-size: 0.6rem;
   }
 
   /* --- LOGO: que se vea completo (no se salga) --- */
@@ -364,42 +384,5 @@ body {
     /* quita desplazamientos que suelen sacarlo fuera */
     transform: none;
   }
-
-  .alert-bubble {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10;
-
-  /* Reducimos el ancho máximo para que sea más estrecha */
-  max-width: 180px; 
-  padding: .5rem .7rem;
-
-  background: #b00020;
-  border-radius: 12px; /* Bordes algo más finos */
-  font-size: 0.75rem;   /* Texto más pequeño */
   
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-}
-
-.alert-bubble__label {
-  font-size: 0.7rem;
-  padding: .15rem .4rem;
-  margin-bottom: 2px;
-}
-
-.alert-bubble__text {
-  text-align: right;
-  line-height: 1.2;
-  font-weight: 500; /* Un poco menos de peso para que no "grite" tanto */
-}
-
-/* Ajuste del pico de la burbuja para que coincida con el tamaño pequeño */
-.alert-bubble::after {
-  right: 15px;
-  border-width: 7px;
-}
 }
