@@ -304,7 +304,9 @@ body {
 @media (max-width: 900px) {
   .banner-content h1 { font-size: 2.6rem; }
 
-  .dynamic-content { padding: 2.5rem 2rem; }
+  .dynamic-content { 
+    padding: 2.5rem 2rem; 
+    z-index: 3;}
 
   .plan-formacio { grid-template-columns: 1fr; }
 
@@ -313,18 +315,19 @@ body {
   .hero-bg {
     background-size: contain;   /* muestra la imagen completa */
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center top; 
+    z-index: 2;/* 2) Logo: debajo de la alerta */
   }
 
   .centre-grid { grid-template-columns: 1fr; }
    /* Alerta en móvil: compacta y sin flecha, fuera del flujo */
   .alert-bubble{
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    left: auto;
+    position: relative;      /* en vez de absolute */
+    top: auto;
+    right: auto;
+    margin: 10px auto 0;
     z-index: 50;
-
+    
     width: max-content;
     max-width: min(210px, 70vw);
 
@@ -355,6 +358,19 @@ body {
   .alert-bubble::after{
     display: none;
   }
+
+  * 3) Contenido (título y menú): encima del logo */
+  .banner-content{
+    position: relative;
+    z-index: 3;
+    padding-top: 1.2rem; /* ajusta a gusto para que no quede muy abajo */
+  }
+
+  /* Reserva espacio superior para que la alerta (absolute) no solape el logo/título */
+  .smx-banner{
+    padding-top: 95px; /* ajusta 80-115px según lo alta que quede la alerta */
+  }
+
 }
 
 }
