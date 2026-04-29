@@ -33,7 +33,7 @@ body {
     url("../assets/img/logo.svg");
   
   /* Ajuste para que el logo no se salga en móviles */
-  background-size: contain; 
+  background-size: cover; 
   background-repeat: no-repeat;
   background-position: center;
   z-index: -1;
