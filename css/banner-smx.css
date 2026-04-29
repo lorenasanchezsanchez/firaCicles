@@ -319,76 +319,49 @@ body {
 
 /* MÓVIL */
 @media (max-width: 600px) {
-  /* Reserva espacio para la alerta flotante (ajusta si cambia el texto) */
-  :root { --alert-space: 112px; }
 
-  /* ALERTA pegada a la derecha */
-  .alert-bubble{
-    top: 8px;
-    right: 8px;
-    left: auto !important;
-    margin: 0 !important;
-    z-index: 50;
-
-    width: auto;
-    max-width: min(260px, 78vw);
-
-    padding: .45rem .6rem;
-    border-radius: 12px;
-
-    gap: .25rem;
-    align-items: flex-end;
-
-    font-size: .78rem;
-    line-height: 1.1;
-
-    box-shadow: 0 10px 22px rgba(176,0,32,.28);
-  }
-  .alert-bubble__label{ padding: .2rem .5rem; font-size: .7rem; }
-  .alert-bubble__text{ font-size: .72rem; }
-  .alert-bubble::after{ display: none; }
-
-  /* El contenido empieza justo debajo de la alerta */
-  .banner-content{
-    padding-top: calc(1.2rem + var(--alert-space));
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-
-  /* ===== TÍTULO: que SIEMPRE se vea completo ===== */
+  /* --- TÍTULO: reducir tamaño para que NO rompa palabras --- */
   .title-animated{
-    font-size: clamp(1.85rem, 8vw, 2.85rem); /* se adapta al ancho */
-    line-height: 1.06;
-    margin-bottom: .9rem;
+    /* baja más el tamaño máximo para que "Microinformàtics" no se parta */
+    font-size: clamp(1.55rem, 6.6vw, 2.25rem);
+    line-height: 1.08;
 
     max-width: 100%;
+    padding: 0 .35rem;
     overflow: visible;
-
-    /* un poquito de padding para que no toque bordes */
-    padding: 0 .25rem;
   }
 
   .title-animated span{
-    white-space: normal;       /* permite saltos */
-    overflow-wrap: anywhere;   /* evita recorte lateral */
-    word-break: normal;
-    hyphens: auto;
+    /* NO partir palabras */
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: manual;  /* no guionizado automático */
   }
 
-  /* ===== LOGO (SVG WATERMARK): que no se corte ===== */
+  /* Si el navegador soporta balanceo, queda más bonito */
+  .title-animated span{
+    text-wrap: balance;
+  }
+
+  /* --- LOGO: que se vea completo (no se salga) --- */
   .hero-logo{
-    /* si lo tienes como watermark, asegúrate que entra en pantalla */
-    inset: 0;
-    overflow: hidden; /* recorta lo que sobresalga del contenedor, sin cortar el SVG por ancho */
+    /* centra y limita el área visible del logo */
+    display: grid;
+    place-items: center;
+    overflow: hidden;
   }
 
   .hero-logo svg{
-    width: min(760px, 92vw);   /* encaja en móvil */
-    height: auto;
+    width: 92vw;        /* siempre dentro del ancho */
     max-width: 92vw;
-    transform: translateY(-10px); /* menos desplazamiento que en desktop */
-  }
+    height: auto;
 
-  /* padding más pequeño en móvil */
-  .panel-section { padding: 1.5rem 1.25rem; }
+    /* limita también por altura para que no “invada” demasiado */
+    max-height: 220px;
+    object-fit: contain;
+
+    /* quita desplazamientos que suelen sacarlo fuera */
+    transform: none;
+  }
 }
