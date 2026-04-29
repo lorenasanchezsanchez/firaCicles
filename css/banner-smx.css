@@ -410,39 +410,17 @@ svg {
     font-size: 0.6rem;
   }
 
- .hero-logo, 
-  .banner-content div:has(> svg) { 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    
-    width: 100% !important;
-    max-width: 100vw !important; /* Nunca más ancho que la pantalla */
-    
-    /* Pequeño margen de seguridad para que no roce los bordes */
-    padding: 0 20px !important; 
-    box-sizing: border-box !important;
-    overflow: hidden !important; /* Cortafuegos final */
-    
-    margin-bottom: 1rem !important;
+
+  .hero-logo {
+    padding: 0 15px !important; /* Más margen en móviles */
   }
 
-  /* 2. Resetear el SVG en sí mismo */
   .hero-logo svg,
-  .banner-content svg {
-    /* Forzamos a que se encoja si el padre es más pequeño */
-    width: 100% !important; 
-    
-    /* Mantenemos la proporción siempre */
-    height: auto !important; 
-    
-    /* Definimos el tamaño máximo VISUAL que queremos en móvil */
-    max-width: 320px !important; 
-    
-    /* ELIMINAR desplazamientos previos o posicionamientos absolutos */
-    transform: none !important;
-    position: static !important; 
-    margin: 0 auto !important;
+  .hero-logo img {
+    max-width: 85vw !important; /* Forzamos a que ocupe máximo el 85% del ancho de pantalla */
+    /* Suavizamos más el degradado en móvil para que no se vea el corte */
+    -webkit-mask-image: radial-gradient(circle, black 30%, transparent 90%);
+    mask-image: radial-gradient(circle, black 30%, transparent 90%);
   }
 
   
