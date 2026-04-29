@@ -30,6 +30,13 @@ body {
   background: linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9));
   z-index: -1;
   overflow: hidden;
+  /* 1. BORDES REDONDEADOS */
+  border-radius: 20px;
+
+  /* 2. DIFUMINADO DE BORDES (MÁSCARA) */
+  /* Esto crea un degradado que hace transparente el borde del contenedor */
+  -webkit-mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* Creamos una nueva regla para el logo */
