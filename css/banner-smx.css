@@ -22,29 +22,30 @@ body {
 /* HERO SUPERIOR (SOLO ARRIBA) */
 .hero-bg {
   position: absolute;
-  top: 10px;        /* Un pequeño margen superior para que se vea el redondeado */
-  left: 10px;       /* Margen izquierdo */
-  right: 10px;      /* Margen derecho */
+  top: 0;
+  left: 0;
+  right: 0;
   height: 360px;
-  
-  /* Tu fondo actual */
-  background:
-    linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9)),
-    url("../assets/img/logo.svg");
-  
-  /* Ajuste para que el logo no se salga en móviles */
-  background-size: cover; 
-  background-repeat: no-repeat;
-  background-position: center;
+  /* Solo dejamos el degradado oscuro, sin el logo aquí */
+  background: linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9));
   z-index: -1;
+  overflow: hidden;
+}
 
-  /* 1. BORDES REDONDEADOS */
-  border-radius: 20px;
-
-  /* 2. DIFUMINADO DE BORDES (MÁSCARA) */
-  /* Esto crea un degradado que hace transparente el borde del contenedor */
-  -webkit-mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
+/* Creamos una nueva regla para el logo */
+.logo-mini {
+  position: absolute;
+  top: 50px;       /* Ajustado para quedar debajo de 'Visitors' */
+  left: 15px;      /* Alineado a la izquierda */
+  width: 120px;    /* Tamaño similar al botón de Matrícula */
+  height: auto;
+  opacity: 1;      /* Opacidad total */
+  z-index: 10;     /* Por encima del fondo */
+  
+  /* Bordes redondeados como pediste antes */
+  border-radius: 12px;
+  /* Opcional: si el SVG tiene fondo, esto lo hace destacar */
+  background: transparent; 
 }
 
 /* HERO CONTENT */
