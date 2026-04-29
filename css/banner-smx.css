@@ -21,21 +21,7 @@ body {
 
 /* EL CONTENIDOR DEL FONS */
 .hero-bg {
-  position: relative; /* Canviem absolute per relative */
-  width: 100%;
-  min-height: 400px;  /* Altura mínima, creixerà si hi ha molt de text */
-  padding: 80px 20px 40px 20px; /* Espai dalt per al logo i baix per als botons */
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra el títol verticalment */
-  align-items: center;     /* Centra el títol horitzontalment */
-  
-  background: 
-    linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9)),
-  background-size: cover;
-  background-position: center;
-  overflow: hidden; /* Per a que el difuminat o bordes no surtin */
+ 
 }
 
 /* EL LOGO (Dalt a l'esquerra) */
