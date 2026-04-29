@@ -29,7 +29,7 @@ body {
   background:
     linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9)),
     url("../assets/img/logo.svg");
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   z-index: -1;
 }
