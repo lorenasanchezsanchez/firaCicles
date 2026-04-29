@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
   const container = document.getElementById("dynamic-content");
   const pills = document.querySelectorAll("[data-content]");
 
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const templates = {
+
     coneixerns: [
       '<div class="panel-section">',
       "<h3>🎥 Vine a conéixer-nos</h3>",
@@ -17,107 +19,107 @@ document.addEventListener("DOMContentLoaded", function () {
       "    El teu navegador no suporta vídeo HTML5.",
       "  </video>",
       "</div>",
-      "</div>",
+      "</div>"
     ].join(""),
 
     pla: [
       '<div class="panel-section">',
       '<h3>📚 Pla de formació de 2000 hores</h3>',
+
       '<div class="plan-formacio">',
 
       '<div class="curs">',
-      "<h4>1r curs</h4>",
-      "<ul>",
-      "<li>Montatge i manteniment d’equips</li>",
-      "<li>Sistemes operatius monopost</li>",
-      "<li>Aplicacions ofimàtiques</li>",
-      "<li>Xarxes locals</li>",
-      "<li>Anglés professional (GM)</li>",
-      "<li>Itinerari personal per a l’ocupabilitat I</li>",
-      "</ul>",
-      "</div>",
+      '<h4>1r curs</h4>',
+      '<ul>',
+      '<li>Montatge i manteniment d’equips</li>',
+      '<li>Sistemes operatius monopost</li>',
+      '<li>Aplicacions ofimàtiques</li>',
+      '<li>Xarxes locals</li>',
+      '<li>Anglés professional (GM)</li>',
+      '<li>Itinerari personal per a l’ocupabilitat I</li>',
+      '</ul>',
+      '</div>',
 
       '<div class="curs">',
-      "<h4>2n curs</h4>",
-      "<ul>",
-      "<li>Sistemes operatius en xarxa</li>",
-      "<li>Seguretat informàtica</li>",
-      "<li>Serveis en xarxa</li>",
-      "<li>Aplicacions web</li>",
-      "<li>Mòdul optatiu</li>",
-      "<li>Itinerari personal per a l’ocupabilitat II</li>",
-      "<li>Sostenibilitat aplicada al sistema productiu</li>",
-      "<li>Digitalització aplicada al sistema productiu</li>",
-      "<li>Projecte intermodular</li>",
-      "<li>Formació en Centres de Treball (FCT)</li>",
-      "</ul>",
-      "</div>",
+      '<h4>2n curs</h4>',
+      '<ul>',
+      '<li>Sistemes operatius en xarxa</li>',
+      '<li>Seguretat informàtica</li>',
+      '<li>Serveis en xarxa</li>',
+      '<li>Aplicacions web</li>',
+      '<li>Mòdul optatiu</li>',
+      '<li>Itinerari personal per a l’ocupabilitat II</li>',
+      '<li>Sostenibilitat aplicada al sistema productiu</li>',
+      '<li>Digitalització aplicada al sistema productiu</li>',
+      '<li>Projecte intermodular</li>',
+      '<li>Formació en Centres de Treball (FCT)</li>',
+      '</ul>',
+      '</div>',
 
-      "</div>",
-      "</div>",
+      '</div>',
+      '</div>'
     ].join(""),
 
     centre: [
       '<div class="panel-section centre-grid">',
       '  <div class="centre-text">',
-      "    <h3>🏫 Centre i contacte</h3>",
-      "    <p><strong>IES Benigasló</strong></p>",
-      "    <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>",
-      "    <p>📞 964 738 955</p>",
-      "    <p>📧 12005751@edu.gva.es</p>",
-      '    <a class="portal-link" href="https://portal.edu.gva.es/iesbenigaslo" target="_blank" rel="noopener noreferrer">portal.edu.gva.es/iesbenigaslo</a>',
-      "  </div>",
+      '    <h3>🏫 Centre i contacte</h3>',
+      '    <p><strong>IES Benigasló</strong></p>',
+      '    <p>C/ Arcadi García, 1 · 12600 La Vall d’Uixó</p>',
+      '    <p>📞 964 738 955</p>',
+      '    <p>📧 12005751@edu.gva.es</p>',
+      '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
+      '  </div>',
       '  <div class="centre-media">',
       '    <img class="centre-img" src="assets/img/ies.jpg" alt="IES Benigasló" loading="lazy" />',
-      "  </div>",
-      "</div>",
+      '  </div>',
+      '</div>'
     ].join(""),
 
     continu: [
-      '<div class="panel-section panel-continu">',
-      "<h3>🚀 Continuïtat formativa</h3>",
-      "<ul>",
-      "<li>Curs d’especialització en Implementació de xarxes 5G</li>",
-      "<li>Curs d’especialització en sistemes IoT</li>",
-      "<li>Accés directe a cicles superiors d’Informàtica</li>",
-      "</ul>",
-      "</div>",
+      '<div class="panel-section">',
+      '<h3>🚀 Continuïtat formativa</h3>',
+      '<ul>',
+      '<li>Curs d’especialització en Implementació de xarxes 5G</li>',
+      '<li>Curs d’especialització en sistemes IoT</li>',
+      '<li>Accés directe a cicles superiors d’Informàtica</li>',
+      '</ul>',
+      '</div>'
     ].join(""),
 
     eixides: [
       '<div class="panel-section">',
-      "<h3>💼 Eixides professionals</h3>",
-      "<ul>",
-      "<li>Tècnic instal·lador-reparador d’equips informàtics</li>",
-      "<li>Tècnic de suport informàtic</li>",
-      "<li>Tècnic de xarxes de dades</li>",
-      "<li>Reparador de perifèrics</li>",
-      "<li>Operador de sistemes i teleassistència</li>",
-      "</ul>",
-      "</div>",
+      '<h3>💼 Eixides professionals</h3>',
+      '<ul>',
+      '<li>Tècnic instal·lador-reparador d’equips informàtics</li>',
+      '<li>Tècnic de suport informàtic</li>',
+      '<li>Tècnic de xarxes de dades</li>',
+      '<li>Reparador de perifèrics</li>',
+      '<li>Operador de sistemes i teleassistència</li>',
+      '</ul>',
+      '</div>'
     ].join(""),
-
     calendari: [
-      '<div class="panel-section">',
-      "<h3>📅 Calendari d'admisió</h3>",
-      '<div class="pdf-wrap">',
-      '  <iframe class="pdf-frame" src="assets/calendari.pdf" title="Calendari d\'admisió"></iframe>',
-      "</div>",
-      "</div>",
-    ].join(""),
+  '<div class="panel-section">',
+  "<h3>📅 Calendari d'admisió</h3>",
+  '<div class="pdf-wrap">',
+  '  <iframe class="pdf-frame" src="assets/calendari.pdf" title="Calendari d\'admisió"></iframe>',
+  "</div>",
+  "</div>"
+].join(""),
 
     oferim: [
       '<div class="panel-section">',
-      "<h3>🧰 Què oferim</h3>",
-      "<ul>",
-      "<li>Aules digitalitzades amb ordinador per alumne</li>",
-      "<li>Dispositius IoT i impressió 3D</li>",
-      "<li>Xarxa Wi‑Fi per a l’alumnat</li>",
-      "<li>Llicències professionals (AWS, Azure, GitHub…)</li>",
-      "<li>Preparació per a certificacions oficials</li>",
-      "</ul>",
-      "</div>",
-    ].join(""),
+      '<h3>🧰 Què oferim</h3>',
+      '<ul>',
+      '<li>Aules digitalitzades amb ordinador per alumne</li>',
+      '<li>Dispositius IoT i impressió 3D</li>',
+      '<li>Xarxa Wi‑Fi per a l’alumnat</li>',
+      '<li>Llicències professionals (AWS, Azure, GitHub…)</li>',
+      '<li>Preparació per a certificacions oficials</li>',
+      '</ul>',
+      '</div>'
+    ].join("")
   };
 
   function enableVideoFullscreen() {
@@ -149,7 +151,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   pills.forEach(function (pill) {
     pill.addEventListener("click", function () {
-      pills.forEach((p) => p.classList.remove("active"));
+
+      pills.forEach(p => p.classList.remove("active"));
       pill.classList.add("active");
 
       const key = pill.dataset.content;
@@ -157,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // "Matrícula": abrir enlace en otra pestaña (no cargar panel)
       if (key === "matricula") {
         window.open(
-          "https://portal.edu.gva.es/adminova/es/fp-interior/",
+          "https://portal.edu.gva.es/adminova/es/fp/",
           "_blank",
           "noopener,noreferrer"
         );
@@ -167,9 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
       container.classList.add("hide");
 
       setTimeout(function () {
-        container.innerHTML =
-          templates[key] ||
-          '<div class="panel-section"><p>Contingut no disponible.</p></div>';
+        container.innerHTML = templates[key] || '<div class="panel-section"><p>Contingut no disponible.</p></div>';
         container.classList.remove("hide");
         enableVideoFullscreen();
       }, 200);
@@ -177,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Carga inicial: "Vine a conéixer-nos" si existe; si no, el primero
-  const defaultPill =
-    document.querySelector('[data-content="coneixerns"]') || pills[0];
+  const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
   defaultPill.click();
+
 });
