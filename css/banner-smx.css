@@ -44,7 +44,7 @@ body {
   position: absolute;
   top: 50px;       /* Ajustado para quedar debajo de 'Visitors' */
   left: 15px;      /* Alineado a la izquierda */
-  width: 40%;        /* En móviles ocupará casi la mitad del ancho */
+  width: 30%;        /* En móviles ocupará casi la mitad del ancho */
   max-width: 300px;  /* Pero en ordenador, nunca medirá más de 300px */
   height: auto;
   opacity: 1;      /* Opacidad total */
