@@ -364,4 +364,42 @@ body {
     /* quita desplazamientos que suelen sacarlo fuera */
     transform: none;
   }
+
+  .alert-bubble {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+
+  /* Reducimos el ancho máximo para que sea más estrecha */
+  max-width: 180px; 
+  padding: .5rem .7rem;
+
+  background: #b00020;
+  border-radius: 12px; /* Bordes algo más finos */
+  font-size: 0.75rem;   /* Texto más pequeño */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.alert-bubble__label {
+  font-size: 0.7rem;
+  padding: .15rem .4rem;
+  margin-bottom: 2px;
+}
+
+.alert-bubble__text {
+  text-align: right;
+  line-height: 1.2;
+  font-weight: 500; /* Un poco menos de peso para que no "grite" tanto */
+}
+
+/* Ajuste del pico de la burbuja para que coincida con el tamaño pequeño */
+.alert-bubble::after {
+  right: 15px;
+  border-width: 7px;
+}
 }
