@@ -433,7 +433,7 @@ svg {
   }
   .hero-bg {
     background-size: 90% auto; /* El logo ocupará el 90% del ancho del móvil */
-    height: 300px; /* Puedes reducir un poco la altura si quieres */
+    height: 100px; /* Puedes reducir un poco la altura si quieres */
   }
 
   
