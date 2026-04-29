@@ -46,7 +46,7 @@ body {
   top: 50px;       /* Ajustado para quedar debajo de 'Visitors' */
   left: 15px;      /* Alineado a la izquierda */
   width: 30%;        /* En móviles ocupará casi la mitad del ancho */
-  max-width: 300px;  /* Pero en ordenador, nunca medirá más de 300px */
+  width: clamp(140px, 15vw, 250px);
   height: auto;
   opacity: 1;      /* Opacidad total */
   z-index: 10;     /* Por encima del fondo */
