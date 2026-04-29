@@ -300,80 +300,6 @@ body {
   filter: drop-shadow(0 8px 10px rgba(176,0,32,.25));
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .banner-content h1 { font-size: 2.6rem; }
-
-  .dynamic-content { 
-    padding: 2.5rem 2rem; 
-    z-index: 3;}
-
-  .plan-formacio { grid-template-columns: 1fr; }
-
-  .title-animated { font-size: 2.6rem; }
-
-  .hero-bg {
-    background-size: contain;   /* muestra la imagen completa */
-    background-repeat: no-repeat;
-    background-position: center top; 
-    z-index: 2;/* 2) Logo: debajo de la alerta */
-  }
-
-  .centre-grid { grid-template-columns: 1fr; }
-   /* Alerta en móvil: compacta y sin flecha, fuera del flujo */
-  .alert-bubble{
-    position: relative;      /* en vez de absolute */
-    top: auto;
-    right: auto;
-    margin: 10px auto 0;
-    z-index: 50;
-    
-    width: max-content;
-    max-width: min(210px, 70vw);
-
-    padding: .35rem .5rem;
-    border-radius: 12px;
-
-    gap: .2rem;
-    align-items: flex-end;
-
-    font-size: .72rem;
-    font-weight: 700;
-    line-height: 1.1;
-
-    box-shadow: 0 10px 22px rgba(176,0,32,.28);
-  }
-
-  .alert-bubble__label{
-    padding: .18rem .45rem;
-    font-size: .65rem;
-    letter-spacing: .02em;
-  }
-
-  .alert-bubble__text{
-    font-size: .68rem;
-    line-height: 1.1;
-  }
-
-  .alert-bubble::after{
-    display: none;
-  }
-
-  * 3) Contenido (título y menú): encima del logo */
-  .banner-content{
-    position: relative;
-    z-index: 3;
-    padding-top: 1.2rem; /* ajusta a gusto para que no quede muy abajo */
-  }
-
-  /* Reserva espacio superior para que la alerta (absolute) no solape el logo/título */
-  .smx-banner{
-    padding-top: 95px; /* ajusta 80-115px según lo alta que quede la alerta */
-  }
-
-}
-
-}
 .pdf-wrap {
   width: 100%;
   margin: 0;
@@ -390,9 +316,52 @@ body {
   border: 0;
 }
 
-/* padding más pequeño en móvil para que no “empuje” el video fuera */
+
+/* MÓVIL */
 @media (max-width: 600px) {
-  .panel-section {
-    padding: 1.5rem 1.25rem;
+  /* Ajusta este valor si cambian las líneas del texto de la alerta */
+  :root { --alert-space: 112px; }
+
+  /* ALERTA: pegada arriba-derecha sí o sí */
+  .alert-bubble{
+    top: 8px;
+    right: 8px;
+    left: auto !important;
+    margin: 0 !important;
+
+    z-index: 50;
+
+    width: auto;                 /* clave: no max-content */
+    max-width: min(260px, 78vw); /* un poco más ancho para que no se “apile” tanto */
+
+    padding: .45rem .6rem;
+    border-radius: 12px;
+
+    gap: .25rem;
+    align-items: flex-end;
+
+    font-size: .78rem;
+    line-height: 1.1;
+
+    box-shadow: 0 10px 22px rgba(176,0,32,.28);
   }
+
+  .alert-bubble__label{
+    padding: .2rem .5rem;
+    font-size: .7rem;
+  }
+
+  .alert-bubble__text{
+    font-size: .72rem;
+  }
+
+  .alert-bubble::after{ display: none; }
+
+  /* CLAVE: el contenido empieza justo después de la alerta (sin solape) */
+  .banner-content{
+    padding-top: calc(1.2rem + var(--alert-space));
+  }
+
+  /* padding más pequeño en móvil */
+  .panel-section { padding: 1.5rem 1.25rem; }
 }
