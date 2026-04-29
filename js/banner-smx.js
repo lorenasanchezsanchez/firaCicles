@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
       '  </div>',
       '  <div class="centre-media">',
-      '    <img class="centre-img" src="assets/img/ies.jpg" alt="IES Benigasló" loading="lazy" />',
+      '    <img class="centre-img" src="assets/img/logo.svg" alt="IES Benigasló" loading="lazy" />',
       '  </div>',
       '</div>'
     ].join(""),
