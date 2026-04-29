@@ -19,44 +19,35 @@ body {
   padding-bottom: 5rem;
 }
 
-/* HERO SUPERIOR (SOLO ARRIBA) */
+/* EL CONTENIDOR DEL FONS */
 .hero-bg {
-  color:white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 360px;
-  /* Solo dejamos el degradado oscuro, sin el logo aquí */
-  background: linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9));
-  z-index: -1;
-  overflow: hidden;
-  /* 1. BORDES REDONDEADOS */
-  border-radius: 20px;
-
-  /* 2. DIFUMINADO DE BORDES (MÁSCARA) */
-  /* Esto crea un degradado que hace transparente el borde del contenedor */
-  -webkit-mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
+  position: relative; /* Canviem absolute per relative */
+  width: 100%;
+  min-height: 400px;  /* Altura mínima, creixerà si hi ha molt de text */
+  padding: 80px 20px 40px 20px; /* Espai dalt per al logo i baix per als botons */
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el títol verticalment */
+  align-items: center;     /* Centra el títol horitzontalment */
+  
+  background: 
+    linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9)),
+    url("../assets/img/logo.svg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* Per a que el difuminat o bordes no surtin */
 }
 
-/* Creamos una nueva regla para el logo */
+/* EL LOGO (Dalt a l'esquerra) */
 .logo-mini {
   position: absolute;
-  top: 50px;       /* Ajustado para quedar debajo de 'Visitors' */
-  left: 15px;      /* Alineado a la izquierda */
-  width: 30%;        /* En móviles ocupará casi la mitad del ancho */
-  width: clamp(140px, 15vw, 250px);
+  top: 50px;
+  left: 15px;
+  width: clamp(120px, 20%, 250px); /* Responsiu: no es fa gegant en PC ni nano en mòbil */
   height: auto;
-  opacity: 1;      /* Opacidad total */
-  z-index: 10;     /* Por encima del fondo */
-  
-  /* Bordes redondeados como pediste antes */
-  border-radius: 12px;
-  /* Opcional: si el SVG tiene fondo, esto lo hace destacar */
-  background: transparent; 
+  z-index: 10;
 }
-
 /* HERO CONTENT */
 .banner-content {
   padding: 6rem 2rem 0;
