@@ -317,6 +317,46 @@ body {
   }
 
   .centre-grid { grid-template-columns: 1fr; }
+   /* Alerta en móvil: compacta y sin flecha, fuera del flujo */
+  .alert-bubble{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    left: auto;
+    z-index: 50;
+
+    width: max-content;
+    max-width: min(210px, 70vw);
+
+    padding: .35rem .5rem;
+    border-radius: 12px;
+
+    gap: .2rem;
+    align-items: flex-end;
+
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1.1;
+
+    box-shadow: 0 10px 22px rgba(176,0,32,.28);
+  }
+
+  .alert-bubble__label{
+    padding: .18rem .45rem;
+    font-size: .65rem;
+    letter-spacing: .02em;
+  }
+
+  .alert-bubble__text{
+    font-size: .68rem;
+    line-height: 1.1;
+  }
+
+  .alert-bubble::after{
+    display: none;
+  }
+}
+
 }
 .pdf-wrap {
   width: 100%;
