@@ -22,16 +22,29 @@ body {
 /* HERO SUPERIOR (SOLO ARRIBA) */
 .hero-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 10px;        /* Un pequeño margen superior para que se vea el redondeado */
+  left: 10px;       /* Margen izquierdo */
+  right: 10px;      /* Margen derecho */
   height: 360px;
+  
+  /* Tu fondo actual */
   background:
     linear-gradient(135deg, rgba(8,20,27,.95), rgba(20,55,70,.9)),
     url("../assets/img/logo.svg");
-  background-size: cover;
+  
+  /* Ajuste para que el logo no se salga en móviles */
+  background-size: contain; 
+  background-repeat: no-repeat;
   background-position: center;
   z-index: -1;
+
+  /* 1. BORDES REDONDEADOS */
+  border-radius: 20px;
+
+  /* 2. DIFUMINADO DE BORDES (MÁSCARA) */
+  /* Esto crea un degradado que hace transparente el borde del contenedor */
+  -webkit-mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle, black 60%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* HERO CONTENT */
