@@ -315,6 +315,33 @@ svg {
   height: auto;
 }
 
+
+.hero-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden; /* Seguridad extra */
+}
+
+.hero-logo svg, 
+.hero-logo img {
+  /* 1. Responsividad total */
+  width: 100%;
+  max-width: 500px; /* Tamaño máximo en PC */
+  height: auto;
+  
+  /* 2. EL DEGRADADO DE INTEGRACIÓN (Máscara) */
+  /* El centro (70%) es sólido y se desvanece totalmente al llegar al borde (100%) */
+  -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%);
+  mask-image: radial-gradient(circle, black 70%, transparent 100%);
+  
+  /* 3. Evita que se mueva de su sitio */
+  transform: none !important;
+}
+
 /* MÓVIL */
 @media (max-width: 600px) {
   /* 1. EL CONTENEDOR PADRE */
