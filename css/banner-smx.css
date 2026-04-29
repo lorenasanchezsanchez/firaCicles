@@ -343,26 +343,18 @@ html, body {
   }
 
   /* 3. EL TÍTULO ANIMADO */
- .title-animated {
-    /* Subimos el tamaño para que sea grande (de 1.8rem a 2.4rem) */
-    /* El 8vw hará que crezca mucho más en pantallas de móvil */
-    font-size: clamp(1.6rem, 8vw, 2.4rem) !important; 
+.title-animated {
+    font-size: clamp(1.6rem, 8vw, 2.4rem) !important;
     line-height: 1.1;
-    padding: 0 1rem;
-    text-align: center;
     width: 100%;
+    padding: 0 15px;
   }
 
   .title-animated span {
     display: block;
-    /* PERMITIR varias líneas pero NO romper palabras */
-    white-space: normal; 
-    word-break: normal;
-    overflow-wrap: break-word;
-    hyphens: none;
-
-    /* Esto hace que las líneas se repartan de forma equilibrada y bonita */
-    text-wrap: balance; 
+    white-space: normal; /* Permite saltos de línea */
+    word-break: normal;  /* No rompe palabras por la mitad */
+    text-wrap: balance;  /* Distribuye las palabras bonito */
   }
 
   /* 4. LA ALERTA (Compacta a la derecha) */
@@ -381,21 +373,33 @@ html, body {
   /* --- LOGO: que se vea completo (no se salga) --- */
   /* Aseguramos que el contenedor del logo no empuje hacia afuera */
  /* Contenedor del logo */
+  .* 1. Forzamos al contenedor a no ser nunca más ancho que el móvil */
   .hero-logo {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 0 20px !important; /* Margen de seguridad para que no roce los bordes */
     display: flex;
     justify-content: center;
-    width: 100%;
-    padding: 0 20px; /* Margen de seguridad */
-    margin-top: 1rem;
+    box-sizing: border-box;
+    overflow: hidden; /* Cortafuegos para que nada se salga */
   }
 
-  /* Forzamos al SVG a ser flexible */
+  /* 2. Reset total del SVG */
   .hero-logo svg {
-    width: 100% !important;
-    max-width: 260px; /* Tamaño máximo visual en móvil */
-    height: auto !important; /* Mantiene la proporción */
-    transform: none !important; /* Evita que desplazamientos lo saquen de eje */
+    /* El 100% aquí significa "el 100% de lo que permita el padre" */
+    width: 100% !important; 
+    height: auto !important; /* Mantiene la proporción siempre */
+    
+    /* Limitamos el tamaño máximo para que no se vea gigante, 
+       pero que nunca pase del ancho de la pantalla */
+    max-width: 320px !important; 
+    
+    /* MUY IMPORTANTE: Eliminamos cualquier desplazamiento previo */
+    transform: none !important;
+    position: static !important; 
+    margin: 0 auto !important;
   }
+
   
 }
 
