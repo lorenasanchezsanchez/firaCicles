@@ -319,20 +319,19 @@ body {
 
 /* MÓVIL */
 @media (max-width: 600px) {
-  /* Ajusta este valor si cambian las líneas del texto de la alerta */
+  /* Reserva espacio para la alerta flotante (ajusta si cambia el texto) */
   :root { --alert-space: 112px; }
 
-  /* ALERTA: pegada arriba-derecha sí o sí */
+  /* ALERTA pegada a la derecha */
   .alert-bubble{
     top: 8px;
     right: 8px;
     left: auto !important;
     margin: 0 !important;
-
     z-index: 50;
 
-    width: auto;                 /* clave: no max-content */
-    max-width: min(260px, 78vw); /* un poco más ancho para que no se “apile” tanto */
+    width: auto;
+    max-width: min(260px, 78vw);
 
     padding: .45rem .6rem;
     border-radius: 12px;
@@ -345,21 +344,49 @@ body {
 
     box-shadow: 0 10px 22px rgba(176,0,32,.28);
   }
-
-  .alert-bubble__label{
-    padding: .2rem .5rem;
-    font-size: .7rem;
-  }
-
-  .alert-bubble__text{
-    font-size: .72rem;
-  }
-
+  .alert-bubble__label{ padding: .2rem .5rem; font-size: .7rem; }
+  .alert-bubble__text{ font-size: .72rem; }
   .alert-bubble::after{ display: none; }
 
-  /* CLAVE: el contenido empieza justo después de la alerta (sin solape) */
+  /* El contenido empieza justo debajo de la alerta */
   .banner-content{
     padding-top: calc(1.2rem + var(--alert-space));
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* ===== TÍTULO: que SIEMPRE se vea completo ===== */
+  .title-animated{
+    font-size: clamp(1.85rem, 8vw, 2.85rem); /* se adapta al ancho */
+    line-height: 1.06;
+    margin-bottom: .9rem;
+
+    max-width: 100%;
+    overflow: visible;
+
+    /* un poquito de padding para que no toque bordes */
+    padding: 0 .25rem;
+  }
+
+  .title-animated span{
+    white-space: normal;       /* permite saltos */
+    overflow-wrap: anywhere;   /* evita recorte lateral */
+    word-break: normal;
+    hyphens: auto;
+  }
+
+  /* ===== LOGO (SVG WATERMARK): que no se corte ===== */
+  .hero-logo{
+    /* si lo tienes como watermark, asegúrate que entra en pantalla */
+    inset: 0;
+    overflow: hidden; /* recorta lo que sobresalga del contenedor, sin cortar el SVG por ancho */
+  }
+
+  .hero-logo svg{
+    width: min(760px, 92vw);   /* encaja en móvil */
+    height: auto;
+    max-width: 92vw;
+    transform: translateY(-10px); /* menos desplazamiento que en desktop */
   }
 
   /* padding más pequeño en móvil */
