@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     coneixerns: [
       '<div class="panel-section">',
-      "<h3>🎥 Vine a conéixer-nos</h3>",
+      "<h3>🎥 Vine a conèixer-nos</h3>",
       '<div class="video-panel-wrap">',
       '  <video class="video-panel" autoplay muted loop playsinline preload="metadata">',
       '    <source src="assets/Video.mp4" type="video/mp4" />',
