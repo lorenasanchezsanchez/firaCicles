@@ -343,17 +343,26 @@ html, body {
   }
 
   /* 3. EL TÍTULO ANIMADO */
-  .title-animated {
-    /* El 4.5vw es el número mágico para "Microinformàtics" */
-    font-size: clamp(1rem, 4.5vw, 1.8rem) !important;
-    width: 100%;
-    padding: 0 10px;
+ .title-animated {
+    /* Subimos el tamaño para que sea grande (de 1.8rem a 2.4rem) */
+    /* El 8vw hará que crezca mucho más en pantallas de móvil */
+    font-size: clamp(1.6rem, 8vw, 2.4rem) !important; 
+    line-height: 1.1;
+    padding: 0 1rem;
     text-align: center;
+    width: 100%;
   }
 
   .title-animated span {
-    white-space: nowrap; /* Evita que la palabra se rompa */
-    display: inline-block;
+    display: block;
+    /* PERMITIR varias líneas pero NO romper palabras */
+    white-space: normal; 
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+
+    /* Esto hace que las líneas se repartan de forma equilibrada y bonita */
+    text-wrap: balance; 
   }
 
   /* 4. LA ALERTA (Compacta a la derecha) */
