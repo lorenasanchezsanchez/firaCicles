@@ -25,9 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pla: [
       '<div class="panel-section">',
       '<h3>📚 Pla de formació de 2000 hores</h3>',
-
       '<div class="plan-formacio">',
-
       '<div class="curs">',
       '<h4>1r curs</h4>',
       '<ul>',
@@ -39,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
       '<li>Itinerari personal per a l’ocupabilitat I</li>',
       '</ul>',
       '</div>',
-
       '<div class="curs">',
       '<h4>2n curs</h4>',
       '<ul>',
@@ -55,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
       '<li>Formació en Centres de Treball (FCT)</li>',
       '</ul>',
       '</div>',
-
       '</div>',
       '</div>'
     ].join(""),
@@ -71,7 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
       '    <p>🌐 portal.edu.gva.es/iesbenigaslo</p>',
       '  </div>',
       '  <div class="centre-media">',
-      '    <img class="centre-img" src="assets/img/logo.svg" alt="IES Benigasló" loading="lazy" />',
+      '    <div class="hero-logo">', // Añadimos esta clase para que el CSS aplique el difuminado
+      '      <img class="centre-img" src="assets/img/logo.svg" alt="IES Benigasló" loading="lazy" />',
+      '    </div>',
       '  </div>',
       '</div>'
     ].join(""),
@@ -99,14 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
       '</ul>',
       '</div>'
     ].join(""),
+
     calendari: [
-  '<div class="panel-section">',
-  "<h3>📅 Calendari d'admisió</h3>",
-  '<div class="pdf-wrap">',
-  '  <iframe class="pdf-frame" src="assets/calendari.pdf" title="Calendari d\'admisió"></iframe>',
-  "</div>",
-  "</div>"
-].join(""),
+      '<div class="panel-section">',
+      "<h3>📅 Calendari d'admisió</h3>",
+      '<div class="pdf-wrap">',
+      '  <iframe class="pdf-frame" src="assets/calendari.pdf" title="Calendari d\'admisió"></iframe>',
+      "</div>",
+      "</div>"
+    ].join(""),
 
     oferim: [
       '<div class="panel-section">',
@@ -115,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
       '<li>Aules digitalitzades amb ordinador per alumne</li>',
       '<li>Dispositius IoT i impressió 3D</li>',
       '<li>Xarxa Wi‑Fi per a l’alumnat</li>',
-      '<li>Llicències professionals (AWS, Azure, GitHub…)</li>',
+      '<li>Llicències profesionales (AWS, Azure, GitHub…)</li>',
       '<li>Preparació per a certificacions oficials</li>',
       '</ul>',
       '</div>'
@@ -126,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const video = container.querySelector("video.video-panel");
     if (!video) return;
 
-    // Evita duplicar listener si vuelves a entrar al panel
     if (video.dataset.fsBound === "1") return;
     video.dataset.fsBound = "1";
 
@@ -139,10 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
           await document.exitFullscreen();
           return;
         }
-
         if (video.requestFullscreen) await video.requestFullscreen();
-        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen(); // Safari
-        else if (video.msRequestFullscreen) video.msRequestFullscreen(); // antiguos
+        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
       } catch (e) {
         console.warn("No s'ha pogut activar pantalla completa:", e);
       }
@@ -151,19 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   pills.forEach(function (pill) {
     pill.addEventListener("click", function () {
-
       pills.forEach(p => p.classList.remove("active"));
       pill.classList.add("active");
 
       const key = pill.dataset.content;
 
-      // "Matrícula": abrir enlace en otra pestaña (no cargar panel)
       if (key === "matricula") {
-        window.open(
-          "https://portal.edu.gva.es/adminova/es/fp/",
-          "_blank",
-          "noopener,noreferrer"
-        );
+        window.open("https://portal.edu.gva.es/adminova/es/fp/", "_blank", "noopener,noreferrer");
         return;
       }
 
@@ -177,8 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Carga inicial: "Vine a conéixer-nos" si existe; si no, el primero
   const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
-  defaultPill.click();
+  if(defaultPill) defaultPill.click();
 
 });
