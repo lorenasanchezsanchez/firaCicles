@@ -345,7 +345,7 @@ svg {
 @media (max-width: 600px) {
   /* 1. EL CONTENEDOR PADRE */
   .banner-content {
-    padding: 4rem 1rem 0; /* Menos padding para dar más espacio horizontal */
+   padding: 1.5rem 1rem 0 !important;
     width: 100%;
     overflow: hidden; /* Cortafuegos para que nada empuje hacia afuera */
   }
