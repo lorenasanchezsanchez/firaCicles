@@ -337,17 +337,24 @@ svg {
 
   /* 3. EL TÍTULO ANIMADO */
 .title-animated {
-    font-size: clamp(1.6rem, 8vw, 2.4rem) !important;
-    line-height: 1.1;
-    width: 100%;
-    padding: 0 15px;
+    overflow: visible !important;
+    font-size: 1rem; /* Reset base */
+    padding: 0 10px;
+    margin-bottom: 2rem;
   }
 
+  /* 2. Forzamos el tamaño GRANDE y permitimos saltos */
   .title-animated span {
-    display: block;
-    white-space: normal; /* Permite saltos de línea */
-    word-break: normal;  /* No rompe palabras por la mitad */
-    text-wrap: balance;  /* Distribuye las palabras bonito */
+    font-size: clamp(1.8rem, 9vw, 2.6rem) !important; 
+    line-height: 1.1;    
+    display: block !important;    /* Obligatorio para multilínea */
+    white-space: normal !important; /* PERMITE saltar de línea */
+    text-wrap: balance !important;  /* Reparte las palabras bonito */
+    
+    width: 100%;
+    text-align: center;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   /* 4. LA ALERTA (Compacta a la derecha) */
