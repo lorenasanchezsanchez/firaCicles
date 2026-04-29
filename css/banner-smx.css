@@ -44,7 +44,7 @@ body {
   position: absolute;
   top: 50px;       /* Ajustado para quedar debajo de 'Visitors' */
   left: 15px;      /* Alineado a la izquierda */
-  width: 220px;    /* Tamaño similar al botón de Matrícula */
+  width: 300px;    /* Tamaño similar al botón de Matrícula */
   height: auto;
   opacity: 1;      /* Opacidad total */
   z-index: 10;     /* Por encima del fondo */
