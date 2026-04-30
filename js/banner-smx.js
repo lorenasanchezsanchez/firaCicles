@@ -96,9 +96,11 @@ function mostrarOcultarElementos() {
   if (!cicle) {
     if (alerta) alerta.style.display = 'none';
     if (dinamic) dinamic.style.display = 'none';
+    menu.style.display='none';
   } else {
     if (alerta) alerta.style.display = '';
     if (dinamic) dinamic.style.display = '';
+    menu.style.display='';
   }
 }
    
