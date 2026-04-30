@@ -23,18 +23,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Muestra/oculta todos los elementos principales según si hay ciclo válido
-  function mostrarOcultarElementos() {
-    if (!cicloValido()) {
-      if (alerta) alerta.style.display = 'none';
-      if (container) container.style.display = 'none';
-      if (menu) menu.style.display = 'none';
-      if (titulo) titulo.textContent = "";
-    } else {
-      if (alerta) alerta.style.display = '';
-      if (container) container.style.display = '';
-      if (menu) menu.style.display = '';
-    }
+ function mostrarOcultarElementos() {
+  if (!cicloValido()) {
+    // OCULTAR
+    if (alerta) alerta.style.display = 'none';
+    if (container) container.style.display = 'none';
+    if (menu) menu.style.display = 'none';
+    if (titulo) titulo.style.display = 'none';
+    if (tituloSpan) tituloSpan.textContent = "";
+  } else {
+    // MOSTRAR
+    if (alerta) alerta.style.display = '';
+    if (container) container.style.display = '';
+    if (menu) menu.style.display = '';
+    if (titulo) titulo.style.display = '';
   }
+}
 
   // Marca como activo el ciclo sólo cuando es válido
   function marcarPillActivo(cicle) {
@@ -46,27 +50,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Main update
   function updateContent() {
-    const cicle = getCicleFromHash();
-
-    if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
-      // Limpia absolutamente todo
-      if (titulo) titulo.textContent = "Benvinguts a l'IES Benigasló";
-      if (container) container.innerHTML = "";
-      if (alerta) alerta.innerHTML = "Matricula't als nostres cursos";
-      marcarPillActivo(null);
-      return;
-    }
-
-    // Si hay ciclo válido, muestra Vine a conèixer-nos y el plan del ciclo
-    let html = templates["coneixerns"];
-    if (titulo) titulo.textContent = ciclesData[cicle].titol || "";
-    html += ciclesData[cicle].pla.join("");
-    container.innerHTML = html;
-    marcarPillActivo(cicle);
-    // Actualiza el texto de la alerta si existe en el ciclo
-    if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
-    enableVideoFullscreen();
+  const cicle = getCicleFromHash();
+  if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
+    // Limpiar y ocultar todo
+    if (tituloSpan) tituloSpan.textContent = "";
+    if (container) container.innerHTML = "";
+    if (alerta) alerta.innerHTML = "";
+    marcarPillActivo(null);
+    return;
   }
+  // MOSTRAR TODOS
+  if (titulo) titulo.style.display = '';
+  if (menu) menu.style.display = '';
+  if (alerta) alerta.style.display = '';
+  if (container) container.style.display = '';
+
+  let html = templates["coneixerns"];
+  if (tituloSpan) tituloSpan.textContent = ciclesData[cicle].titol || "";
+  html += ciclesData[cicle].pla.join("");
+  container.innerHTML = html;
+  marcarPillActivo(cicle);
+  if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
+  enableVideoFullscreen();
+}
 
   // Añade handlers a los pills (NO cambies nada si no es ciclo)
   pills.forEach(function (pill) {
