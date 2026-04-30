@@ -40,16 +40,32 @@ function mostrarOcultarElementos() {
   }
 
  function updateContent() {
-  const cicle = getCicleFromHash();
+
+   const cicle = getCicleFromHash();
 
   // Si NO hay ciclo válido, ocultar TODO (igual que sin hash)
   if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
     if (titulo) titulo.textContent = "";
     container.innerHTML = "";
     marcarPillActivo(null);
-    // Opciónal: podrías aquí ocultar también el menú y alerta, pero ya lo hace mostrarOcultarElementos
+
+    // Limpiar alerta, aunque por lógica se oculta por mostrarOcultarElementos
+    if (alerta) alerta.innerHTML = "";
     return;
   }
+
+  // Si hay ciclo válido, mostrar siempre panel bienvenida y el plan debajo
+  let html = templates["coneixerns"];
+  if (titulo) titulo.textContent = ciclesData[cicle].titol;
+  html += ciclesData[cicle].pla.join("");
+  marcarPillActivo(cicle);
+  container.innerHTML = html;
+  enableVideoFullscreen();
+
+  // Actualizar alerta SEGÚN CICLO
+  if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
+}
+
 
   // Si hay ciclo válido, mostrar siempre panel bienvenida y el plan debajo
   let html = templates["coneixerns"];
