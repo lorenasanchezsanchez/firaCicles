@@ -39,8 +39,17 @@ const ciclesData = {
   const path = window.location.pathname.split('/').filter(Boolean);
   // path[0] sería 'smx', 'dam', etc. cuando la ruta es /smx...
   const cicle = ciclesData[path[0]];
+
+  
   //Cambio titulo
+  if (ciclesData[pathFragment]) {
   document.querySelector('.title-animated span').textContent = ciclesData[pathFragment].titol;
+  // document.getElementById('descripcio-cicle').textContent = ciclesData[pathFragment].descripcio;
+} else {
+  document.querySelector('.title-animated span').textContent = "Benvingut a l'IES Benigasló";
+  // document.getElementById('descripcio-cicle').textContent = "";
+}
+
     
    
 
