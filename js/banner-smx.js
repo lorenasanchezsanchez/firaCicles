@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("dynamic-content");
   const pills = document.querySelectorAll("[data-content]");
   const menu = document.querySelector('.highlights');
+  const titulo = document.querySelector('.title-animated span');
+  const alerta = document.getElementById('alerta-matricula');
 
   if (!container || pills.length === 0) {
     console.error("No se han encontrado los elementos");
@@ -16,49 +18,53 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function mostrarOcultarElementos() {
-    const alerta = document.getElementById('alerta-matricula');
-    const dinamic = document.getElementById('dynamic-content');
-    const menu = document.querySelector('.highlights');
-    // Detecta si hay cualquier hash, aunque sea panel informativo, ciclo, etc
     const tieneHash = !!window.location.hash && window.location.hash.length > 1;
     if (!tieneHash) {
+      // Oculta todo si NO hay hash
       if (alerta) alerta.style.display = 'none';
-      if (dinamic) dinamic.style.display = 'none';
+      if (container) container.style.display = 'none';
       if (menu) menu.style.display = 'none';
     } else {
+      // Muestra todo si hay cualquier hash
       if (alerta) alerta.style.display = '';
-      if (dinamic) dinamic.style.display = '';
+      if (container) container.style.display = '';
       if (menu) menu.style.display = '';
     }
-}
-
-  function updateContent() {
-    const cicle = getCicleFromHash();
-    const titleEl = document.querySelector('.title-animated span');
-    const contentEl = document.getElementById('dynamic-content');
-
-    // Si hay hash y ciclo válido, carga ciclo:
-    if (cicle && ciclesData[cicle] && ciclesData[cicle].pla) {
-      if (titleEl) titleEl.textContent = ciclesData[cicle].titol;
-      if (contentEl) contentEl.innerHTML = ciclesData[cicle].pla.join("");
-      marcarPillActivo(cicle);
-    } else {
-      if (titleEl) titleEl.textContent = "Benvingut a IES Benigasló";
-      if (contentEl) contentEl.innerHTML = templates["coneixerns"]; // o lo que quieras de default
-      marcarPillActivo(null);
-    }
-  }
-
-  function actualizarPagina() {
-    updateContent();
-    mostrarOcultarElementos();
   }
 
   function marcarPillActivo(cicle) {
     pills.forEach(p => {
       if (cicle && p.dataset.content === cicle) p.classList.add("active");
+      else if (!cicle && p.dataset.content === "coneixerns") p.classList.add("active");
       else p.classList.remove("active");
     });
+  }
+
+  function updateContent() {
+    const cicle = getCicleFromHash();
+    // Si NO hay hash, no cargues nada
+    if (!cicle) {
+      if (titulo) titulo.textContent = "";
+      container.innerHTML = "";
+      marcarPillActivo(null);
+      return;
+    }
+
+    // Siempre mostrar el panel "Vine a conèixer-nos" en primer lugar
+    let html = templates["coneixerns"];
+
+    // Si el hash es un ciclo válido, añade el plan y cambia el título
+    if (ciclesData[cicle] && ciclesData[cicle].pla) {
+      if (titulo) titulo.textContent = ciclesData[cicle].titol;
+      html += ciclesData[cicle].pla.join("");
+      marcarPillActivo(cicle);
+    } else {
+      // Si NO es ciclo, pon el título de bienvenida
+      if (titulo) titulo.textContent = "Benvingut a IES Benigasló";
+      marcarPillActivo(cicle); // marcar informativos si tienes más pills
+    }
+    container.innerHTML = html;
+    enableVideoFullscreen();
   }
 
   function enableVideoFullscreen() {
@@ -83,49 +89,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Pills: cambio de sección/hash
   pills.forEach(function (pill) {
-  pill.addEventListener("click", function () {
-    const key = pill.dataset.content;
-    // "Matrícula": abrir enlace en otra pestaña
-    if (key === "matricula") {
-      window.open(
-        "https://portal.edu.gva.es/adminova/es/fp/",
-        "_blank",
-        "noopener,noreferrer"
-      );
-      return;
-    }
-    // Si es un ciclo, cambia hash para disparar updateContent()
-    if (ciclesData[key]) {
+    pill.addEventListener("click", function () {
+      const key = pill.dataset.content;
+      // "Matrícula": abrir enlace en otra pestaña
+      if (key === "matricula") {
+        window.open(
+          "https://portal.edu.gva.es/adminova/es/fp/",
+          "_blank",
+          "noopener,noreferrer"
+        );
+        return;
+      }
+      // Cambia hash siempre
       window.location.hash = '/' + key;
-      return;
-    }
-    // Si es un panel tradicional, LIMPIA EL HASH y muestra el template y resalta el pill
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-    pills.forEach(p => p.classList.remove("active"));
-    pill.classList.add("active");
-    container.classList.add("hide");
-    setTimeout(function () {
-      container.innerHTML = templates[key] || '<div class="panel-section"><p>Contingut no disponible.</p></div>';
-      container.classList.remove("hide");
-      enableVideoFullscreen();
-    }, 200);
-    // No cambiamos el título para los paneles informativos
-    const titleEl = document.querySelector('.title-animated span');
-    if (titleEl) titleEl.textContent = "Benvingut a IES Benigasló";
-    mostrarOcultarElementos(); // <--- Esto fuerza ocultar
+    });
   });
-});
 
-  // CARGA INICIAL
-  if (getCicleFromHash()) {
-    actualizarPagina();
-  } else {
-    // Si no hay hash, panel de bienvenida (coneixerns)
-    const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
-    if (defaultPill) defaultPill.click();
+  // --- Manejador general el hash ---
+  function actualizarPagina() {
+    updateContent();
+    mostrarOcultarElementos();
   }
-
-  // Cada vez que cambia el hash, mostramos el ciclo correspondiente
   window.addEventListener('hashchange', actualizarPagina);
+
+  // Carga inicial: si ya hay hash, ejecuta, si no oculta todo
+  actualizarPagina();
 });
