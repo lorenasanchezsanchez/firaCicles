@@ -17,20 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return window.location.hash.replace('#/', '').split('/')[0];
   }
 
-  function mostrarOcultarElementos() {
-    const tieneHash = !!window.location.hash && window.location.hash.length > 1;
-    if (!tieneHash) {
-      // Oculta todo si NO hay hash
-      if (alerta) alerta.style.display = 'none';
-      if (container) container.style.display = 'none';
-      if (menu) menu.style.display = 'none';
-    } else {
-      // Muestra todo si hay cualquier hash
-      if (alerta) alerta.style.display = '';
-      if (container) container.style.display = '';
-      if (menu) menu.style.display = '';
-    }
+function mostrarOcultarElementos() {
+  const cicle = getCicleFromHash();
+  const valido = cicle && ciclesData[cicle] && ciclesData[cicle].pla;
+  if (!valido) {
+    if (alerta) alerta.style.display = 'none';
+    if (container) container.style.display = 'none';
+    if (menu) menu.style.display = 'none';
+  } else {
+    if (alerta) alerta.style.display = '';
+    if (container) container.style.display = '';
+    if (menu) menu.style.display = '';
   }
+}
 
   function marcarPillActivo(cicle) {
     pills.forEach(p => {
@@ -40,32 +39,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function updateContent() {
-    const cicle = getCicleFromHash();
-    // Si NO hay hash, no cargues nada
-    if (!cicle) {
-      if (titulo) titulo.textContent = "";
-      container.innerHTML = "";
-      marcarPillActivo(null);
-      return;
-    }
+ function updateContent() {
+  const cicle = getCicleFromHash();
 
-    // Siempre mostrar el panel "Vine a conèixer-nos" en primer lugar
-    let html = templates["coneixerns"];
-
-    // Si el hash es un ciclo válido, añade el plan y cambia el título
-    if (ciclesData[cicle] && ciclesData[cicle].pla) {
-      if (titulo) titulo.textContent = ciclesData[cicle].titol;
-      html += ciclesData[cicle].pla.join("");
-      marcarPillActivo(cicle);
-    } else {
-      // Si NO es ciclo, pon el título de bienvenida
-      if (titulo) titulo.textContent = "Benvingut a IES Benigasló";
-      marcarPillActivo(cicle); // marcar informativos si tienes más pills
-    }
-    container.innerHTML = html;
-    enableVideoFullscreen();
+  // Si NO hay ciclo válido, ocultar TODO (igual que sin hash)
+  if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
+    if (titulo) titulo.textContent = "";
+    container.innerHTML = "";
+    marcarPillActivo(null);
+    // Opciónal: podrías aquí ocultar también el menú y alerta, pero ya lo hace mostrarOcultarElementos
+    return;
   }
+
+  // Si hay ciclo válido, mostrar siempre panel bienvenida y el plan debajo
+  let html = templates["coneixerns"];
+  if (titulo) titulo.textContent = ciclesData[cicle].titol;
+  html += ciclesData[cicle].pla.join("");
+  marcarPillActivo(cicle);
+  container.innerHTML = html;
+  enableVideoFullscreen();
+}
 
   function enableVideoFullscreen() {
     const video = container.querySelector("video.video-panel");
