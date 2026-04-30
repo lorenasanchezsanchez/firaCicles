@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Extrae, por ejemplo, 'smx', 'dam', etc. de '#/smx'
   return window.location.hash.replace('#/', '').split('/')[0];
 }
+  // Detectar subruta
+  const cicle = getCicleFromHash()
 
 const ciclesData = {
     smx: {
@@ -80,8 +82,7 @@ const ciclesData = {
     }
   };
 
-   // Detectar subruta
-  const cicle = getCicleFromHash()
+   
 
 
   
