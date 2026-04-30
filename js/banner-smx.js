@@ -18,7 +18,44 @@ document.addEventListener("DOMContentLoaded", function () {
 const ciclesData = {
     smx: {
       titol: "Sistemes Microinformàtics i Xarxes",
-      descripcio: "SMX"
+      descripcio: "SMX",
+      pla: [
+      '<div class="panel-section">',
+      '<h3>📚 Pla de formació de 2000 hores</h3>',
+
+      '<div class="plan-formacio">',
+
+      '<div class="curs">',
+      '<h4>1r curs</h4>',
+      '<ul>',
+      '<li>Montatge i manteniment d’equips</li>',
+      '<li>Sistemes operatius monopost</li>',
+      '<li>Aplicacions ofimàtiques</li>',
+      '<li>Xarxes locals</li>',
+      '<li>Anglés professional (GM)</li>',
+      '<li>Itinerari personal per a l’ocupabilitat I</li>',
+      '</ul>',
+      '</div>',
+
+      '<div class="curs">',
+      '<h4>2n curs</h4>',
+      '<ul>',
+      '<li>Sistemes operatius en xarxa</li>',
+      '<li>Seguretat informàtica</li>',
+      '<li>Serveis en xarxa</li>',
+      '<li>Aplicacions web</li>',
+      '<li>Mòdul optatiu</li>',
+      '<li>Itinerari personal per a l’ocupabilitat II</li>',
+      '<li>Sostenibilitat aplicada al sistema productiu</li>',
+      '<li>Digitalització aplicada al sistema productiu</li>',
+      '<li>Projecte intermodular</li>',
+      '<li>Formació en Centres de Treball (FCT)</li>',
+      '</ul>',
+      '</div>',
+
+      '</div>',
+      '</div>'
+    ]
     },
     dam: {
       titol: "Desenvolupament d'Aplicacions Multiplataforma",
@@ -107,8 +144,14 @@ function mostrarOcultarElementos() {
 
 function updateContent() {
   const cicle = getCicleFromHash();
+  const plaHtml = ciclesData[cicle].pla;
+  //cambio titulo
   document.querySelector('.title-animated span').textContent =
     ciclesData[cicle]?.titol || "Benvingut a IES Benigasló";
+  //cambio pla
+  document.querySelector('.dynamic-content span').textContent =
+    ciclesData[cicle]?.pla=plaHtml;
+  
 }
 
 function actualizarPagina() {
@@ -133,43 +176,7 @@ function actualizarPagina() {
       "</div>"
     ].join(""),
 
-    pla: [
-      '<div class="panel-section">',
-      '<h3>📚 Pla de formació de 2000 hores</h3>',
-
-      '<div class="plan-formacio">',
-
-      '<div class="curs">',
-      '<h4>1r curs</h4>',
-      '<ul>',
-      '<li>Montatge i manteniment d’equips</li>',
-      '<li>Sistemes operatius monopost</li>',
-      '<li>Aplicacions ofimàtiques</li>',
-      '<li>Xarxes locals</li>',
-      '<li>Anglés professional (GM)</li>',
-      '<li>Itinerari personal per a l’ocupabilitat I</li>',
-      '</ul>',
-      '</div>',
-
-      '<div class="curs">',
-      '<h4>2n curs</h4>',
-      '<ul>',
-      '<li>Sistemes operatius en xarxa</li>',
-      '<li>Seguretat informàtica</li>',
-      '<li>Serveis en xarxa</li>',
-      '<li>Aplicacions web</li>',
-      '<li>Mòdul optatiu</li>',
-      '<li>Itinerari personal per a l’ocupabilitat II</li>',
-      '<li>Sostenibilitat aplicada al sistema productiu</li>',
-      '<li>Digitalització aplicada al sistema productiu</li>',
-      '<li>Projecte intermodular</li>',
-      '<li>Formació en Centres de Treball (FCT)</li>',
-      '</ul>',
-      '</div>',
-
-      '</div>',
-      '</div>'
-    ].join(""),
+  
 
     centre: [
       '<div class="panel-section centre-grid">',
