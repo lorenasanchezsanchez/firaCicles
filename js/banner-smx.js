@@ -17,7 +17,20 @@ document.addEventListener("DOMContentLoaded", function () {
   function getCicleFromHash() {
     return window.location.hash.replace('#/', '').split('/')[0];
   }
-
+  function getCicleAndSectionFromHash() {
+  // hash del tipo #/smx/pla
+  const parts = window.location.hash.replace('#/', '').split('/');
+  return {
+    cicle: (parts[0] || '').toLowerCase(),
+    section: (parts[1] || '').toLowerCase()
+  };
+}
+function marcarPillActivo(key) {
+  pills.forEach(p => {
+    if (key && p.dataset.content.toLowerCase() === key) p.classList.add("active");
+    else p.classList.remove("active");
+  });
+}
   function cicloValido() {
     const cicle = getCicleFromHash();
     return !!(cicle && ciclesData[cicle] && ciclesData[cicle].pla);
@@ -51,31 +64,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Main update
 function updateContent() {
-    const cicle = getCicleFromHash();
-    // SIEMPRE muestra la bienvenida
-    container.innerHTML = templates["coneixerns"] || "<h3>Benvingut/da! Vine a conèixer-nos.</h3>";
+  const { cicle, section } = getCicleAndSectionFromHash();
 
-    if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
-      // Sin ciclo válido: título por defecto y pill de bienvenida activo
-      if (tituloSpan) tituloSpan.textContent = "Vine a conèixer-nos";
-      if (alerta) alerta.innerHTML = "";
-      marcarPillActivo("coneixerns");
-      return;
-    }
-    // Con ciclo válido
+  // Si el ciclo es válido...
+  if (cicle && ciclesData[cicle]) {
+    // Mostrar título siempre
     if (tituloSpan) tituloSpan.textContent = ciclesData[cicle].titol || "";
+
+    // Mostrar vídeo (bienvenida) si está en "coneixerns" o solo ciclo
+    if (!section || section === "coneixerns") {
+      container.innerHTML = templates["coneixerns"] || "<h3>Benvingut/da!</h3>";
+      marcarPillActivo("coneixerns");
+    } else if (section === "pla") {
+      // Mostrar plan
+      container.innerHTML = ciclesData[cicle].pla ? ciclesData[cicle].pla.join("") : "<p>No hi ha plan disponible.</p>";
+      marcarPillActivo("pla");
+    } else {
+      container.innerHTML = "<h3>Opció no disponible</h3>";
+      marcarPillActivo(null);
+    }
+
     if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
-    container.innerHTML += ciclesData[cicle].pla.join("");
-    marcarPillActivo(cicle);
     enableVideoFullscreen();
+    return;
   }
 
+  // Si no hay ciclo válido, muestra bienvenida general
+  container.innerHTML = templates["coneixerns"] || "<h3>Benvingut/da! Vine a conèixer-nos.</h3>";
+  if (tituloSpan) tituloSpan.textContent = "Vine a conèixer-nos";
+  if (alerta) alerta.innerHTML = "";
+  marcarPillActivo("coneixerns");
+}
 
-  pills.forEach(function (pill) {
+pills.forEach(function (pill) {
   pill.addEventListener("click", function () {
-    const key = pill.dataset.content.toLowerCase();
+    const pillKey = pill.dataset.content.toLowerCase();
+    const { cicle, section } = getCicleAndSectionFromHash();
 
-    if (key === "matricula") {
+    // Si es matrícula, abre link externo
+    if (pillKey === "matricula") {
       window.open(
         "https://portal.edu.gva.es/adminova/es/fp/",
         "_blank",
@@ -84,17 +111,22 @@ function updateContent() {
       return;
     }
 
-    // Calcula el hash esperado para este botón
-    const expectedHash = '/' + key;
-    // Calcula el hash actual (quitando primero el #)
-    const currentHash = window.location.hash.replace('#','');
+    // Tomar el ciclo activo del hash, o smx por defecto si no hay
+    const cicloActivo = cicle || 'smx'; // o como prefieras
+    let nuevoHash = '';
 
-    if (currentHash === expectedHash) {
-      // Ya estamos en ese hash, solo recarga el contenido
+    if (pillKey === "coneixerns") {
+      // Mostrar bienvenida del ciclo: #/smx
+      nuevoHash = '/' + cicloActivo;
+    } else {
+      // Mostrar seccion (ejemplo: #/smx/pla)
+      nuevoHash = '/' + cicloActivo + '/' + pillKey;
+    }
+
+    if (window.location.hash === '#' + nuevoHash) {
       actualizarPagina();
     } else {
-      // Si es distinto, cambia el hash
-      window.location.hash = expectedHash;
+      window.location.hash = nuevoHash;
     }
   });
 });
