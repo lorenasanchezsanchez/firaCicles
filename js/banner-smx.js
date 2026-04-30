@@ -84,23 +84,35 @@ const ciclesData = {
 
    
 
-
   
-  //Cambio titulo
-  if (ciclesData[cicle]) {
-  document.querySelector('.title-animated span').textContent = ciclesData[cicle].titol;
+ 
 
-} else {
-  document.querySelector('.title-animated span').textContent = "Benvingut a l'IES Benigasló";
 
+function mostrarOcultarElementos() {
+  const alerta = document.getElementById('alerta-matricula');
+  const dinamic = document.getElementById('dynamic-content');
+  
+  // Ocultar ambos si no hay ruta, mostrar ambos si hay ruta
+  if (!cicle) {
+    if (alerta) alerta.style.display = 'none';
+    if (dinamic) dinamic.style.display = 'none';
+  } else {
+    if (alerta) alerta.style.display = '';
+    if (dinamic) dinamic.style.display = '';
+  }
 }
-
-    
    
 
+function updateContent() {
+  const cicle = getCicleFromHash();
+  document.querySelector('.title-animated span').textContent =
+    ciclesData[cicle]?.titol || "Benvingut a IES Benigasló";
+}
 
-
-
+function actualizarPagina() {
+  updateContent();
+  mostrarOcultarElementos();
+}
   
 
   
@@ -278,4 +290,12 @@ const ciclesData = {
   const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
   defaultPill.click();
 
+
+  // Cada vez que cambia el hash
+  window.addEventListener('hashchange', actualizarPagina);
+  // Al cargar por primera vez
+  actualizarPagina();
+
 });
+
+
