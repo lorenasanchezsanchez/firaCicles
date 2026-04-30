@@ -448,6 +448,10 @@ svg {
   padding: 0.7rem;
 }
   /* Usa un contenedor general que envuelva todo el contenido de tu página (excepto el footer) */
+
+
+  
+}
 #main-content {
   min-height: calc(100vh - 70px); /* 70px = altura aproximada del footer, ajusta si lo necesitas */
 }
@@ -490,6 +494,9 @@ svg {
   filter: brightness(1.5);
 }
 
-
-  
+#main-content {
+  flex: 1 0 auto;
+}
+.footer-benigaslo {
+  flex-shrink: 0;
 }
