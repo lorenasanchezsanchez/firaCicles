@@ -25,17 +25,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Muestra/oculta todos los elementos principales según si hay ciclo válido
  function mostrarOcultarElementos() {
+   // SIEMPRE se muestra el título y el container
+    if (titulo) titulo.style.display = '';
+    if (container) container.style.display = ''; // nunca se oculta
   if (!cicloValido()) {
     // OCULTAR
     if (alerta) alerta.style.display = 'none';
     if (menu) menu.style.display = 'none';
-    if (titulo) titulo.style.display = 'none';
-    if (tituloSpan) tituloSpan.textContent = "";
+    
   } else {
     // MOSTRAR
     if (alerta) alerta.style.display = '';
     if (menu) menu.style.display = '';
-    if (titulo) titulo.style.display = '';
+  
   }
 }
 
@@ -48,28 +50,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Main update
-  function updateContent() {
-  const cicle = getCicleFromHash();
-  if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
-    // Limpiar y ocultar todo
-    if (tituloSpan) tituloSpan.textContent = "";
-    if (alerta) alerta.innerHTML = "";
-    marcarPillActivo(null);
-    return;
+function updateContent() {
+    const cicle = getCicleFromHash();
+    // SIEMPRE muestra la bienvenida
+    container.innerHTML = templates["coneixerns"] || "<h3>Benvingut/da! Vine a conèixer-nos.</h3>";
+
+    if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
+      // Sin ciclo válido: título por defecto y pill de bienvenida activo
+      if (tituloSpan) tituloSpan.textContent = "Vine a conèixer-nos";
+      if (alerta) alerta.innerHTML = "";
+      marcarPillActivo("coneixerns");
+      return;
+    }
+    // Con ciclo válido
+    if (tituloSpan) tituloSpan.textContent = ciclesData[cicle].titol || "";
+    if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
+    container.innerHTML += ciclesData[cicle].pla.join("");
+    marcarPillActivo(cicle);
+    enableVideoFullscreen();
   }
-  // MOSTRAR TODOS
-  if (titulo) titulo.style.display = '';
-  if (menu) menu.style.display = '';
-  if (alerta) alerta.style.display = '';
 
-  let html = templates["coneixerns"];
-  if (tituloSpan) tituloSpan.textContent = ciclesData[cicle].titol || "";
-  html += ciclesData[cicle].pla.join("");
-
-  marcarPillActivo(cicle);
-  if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
-  enableVideoFullscreen();
-}
 
   pills.forEach(function (pill) {
   pill.addEventListener("click", function () {
