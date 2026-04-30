@@ -82,7 +82,7 @@ const ciclesData = {
 
   
   //Cambio titulo
-  if (ciclesData[pathFragment]) {
+  if (ciclesData[cicle]) {
   document.querySelector('.title-animated span').textContent = ciclesData[cicle].titol;
 
 } else {
