@@ -500,3 +500,10 @@ svg {
 .footer-benigaslo {
   flex-shrink: 0;
 }
+
+.highlights,
+#alerta-matricula,
+#dynamic-content,
+.title-animated {
+  display: none;
+}
