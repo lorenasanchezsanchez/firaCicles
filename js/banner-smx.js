@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
       // Limpia absolutamente todo
-      if (titulo) titulo.textContent = "";
+      if (titulo) titulo.textContent = "Benvinguts a l'IES Benigasló";
       if (container) container.innerHTML = "";
-      if (alerta) alerta.innerHTML = "";
+      if (alerta) alerta.innerHTML = "Matricula't als nostres cursos";
       marcarPillActivo(null);
       return;
     }
