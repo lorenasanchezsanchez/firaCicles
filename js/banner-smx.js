@@ -71,30 +71,33 @@ document.addEventListener("DOMContentLoaded", function () {
   enableVideoFullscreen();
 }
 
-  // Añade handlers a los pills (NO cambies nada si no es ciclo)
   pills.forEach(function (pill) {
-    pill.addEventListener("click", function () {
-      const key = pill.dataset.content;
-      // "Matrícula": abrir enlace en otra pestaña
-      if (key === "matricula") {
-        window.open(
-          "https://portal.edu.gva.es/adminova/es/fp/",
-          "_blank",
-          "noopener,noreferrer"
-        );
-        return;
-      }
-      // Si es ciclo, cambia hash para refrescar
-      if (ciclesData[key] && ciclesData[key].pla) {
-        window.location.hash = '/' + key;
-      } else {
-        // Si NO es ciclo, borra el hash (desaparece todo)
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        // Hay que actualizar porque hashchange no salta
-        actualizarPagina();
-      }
-    });
+  pill.addEventListener("click", function () {
+    const key = pill.dataset.content.toLowerCase();
+
+    if (key === "matricula") {
+      window.open(
+        "https://portal.edu.gva.es/adminova/es/fp/",
+        "_blank",
+        "noopener,noreferrer"
+      );
+      return;
+    }
+
+    // Calcula el hash esperado para este botón
+    const expectedHash = '/' + key;
+    // Calcula el hash actual (quitando primero el #)
+    const currentHash = window.location.hash.replace('#','');
+
+    if (currentHash === expectedHash) {
+      // Ya estamos en ese hash, solo recarga el contenido
+      actualizarPagina();
+    } else {
+      // Si es distinto, cambia el hash
+      window.location.hash = expectedHash;
+    }
   });
+});
 
   function actualizarPagina() {
     updateContent();
