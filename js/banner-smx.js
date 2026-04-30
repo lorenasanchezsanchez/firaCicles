@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("dynamic-content");
   const pills = document.querySelectorAll("[data-content]");
   const menu = document.querySelector('.highlights');
-  const titulo = document.querySelector('.title-animated span');
+  const titulo = document.querySelector('.title-animated');
+  const tituloSpan =document.querySelector('.title-animated span');
   const alerta = document.getElementById('alerta-matricula');
 
   if (!container || pills.length === 0) {
