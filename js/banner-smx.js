@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function mostrarOcultarElementos() {
     const alerta = document.getElementById('alerta-matricula');
     const dinamic = document.getElementById('dynamic-content');
-    const cicle = getCicleFromHash();
-    if (!cicle) {
+    const menu = document.querySelector('.highlights');
+    // Detecta si hay cualquier hash, aunque sea panel informativo, ciclo, etc
+    const tieneHash = !!window.location.hash && window.location.hash.length > 1;
+    if (!tieneHash) {
       if (alerta) alerta.style.display = 'none';
       if (dinamic) dinamic.style.display = 'none';
       if (menu) menu.style.display = 'none';
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (dinamic) dinamic.style.display = '';
       if (menu) menu.style.display = '';
     }
-  }
+}
 
   function updateContent() {
     const cicle = getCicleFromHash();
