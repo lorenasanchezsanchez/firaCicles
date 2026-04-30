@@ -98,6 +98,28 @@ export const ciclesData = {
     },
     ceiabd: {
       titol: "Curs d'Especialització de Inteligència Artificial i Big Data",
-      descripcio: "CEIABD"
+      descripcio: "CEIABD",
+         pla: [
+          '<div class="panel-section">',
+          '<h3>📚 Pla de formació de 600 hores</h3>',
+        
+          '<div class="plan-formacio">',
+        
+          '<div class="curs">',
+          '<h4>MÒDULS</h4>',
+          '<ul>',
+          '<li>Models d'inteligència artificial</li>',
+          '<li>Sistemes d'aprenentatge automàtic</li>',
+          '<li>Programació d'intel·ligència artificial</li>',
+          '<li>Sistemes en Big Data</li>',
+          '<li>Big Data aplicat</li>',
+          '<li>Formació en Empresa Obligatòria</li>',
+          '</ul>',
+          '</div>',        
+          
+        
+          '</div>',
+          '</div>'
+        ]
     }
   };
