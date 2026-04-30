@@ -8,6 +8,49 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+const ciclesData = {
+    smx: {
+      titol: "Sistemes Microinformàtics i Xarxes",
+      descripcio: "SMX"
+    },
+    dam: {
+      titol: "Desenvolupament d'Aplicacions Multiplataforma",
+      descripcio: "DAM"
+    },
+    daw: {
+      titol: "Desenvolupament d'Aplicacions Web",
+      descripcio: "DAW"
+    },
+    fpb: {
+      titol: "Formació Professional Bàsica",
+      descripcio: "FPB"
+    },
+    fpqpi: {
+      titol: "Programa Formatiu de Qualificació Bàsica",
+      descripcio: "PFQB"
+    },
+    ceiabd: {
+      titol: "Curs d'Especialització de Inteligència Artificial i Big Data",
+      descripcio: "CEIABD"
+    }
+  };
+
+   // Detectar subruta
+  const path = window.location.pathname.split('/').filter(Boolean);
+  // path[0] sería 'smx', 'dam', etc. cuando la ruta es /smx...
+  const cicle = ciclesData[path[0]];
+  //Cambio titulo
+  document.querySelector('.title-animated span').textContent = ciclesData[pathFragment].titol;
+    
+   
+
+
+
+
+  
+
+  
+
   const templates = {
 
     coneixerns: [
