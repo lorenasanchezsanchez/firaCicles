@@ -447,6 +447,48 @@ svg {
   border-radius: 22px;
   padding: 0.7rem;
 }
+  /* Usa un contenedor general que envuelva todo el contenido de tu página (excepto el footer) */
+#main-content {
+  min-height: calc(100vh - 70px); /* 70px = altura aproximada del footer, ajusta si lo necesitas */
+}
+
+/* Footer básico y sticky */
+.footer-benigaslo {
+  width: 100%;
+  padding: 1em 0;
+  background: #1a1a1a;
+  color: #eee;
+  text-align: center;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  font-size: 1em;
+}
+.footer-links {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  color: #eee;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color .2s;
+  font-weight: 500;
+  gap: 0.5em;
+}
+.footer-links a:hover {
+  color: #e1306c;
+}
+.footer-icon {
+  width: 1.4em;
+  height: 1.4em;
+  vertical-align: middle;
+  filter: brightness(1.5);
+}
 
 
   
