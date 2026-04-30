@@ -1,4 +1,4 @@
-ciclesData = {
+export const ciclesData = {
     smx: {
       titol: "Sistemes Microinformàtics i Xarxes",
       descripcio: "SMX",
