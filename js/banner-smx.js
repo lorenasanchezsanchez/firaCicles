@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  function getCicleFromHash() {
+  // Extrae, por ejemplo, 'smx', 'dam', etc. de '#/smx'
+  return window.location.hash.replace('#/', '').split('/')[0];
+}
+
 const ciclesData = {
     smx: {
       titol: "Sistemes Microinformàtics i Xarxes",
@@ -76,9 +81,8 @@ const ciclesData = {
   };
 
    // Detectar subruta
-  const path = window.location.pathname.split('/').filter(Boolean);
-  // path[0] sería 'smx', 'dam', etc. cuando la ruta es /smx...
-  const cicle = ciclesData[path[0]];
+  const cicle = getCicleFromHash()
+
 
   
   //Cambio titulo
