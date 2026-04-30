@@ -43,11 +43,11 @@ const ciclesData = {
   
   //Cambio titulo
   if (ciclesData[pathFragment]) {
-  document.querySelector('.title-animated span').textContent = ciclesData[pathFragment].titol;
-  // document.getElementById('descripcio-cicle').textContent = ciclesData[pathFragment].descripcio;
+  document.querySelector('.title-animated span').textContent = ciclesData[cicle].titol;
+
 } else {
   document.querySelector('.title-animated span').textContent = "Benvingut a l'IES Benigasló";
-  // document.getElementById('descripcio-cicle').textContent = "";
+
 }
 
     
