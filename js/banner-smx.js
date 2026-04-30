@@ -17,65 +17,93 @@ document.addEventListener("DOMContentLoaded", function () {
     return window.location.hash.replace('#/', '').split('/')[0];
   }
 
-function mostrarOcultarElementos() {
-  const cicle = getCicleFromHash();
-  const valido = cicle && ciclesData[cicle] && ciclesData[cicle].pla;
-  if (!valido) {
-    if (alerta) alerta.style.display = 'none';
-    if (container) container.style.display = 'none';
-    if (menu) menu.style.display = 'none';
-  } else {
-    if (alerta) alerta.style.display = '';
-    if (container) container.style.display = '';
-    if (menu) menu.style.display = '';
+  function cicloValido() {
+    const cicle = getCicleFromHash();
+    return !!(cicle && ciclesData[cicle] && ciclesData[cicle].pla);
   }
-}
 
+  // Muestra/oculta todos los elementos principales según si hay ciclo válido
+  function mostrarOcultarElementos() {
+    if (!cicloValido()) {
+      if (alerta) alerta.style.display = 'none';
+      if (container) container.style.display = 'none';
+      if (menu) menu.style.display = 'none';
+      if (titulo) titulo.textContent = "";
+    } else {
+      if (alerta) alerta.style.display = '';
+      if (container) container.style.display = '';
+      if (menu) menu.style.display = '';
+    }
+  }
+
+  // Marca como activo el ciclo sólo cuando es válido
   function marcarPillActivo(cicle) {
     pills.forEach(p => {
       if (cicle && p.dataset.content === cicle) p.classList.add("active");
-      else if (!cicle && p.dataset.content === "coneixerns") p.classList.add("active");
       else p.classList.remove("active");
     });
   }
 
- function updateContent() {
+  // Main update
+  function updateContent() {
+    const cicle = getCicleFromHash();
 
-   const cicle = getCicleFromHash();
+    if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
+      // Limpia absolutamente todo
+      if (titulo) titulo.textContent = "";
+      if (container) container.innerHTML = "";
+      if (alerta) alerta.innerHTML = "";
+      marcarPillActivo(null);
+      return;
+    }
 
-  // Si NO hay ciclo válido, ocultar TODO (igual que sin hash)
-  if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
-    if (titulo) titulo.textContent = "";
-    container.innerHTML = "";
-    marcarPillActivo(null);
-
-    // Limpiar alerta, aunque por lógica se oculta por mostrarOcultarElementos
-    if (alerta) alerta.innerHTML = "";
-    return;
+    // Si hay ciclo válido, muestra Vine a conèixer-nos y el plan del ciclo
+    let html = templates["coneixerns"];
+    if (titulo) titulo.textContent = ciclesData[cicle].titol || "";
+    html += ciclesData[cicle].pla.join("");
+    container.innerHTML = html;
+    marcarPillActivo(cicle);
+    // Actualiza el texto de la alerta si existe en el ciclo
+    if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
+    enableVideoFullscreen();
   }
 
-  // Si hay ciclo válido, mostrar siempre panel bienvenida y el plan debajo
-  let html = templates["coneixerns"];
-  if (titulo) titulo.textContent = ciclesData[cicle].titol;
-  html += ciclesData[cicle].pla.join("");
-  marcarPillActivo(cicle);
-  container.innerHTML = html;
-  enableVideoFullscreen();
+  // Añade handlers a los pills (NO cambies nada si no es ciclo)
+  pills.forEach(function (pill) {
+    pill.addEventListener("click", function () {
+      const key = pill.dataset.content;
+      // "Matrícula": abrir enlace en otra pestaña
+      if (key === "matricula") {
+        window.open(
+          "https://portal.edu.gva.es/adminova/es/fp/",
+          "_blank",
+          "noopener,noreferrer"
+        );
+        return;
+      }
+      // Si es ciclo, cambia hash para refrescar
+      if (ciclesData[key] && ciclesData[key].pla) {
+        window.location.hash = '/' + key;
+      } else {
+        // Si NO es ciclo, borra el hash (desaparece todo)
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+        // Hay que actualizar porque hashchange no salta
+        actualizarPagina();
+      }
+    });
+  });
 
-  // Actualizar alerta SEGÚN CICLO
-  if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
-}
+  function actualizarPagina() {
+    updateContent();
+    mostrarOcultarElementos();
+  }
 
+  window.addEventListener('hashchange', actualizarPagina);
 
-  // Si hay ciclo válido, mostrar siempre panel bienvenida y el plan debajo
-  let html = templates["coneixerns"];
-  if (titulo) titulo.textContent = ciclesData[cicle].titol;
-  html += ciclesData[cicle].pla.join("");
-  marcarPillActivo(cicle);
-  container.innerHTML = html;
-  enableVideoFullscreen();
-}
+  // Carga inicial
+  actualizarPagina();
 
+  // --- Video fullscreen extra ---
   function enableVideoFullscreen() {
     const video = container.querySelector("video.video-panel");
     if (!video) return;
@@ -97,32 +125,4 @@ function mostrarOcultarElementos() {
       }
     });
   }
-
-  // Pills: cambio de sección/hash
-  pills.forEach(function (pill) {
-    pill.addEventListener("click", function () {
-      const key = pill.dataset.content;
-      // "Matrícula": abrir enlace en otra pestaña
-      if (key === "matricula") {
-        window.open(
-          "https://portal.edu.gva.es/adminova/es/fp/",
-          "_blank",
-          "noopener,noreferrer"
-        );
-        return;
-      }
-      // Cambia hash siempre
-      window.location.hash = '/' + key;
-    });
-  });
-
-  // --- Manejador general el hash ---
-  function actualizarPagina() {
-    updateContent();
-    mostrarOcultarElementos();
-  }
-  window.addEventListener('hashchange', actualizarPagina);
-
-  // Carga inicial: si ya hay hash, ejecuta, si no oculta todo
-  actualizarPagina();
 });
