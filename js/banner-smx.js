@@ -121,10 +121,6 @@ const ciclesData = {
 
    
 
-  
- 
-
-
 function mostrarOcultarElementos() {
   const alerta = document.getElementById('alerta-matricula');
   const dinamic = document.getElementById('dynamic-content');
@@ -303,7 +299,13 @@ function actualizarPagina() {
   // Cada vez que cambia el hash
   window.addEventListener('hashchange', actualizarPagina);
   // Al cargar por primera vez
+if (getCicleFromHash()) {
   actualizarPagina();
+} else {
+  // carga el default panel (por ejemplo, coneixerns)
+  const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
+  defaultPill.click();
+}
 
 });
 
