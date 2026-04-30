@@ -36,7 +36,7 @@ export const ciclesData = {
       '</div>',
       '</div>'
     ]
-  }, // COMA AQUÍ
+  },
 
   dam: {
     titol: "Desenvolupament d'Aplicacions Multiplataforma",
@@ -77,7 +77,7 @@ export const ciclesData = {
       '</div>',
       '</div>'
     ]
-  }, // COMA AQUÍ
+  }, 
 
   daw: {
     titol: "Desenvolupament d'Aplicacions Web",
@@ -86,7 +86,6 @@ export const ciclesData = {
       '<div class="panel-section">',
       '<h3>📚 Pla de formació de 2000 hores</h3>',
       '<div class="plan-formacio">',
-      // Eliminado comentario, solo strings válidos
       '<div class="curs">',
       '<h4>1r curs</h4>',
       '<ul>',
@@ -120,7 +119,7 @@ export const ciclesData = {
       '</div>',
       '</div>'
     ]
-  }, // COMA AQUÍ
+  }, 
 
   fpb: {
     titol: "Formació Professional Bàsica",
