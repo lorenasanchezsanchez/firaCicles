@@ -2,6 +2,7 @@ export const ciclesData = {
     smx: {
       titol: "Sistemes Microinformàtics i Xarxes",
       descripcio: "SMX",
+      alerta: "Procés d'admissió: del 23/05/26 al 02/06/26<br>Matrícula: del 24/06/26 al 02/07/26",
       pla: [
       '<div class="panel-section">',
       '<h3>📚 Pla de formació de 2000 hores</h3>',
@@ -141,6 +142,7 @@ export const ciclesData = {
     ceiabd: {
       titol: "Curs d'Especialització de Inteligència Artificial i Big Data",
       descripcio: "CEIABD",
+      alerta: "PRESENCIAL",
          pla: [
           '<div class="panel-section">',
           '<h3>📚 Pla de formació de 600 hores</h3>',
@@ -157,8 +159,7 @@ export const ciclesData = {
           '<li>Big Data aplicat</li>',
           '<li>Formació en Empresa Obligatòria</li>',
           '</ul>',
-          '</div>',        
-          
+          '</div>',             
         
           '</div>',
           '</div>'
