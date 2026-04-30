@@ -140,14 +140,16 @@ function mostrarOcultarElementos() {
 
 function updateContent() {
   const cicle = getCicleFromHash();
-  const plaHtml = ciclesData[cicle].pla;
-  //cambio titulo
-  document.querySelector('.title-animated span').textContent =
-    ciclesData[cicle]?.titol || "Benvingut a IES Benigasló";
-  //cambio pla
-  document.querySelector('.dynamic-content span').textContent =
-    ciclesData[cicle]?.pla=plaHtml;
-  
+  const titleEl = document.querySelector('.title-animated span');
+  const contentEl = document.getElementById('dynamic-content');
+
+  if (cicle && ciclesData[cicle] && ciclesData[cicle].pla) {
+    if (titleEl) titleEl.textContent = ciclesData[cicle].titol;
+    if (contentEl) contentEl.innerHTML = ciclesData[cicle].pla.join("");
+  } else {
+    if (titleEl) titleEl.textContent = "Benvingut a IES Benigasló";
+    if (contentEl) contentEl.innerHTML = ""; // o panel de bienvenida si quieres
+  }
 }
 
 function actualizarPagina() {
@@ -302,9 +304,8 @@ function actualizarPagina() {
 if (getCicleFromHash()) {
   actualizarPagina();
 } else {
-  // carga el default panel (por ejemplo, coneixerns)
   const defaultPill = document.querySelector('[data-content="coneixerns"]') || pills[0];
-  defaultPill.click();
+  if (defaultPill) defaultPill.click();
 }
 
 });
