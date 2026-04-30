@@ -61,12 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (titulo) titulo.style.display = '';
   if (menu) menu.style.display = '';
   if (alerta) alerta.style.display = '';
-  if (container) container.style.display = '';
 
   let html = templates["coneixerns"];
   if (tituloSpan) tituloSpan.textContent = ciclesData[cicle].titol || "";
   html += ciclesData[cicle].pla.join("");
-  container.innerHTML = html;
+
   marcarPillActivo(cicle);
   if (alerta) alerta.innerHTML = ciclesData[cicle].alerta || "";
   enableVideoFullscreen();
