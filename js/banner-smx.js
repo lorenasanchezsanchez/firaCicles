@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     // MOSTRAR
     if (alerta) alerta.style.display = '';
-    if (container) container.style.display = '';
     if (menu) menu.style.display = '';
     if (titulo) titulo.style.display = '';
   }
