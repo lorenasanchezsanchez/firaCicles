@@ -82,36 +82,38 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   pills.forEach(function (pill) {
-    pill.addEventListener("click", function () {
-      const key = pill.dataset.content;
-      // "Matrícula": abrir enlace en otra pestaña
-      if (key === "matricula") {
-        window.open(
-          "https://portal.edu.gva.es/adminova/es/fp/",
-          "_blank",
-          "noopener,noreferrer"
-        );
-        return;
-      }
-      // Si es un ciclo, cambia hash para disparar updateContent()
-      if (ciclesData[key]) {
-        window.location.hash = '/' + key;
-        return;
-      }
-      // Si es un panel tradicional, muestra el template y resalta el pill
-      pills.forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-      container.classList.add("hide");
-      setTimeout(function () {
-        container.innerHTML = templates[key] || '<div class="panel-section"><p>Contingut no disponible.</p></div>';
-        container.classList.remove("hide");
-        enableVideoFullscreen();
-      }, 200);
-      // No cambiamos el título para los paneles informativos
-      const titleEl = document.querySelector('.title-animated span');
-      if (titleEl) titleEl.textContent = "Benvingut a IES Benigasló";
-    });
+  pill.addEventListener("click", function () {
+    const key = pill.dataset.content;
+    // "Matrícula": abrir enlace en otra pestaña
+    if (key === "matricula") {
+      window.open(
+        "https://portal.edu.gva.es/adminova/es/fp/",
+        "_blank",
+        "noopener,noreferrer"
+      );
+      return;
+    }
+    // Si es un ciclo, cambia hash para disparar updateContent()
+    if (ciclesData[key]) {
+      window.location.hash = '/' + key;
+      return;
+    }
+    // Si es un panel tradicional, LIMPIA EL HASH y muestra el template y resalta el pill
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    pills.forEach(p => p.classList.remove("active"));
+    pill.classList.add("active");
+    container.classList.add("hide");
+    setTimeout(function () {
+      container.innerHTML = templates[key] || '<div class="panel-section"><p>Contingut no disponible.</p></div>';
+      container.classList.remove("hide");
+      enableVideoFullscreen();
+    }, 200);
+    // No cambiamos el título para los paneles informativos
+    const titleEl = document.querySelector('.title-animated span');
+    if (titleEl) titleEl.textContent = "Benvingut a IES Benigasló";
+    mostrarOcultarElementos(); // <--- Esto fuerza ocultar
   });
+});
 
   // CARGA INICIAL
   if (getCicleFromHash()) {
