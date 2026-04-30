@@ -91,7 +91,7 @@ const ciclesData = {
 function mostrarOcultarElementos() {
   const alerta = document.getElementById('alerta-matricula');
   const dinamic = document.getElementById('dynamic-content');
-  
+   const cicle = getCicleFromHash();
   // Ocultar ambos si no hay ruta, mostrar ambos si hay ruta
   if (!cicle) {
     if (alerta) alerta.style.display = 'none';
