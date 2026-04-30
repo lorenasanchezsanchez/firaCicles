@@ -15,7 +15,47 @@ const ciclesData = {
     },
     dam: {
       titol: "Desenvolupament d'Aplicacions Multiplataforma",
-      descripcio: "DAM"
+      descripcio: "DAM",
+      pla: [
+          '<div class="panel-section">',
+          '<h3>📚 Pla de formació de 2000 hores</h3>',
+        
+          '<div class="plan-formacio">',
+        
+          '<div class="curs">',
+          '<h4>1r curs</h4>',
+          '<ul>',
+          '<li>Anglés professional (GS)</li>',
+          '<li>Llenguatges de marques i sistemes de gestió d\'informació</li>',
+          '<li>Sistemes informàtics</li>',
+          '<li>Bases de dades</li>',
+          '<li>Programació</li>',
+          '<li>Entorns de desenvolupament</li>',
+          '<li>Itinerari personal per a l\'ocupabilitat I</li>',
+          '<li>Projecte intermodular de desenvolupament d\'aplicacions multiplataforma (primer curs)</li>',
+          '</ul>',
+          '</div>',
+        
+          '<div class="curs">',
+          '<h4>2n curs</h4>',
+          '<ul>',
+          '<li>Accés a dades</li>',
+          '<li>Desenvolupament d\'interfícies</li>',
+          '<li>Programació multimèdia i dispositius mòbils</li>',
+          '<li>Programació de serveis i processos</li>',
+          '<li>Sistemes de gestió empresarial</li>',
+          '<li>Itinerari personal per a l\'ocupabilitat II</li>',
+          '<li>Projecte intermodular de desenvolupament d\'aplicacions multiplataforma (segon curs)</li>',
+          '<li>Mòdul optatiu</li>',
+          '<li>Digitalització aplicada al sistema productiu (GS)</li>',
+          '<li>Sostenibilitat aplicada al sistema productiu</li>',
+          '<li>Formació en Centres de Treball (FCT)</li>',
+          '</ul>',
+          '</div>',
+        
+          '</div>',
+          '</div>'
+        ]
     },
     daw: {
       titol: "Desenvolupament d'Aplicacions Web",
