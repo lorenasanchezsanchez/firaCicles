@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!cicloValido()) {
     // OCULTAR
     if (alerta) alerta.style.display = 'none';
-    if (container) container.style.display = 'none';
     if (menu) menu.style.display = 'none';
     if (titulo) titulo.style.display = 'none';
     if (tituloSpan) tituloSpan.textContent = "";
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!cicle || !ciclesData[cicle] || !ciclesData[cicle].pla) {
     // Limpiar y ocultar todo
     if (tituloSpan) tituloSpan.textContent = "";
-    if (container) container.innerHTML = "";
     if (alerta) alerta.innerHTML = "";
     marcarPillActivo(null);
     return;
